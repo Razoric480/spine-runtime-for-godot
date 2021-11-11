@@ -5,7 +5,7 @@
 #ifndef GODOT_SPINETRACKENTRY_H
 #define GODOT_SPINETRACKENTRY_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 

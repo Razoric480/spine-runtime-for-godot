@@ -5,7 +5,7 @@
 #ifndef GODOT_SPINEIKCONSTRAINT_H
 #define GODOT_SPINEIKCONSTRAINT_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
@@ -13,11 +13,11 @@
 
 class SpineBone;
 
-class SpineIkConstraint : public Reference {
-	GDCLASS(SpineIkConstraint, Reference);
+class SpineIkConstraint : public godot::Reference {
+	GODOT_CLASS(SpineIkConstraint, godot::Reference);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
 private:
 	spine::IkConstraint *ik_constraint;
@@ -40,12 +40,12 @@ public:
 
 	int get_order();
 
-	Ref<SpineIkConstraintData> get_data();
+	godot::Ref<SpineIkConstraintData> get_data();
 
-	Array get_bones();
+	godot::Array get_bones();
 
-	Ref<SpineBone> get_target();
-	void set_target(Ref<SpineBone> v);
+	godot::Ref<SpineBone> get_target();
+	void set_target(godot::Ref<SpineBone> v);
 
 	int get_bend_direction();
 	void set_bend_direction(int v);

@@ -7,13 +7,24 @@
 #include <spine/SpineString.h>
 #include <File.hpp>
 #include <Godot.hpp>
-#include <String.hpp>
 
 #include <stdlib.h>
 #include <iostream>
 
 spine::SpineExtension *spine::getDefaultExtension() {
 	return new RaiixSpineExtension();
+}
+
+void *do_alloc(size_t size) {
+	return malloc(size);
+}
+
+void *do_realloc(void *ptr, size_t size) {
+	return realloc(ptr, size);
+}
+
+void do_free(void *ptr) {
+	free(ptr);
 }
 
 RaiixSpineExtension::RaiixSpineExtension() {}
@@ -64,16 +75,4 @@ char *RaiixSpineExtension::_readFile(const spine::String &path, int *length) {
 		}
 		return nullptr;
 	}
-}
-
-void *do_alloc(size_t size) {
-	return malloc(size);
-}
-
-void *do_realloc(void *ptr, size_t size) {
-	return realloc(ptr, size);
-}
-
-void do_free(void *ptr) {
-	free(ptr);
 }

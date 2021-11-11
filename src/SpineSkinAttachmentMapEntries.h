@@ -5,17 +5,17 @@
 #ifndef GODOT_SPINESKINATTACHMENTMAPENTRIES_H
 #define GODOT_SPINESKINATTACHMENTMAPENTRIES_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
 #include "SpineAttachment.h"
 
-class SpineSkinAttachmentMapEntry : public Reference {
-	GDCLASS(SpineSkinAttachmentMapEntry, Reference);
+class SpineSkinAttachmentMapEntry : public godot::Reference {
+	GODOT_CLASS(SpineSkinAttachmentMapEntry, godot::Reference);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
 private:
 	spine::Skin::AttachmentMap::Entry *entry;
@@ -34,15 +34,15 @@ public:
 	uint64_t get_slot_index();
 	void set_slot_index(uint64_t v);
 
-	String get_entry_name();
-	void set_entry_name(const String &v);
+	godot::String get_entry_name();
+	void set_entry_name(const godot::String &v);
 
-	Ref<SpineAttachment> get_attachment();
-	void set_attachment(Ref<SpineAttachment> v);
+	godot::Ref<SpineAttachment> get_attachment();
+	void set_attachment(godot::Ref<SpineAttachment> v);
 };
 
-class SpineSkinAttachmentMapEntries : public Reference {
-	GDCLASS(SpineSkinAttachmentMapEntries, Reference);
+class SpineSkinAttachmentMapEntries : public godot::Reference {
+	GODOT_CLASS(SpineSkinAttachmentMapEntries, godot::Reference);
 
 protected:
 	static void _bind_methods();
@@ -62,7 +62,7 @@ public:
 	}
 
 	bool has_next();
-	Ref<SpineSkinAttachmentMapEntry> next();
+	godot::Ref<SpineSkinAttachmentMapEntry> next();
 };
 
 #endif //GODOT_SPINESKINATTACHMENTMAPENTRIES_H

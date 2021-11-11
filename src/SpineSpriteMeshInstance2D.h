@@ -5,7 +5,7 @@
 #ifndef GODOT_SPINESPRITEMESHINSTANCE2D_H
 #define GODOT_SPINESPRITEMESHINSTANCE2D_H
 
-#include <scene/2d/mesh_instance_2d.h>
+#include <Godot.hpp>
 
 #include "SpineSlot.h"
 

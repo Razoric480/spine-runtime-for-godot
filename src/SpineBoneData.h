@@ -5,15 +5,15 @@
 #ifndef GODOT_SPINEBONEDATA_H
 #define GODOT_SPINEBONEDATA_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
-class SpineBoneData : public Reference {
-	GDCLASS(SpineBoneData, Reference);
+class SpineBoneData : public godot::Reference {
+	GODOT_CLASS(SpineBoneData, godot::Reference);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
 private:
 	spine::BoneData *bone_data;
@@ -39,9 +39,9 @@ public:
 
 	int get_index();
 
-	String get_bone_name();
+	godot::String get_bone_name();
 
-	Ref<SpineBoneData> get_parent();
+	godot::Ref<SpineBoneData> get_parent();
 
 	float get_length();
 	void set_length(float v);
@@ -75,5 +75,4 @@ public:
 
 };
 
-VARIANT_ENUM_CAST(SpineBoneData::TransformMode);
 #endif //GODOT_SPINEBONEDATA_H

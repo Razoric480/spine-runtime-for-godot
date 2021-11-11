@@ -5,7 +5,7 @@
 #ifndef GODOT_SPINECOLLISIONSHAPEPROXY_H
 #define GODOT_SPINECOLLISIONSHAPEPROXY_H
 
-#include "scene/2d/collision_polygon_2d.h"
+#include <Godot.hpp>
 
 class SpineSprite;
 class SpineAnimationState;

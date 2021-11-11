@@ -5,7 +5,7 @@
 #ifndef GODOT_SPINEPATHCONSTRAINT_H
 #define GODOT_SPINEPATHCONSTRAINT_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
@@ -13,11 +13,11 @@
 #include "SpineSlot.h"
 #include "SpinePathConstraintData.h"
 
-class SpinePathConstraint : public Reference{
-	GDCLASS(SpinePathConstraint, Reference);
+class SpinePathConstraint : public godot::Reference{
+	GODOT_CLASS(SpinePathConstraint, godot::Reference);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
 private:
 	spine::PathConstraint *path_constraint;
@@ -55,12 +55,12 @@ public:
 	float get_mix_y();
 	void set_mix_y(float v);
 
-	Array get_bones();
+	godot::Array get_bones();
 
-	Ref<SpineSlot> get_target();
-	void set_target(Ref<SpineSlot> v);
+	godot::Ref<SpineSlot> get_target();
+	void set_target(godot::Ref<SpineSlot> v);
 
-	Ref<SpinePathConstraintData> get_data();
+	godot::Ref<SpinePathConstraintData> get_data();
 
 	bool is_active();
 	void set_active(bool v);

@@ -5,60 +5,72 @@
 #ifndef GODOT_SPINERUNTIMEEDITORPLUGIN_H
 #define GODOT_SPINERUNTIMEEDITORPLUGIN_H
 
-#ifdef TOOLS_ENABLED
-#include "editor/editor_node.h"
+#include <EditorImportPlugin.hpp>
+#include <EditorPlugin.hpp>
+#include <Godot.hpp>
 
-class SpineAtlasResourceImportPlugin : public EditorImportPlugin {
-    GDCLASS(SpineAtlasResourceImportPlugin, EditorImportPlugin);
+
+class SpineAtlasResourceImportPlugin : public godot::EditorImportPlugin {
+	GODOT_CLASS(SpineAtlasResourceImportPlugin, godot::EditorImportPlugin);
 
 public:
-    String get_importer_name() const override {return "raiix.spine_runtime.atlas";}
-    String get_visible_name() const override {return "Spine Runtime Atlas";}
-    void get_recognized_extensions(List<String> *p_extensions) const override {p_extensions->push_back("atlas");}
-    String get_preset_name(int p_idx) const override {if (p_idx == 0) return "Default"; else return "Unknown";}
-    int get_preset_count() const override {return 1;}
-    String get_save_extension() const override {return "spatlas";}
-    String get_resource_type() const override {return "SpineAtlasResource";}
-    void get_import_options(List<ImportOption> *r_options, int p_preset) const override;
-    bool get_option_visibility(const String &p_option, const Map<StringName, Variant> &p_options) const override {return true;}
-    Error import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files, Variant *r_metadata) override;
+	godot::String get_importer_name() const { return "raiix.spine_runtime.atlas"; }
+	godot::String get_visible_name() const { return "Spine Runtime Atlas"; }
+	void get_recognized_extensions(godot::PoolStringArray *p_extensions) const { p_extensions->push_back("atlas"); }
+	godot::String get_preset_name(int p_idx) const {
+		if (p_idx == 0)
+			return "Default";
+		else
+			return "Unknown";
+	}
+	int get_preset_count() const { return 1; }
+	godot::String get_save_extension() const { return "spatlas"; }
+	godot::String get_resource_type() const { return "SpineAtlasResource"; }
+	void get_import_options(godot::Array *r_options, int p_preset) const;
+	bool get_option_visibility(const godot::String &p_option, const godot::Dictionary &p_options) const { return true; }
+	godot::Error import(const godot::String &p_source_file, const godot::String &p_save_path, const godot::Dictionary &p_options, godot::PoolStringArray *r_platform_variants, godot::PoolStringArray *r_gen_files, godot::Variant *r_metadata);
 };
 
-class SpineJsonResourceImportPlugin : public EditorImportPlugin {
-GDCLASS(SpineJsonResourceImportPlugin, EditorImportPlugin);
+class SpineJsonResourceImportPlugin : public godot::EditorImportPlugin {
+	GODOT_CLASS(SpineJsonResourceImportPlugin, godot::EditorImportPlugin);
 
 public:
-    String get_importer_name() const override {return "raiix.spine_runtime.json";}
-    String get_visible_name() const override {return "Spine Runtime Json";}
-    void get_recognized_extensions(List<String> *p_extensions) const override {p_extensions->push_back("json");}
-    String get_preset_name(int p_idx) const override {if (p_idx == 0) return "Default"; else return "Unknown";}
-    int get_preset_count() const override {return 1;}
-    String get_save_extension() const override {return "spjson";}
-    String get_resource_type() const override {return "SpineSkeletonJsonDataResource";}
-    void get_import_options(List<ImportOption> *r_options, int p_preset) const override {}
-    bool get_option_visibility(const String &p_option, const Map<StringName, Variant> &p_options) const override {return true;}
-    Error import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files, Variant *r_metadata) override;
+	godot::String get_importer_name() const { return "raiix.spine_runtime.json"; }
+	godot::String get_visible_name() const { return "Spine Runtime Json"; }
+	void get_recognized_extensions(godot::PoolStringArray *p_extensions) const { p_extensions->push_back("json"); }
+	godot::String get_preset_name(int p_idx) const {
+		if (p_idx == 0)
+			return "Default";
+		else
+			return "Unknown";
+	}
+	int get_preset_count() const { return 1; }
+	godot::String get_save_extension() const { return "spjson"; }
+	godot::String get_resource_type() const { return "SpineSkeletonJsonDataResource"; }
+	void get_import_options(godot::Array *r_options, int p_preset) const {}
+	bool get_option_visibility(const godot::String &p_option, const godot::Dictionary &p_options) const { return true; }
+	godot::Error import(const godot::String &p_source_file, const godot::String &p_save_path, const godot::Dictionary &p_options, godot::PoolStringArray *r_platform_variants, godot::PoolStringArray *r_gen_files, godot::Variant *r_metadata);
 };
 
 class SpineSpriteAnimateDialog;
 
-class SpineRuntimeEditorPlugin : public EditorPlugin {
-	GDCLASS(SpineRuntimeEditorPlugin, EditorPlugin);
+class SpineRuntimeEditorPlugin : public godot::EditorPlugin {
+	GODOT_CLASS(SpineRuntimeEditorPlugin, godot::EditorPlugin);
 
 protected:
-    SpineSpriteAnimateDialog *animate_dialog;
-public:
-    SpineRuntimeEditorPlugin(EditorNode *p_node);
-    ~SpineRuntimeEditorPlugin();
+	SpineSpriteAnimateDialog *animate_dialog;
 
-	String get_name() const override { return "SpineRuntimeEditorPlugin"; }
+public:
+	SpineRuntimeEditorPlugin(godot::Variant *p_node);
+	~SpineRuntimeEditorPlugin();
+
+	godot::String get_name() const { return "SpineRuntimeEditorPlugin"; }
 	bool has_main_screen() const { return false; }
 
-	bool handles(Object *p_object) const override;
-	void make_visible(bool p_visible) override;
+	bool handles(godot::Object *p_object) const;
+	void make_visible(bool p_visible);
 
 	void _on_animate_button_pressed();
 };
-#endif
 
 #endif //GODOT_SPINERUNTIMEEDITORPLUGIN_H

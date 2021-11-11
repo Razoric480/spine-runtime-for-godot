@@ -5,20 +5,23 @@
 #ifndef GODOT_SPINESKELETONJSONDATARESOURCE_H
 #define GODOT_SPINESKELETONJSONDATARESOURCE_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
+#include <Resource.hpp>
 
-class SpineSkeletonJsonDataResource : public Resource{
-	GDCLASS(SpineSkeletonJsonDataResource, Resource);
+class SpineSkeletonJsonDataResource : public godot::Resource {
+	GODOT_CLASS(SpineSkeletonJsonDataResource, godot::Resource);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
-    String json_string;
+	godot::String json_string;
+
 public:
-    inline const String &get_json_string() {return json_string;}
+    void _init();
+	inline const godot::String &get_json_string() { return json_string; }
 
-    Error load_from_file(const String &p_path);
-    Error save_to_file(const String &p_path);
+	godot::Error load_from_file(const godot::String &p_path);
+	godot::Error save_to_file(const godot::String &p_path);
 };
 
 #endif //GODOT_SPINESKELETONJSONDATARESOURCE_H

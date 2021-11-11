@@ -5,7 +5,7 @@
 #ifndef GODOT_SPINEPATHCONSTRAINTDATA_H
 #define GODOT_SPINEPATHCONSTRAINTDATA_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
@@ -14,10 +14,10 @@
 #include "SpineSlotData.h"
 
 class SpinePathConstraintData : public SpineConstraintData {
-	GDCLASS(SpinePathConstraintData, SpineConstraintData);
+	GODOT_CLASS(SpinePathConstraintData, SpineConstraintData);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
 public:
 	SpinePathConstraintData();
@@ -44,10 +44,10 @@ public:
 		ROTATEMODE_CHAINSCALE
 	};
 
-	Array get_bones();
+	godot::Array get_bones();
 
-	Ref<SpineSlotData> get_target();
-	void set_target(Ref<SpineSlotData> v);
+	godot::Ref<SpineSlotData> get_target();
+	void set_target(godot::Ref<SpineSlotData> v);
 
 	PositionMode get_position_mode();
 	void set_position_mode(PositionMode v);
@@ -77,7 +77,4 @@ public:
 	void set_mix_y(float v);
 };
 
-VARIANT_ENUM_CAST(SpinePathConstraintData::PositionMode);
-VARIANT_ENUM_CAST(SpinePathConstraintData::SpacingMode);
-VARIANT_ENUM_CAST(SpinePathConstraintData::RotateMode);
 #endif //GODOT_SPINEPATHCONSTRAINTDATA_H

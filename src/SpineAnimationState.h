@@ -5,7 +5,7 @@
 #ifndef GODOT_SPINEANIMATIONSTATE_H
 #define GODOT_SPINEANIMATIONSTATE_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include "SpineAnimationStateDataResource.h"
 #include "SpineSkeleton.h"

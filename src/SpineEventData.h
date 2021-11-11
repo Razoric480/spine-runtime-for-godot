@@ -5,25 +5,27 @@
 #ifndef GODOT_SPINEEVENTDATA_H
 #define GODOT_SPINEEVENTDATA_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
-class SpineEventData : public Reference{
-	GDCLASS(SpineEventData, Reference);
+class SpineEventData : public godot::Reference {
+	GODOT_CLASS(SpineEventData, godot::Reference);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
+
 private:
 	const spine::EventData *event_data;
+
 public:
 	SpineEventData();
 	~SpineEventData();
 
-	inline void set_spine_object(const spine::EventData *e){
+	inline void set_spine_object(const spine::EventData *e) {
 		event_data = e;
 	}
-	inline const spine::EventData *get_spine_object(){
+	inline const spine::EventData *get_spine_object() {
 		return event_data;
 	}
 };

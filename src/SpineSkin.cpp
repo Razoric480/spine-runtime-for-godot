@@ -7,7 +7,7 @@
 #include "SpineBoneData.h"
 #include "SpineConstraintData.h"
 
-void SpineSkin::_bind_methods() {
+void SpineSkin::_register_methods() {
 	ClassDB::bind_method(D_METHOD("init", "name"), &SpineSkin::init);
 	ClassDB::bind_method(D_METHOD("set_attachment", "slot_index", "name", "attachment"), &SpineSkin::set_attachment);
 	ClassDB::bind_method(D_METHOD("get_attachment", "slot_index", "name"), &SpineSkin::get_attachment);

@@ -4,27 +4,35 @@
 
 #include "SpineSkeletonJsonDataResource.h"
 
+#include <File.hpp>
 
-void SpineSkeletonJsonDataResource::_bind_methods() {
+void SpineSkeletonJsonDataResource::_register_methods() {
 }
 
-Error SpineSkeletonJsonDataResource::load_from_file(const String &p_path) {
-    Error err;
+godot::Error SpineSkeletonJsonDataResource::load_from_file(const godot::String &p_path) {
+    godot::Error err;
+    godot::Ref<godot::File> file;
+    file.instance();
+    godot::Error err = file->open(p_path, godot::File::READ);
+    if(err == godot::Error::OK) {
+        json_string = file->get_as_text();
+        file->close();
+    }
 
-    json_string = FileAccess::get_file_as_string(p_path, &err);
     return err;
 }
 
-Error SpineSkeletonJsonDataResource::save_to_file(const String &p_path) {
-    Error err;
-    FileAccess *file = FileAccess::open(p_path, FileAccess::WRITE, &err);
-    if (err != OK) {
-        if (file) file->close();
+godot::Error SpineSkeletonJsonDataResource::save_to_file(const godot::String &p_path) {
+    godot::Error err;
+    godot::Ref<godot::File> file;
+    file.instance();
+    err = file->open(p_path, godot::File::WRITE);
+    if(err != godot::Error::OK) {
         return err;
     }
 
     file->store_string(json_string);
     file->close();
 
-    return OK;
+    return godot::Error::OK;
 }

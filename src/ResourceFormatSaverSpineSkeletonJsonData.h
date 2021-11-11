@@ -5,15 +5,20 @@
 #ifndef GODOT_RESOURCEFORMATSAVERSPINESKELETONJSONDATA_H
 #define GODOT_RESOURCEFORMATSAVERSPINESKELETONJSONDATA_H
 
-#include "core/io/resource_saver.h"
+#include <Godot.hpp>
+#include <ResourceFormatSaver.hpp>
 
-class ResourceFormatSaverSpineSkeletonJsonData : public ResourceFormatSaver{
-    GDCLASS(ResourceFormatSaverSpineSkeletonJsonData, ResourceFormatSaver);
+class ResourceFormatSaverSpineSkeletonJsonData : public godot::ResourceFormatSaver {
+	GODOT_CLASS(ResourceFormatSaverSpineSkeletonJsonData, godot::ResourceFormatSaver);
+
+protected:
+	static void _register_methods();
+
 public:
-    Error save(const String &p_path, const RES &p_resource, uint32_t p_flags = 0) override;
-    void get_recognized_extensions(const RES &p_resource, List<String> *p_extensions) const override;
-    bool recognize(const RES &p_resource) const override;
+	void _init();
+	godot::Error save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags = 0);
+	godot::PoolStringArray get_recognized_extensions(const godot::Ref<godot::Resource> &p_resource) const;
+	bool recognize(const godot::Ref<godot::Resource> &p_resource) const;
 };
-
 
 #endif //GODOT_RESOURCEFORMATSAVERSPINESKELETONJSONDATA_H

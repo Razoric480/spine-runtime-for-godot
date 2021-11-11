@@ -4,28 +4,35 @@
 
 #include "ResourceFormatLoaderSpineSkeletonJsonData.h"
 #include "SpineSkeletonJsonDataResource.h"
+#include <ClassDB.hpp>
 
-RES ResourceFormatLoaderSpineSkeletonJsonData::load(const String &p_path, const String &p_original_path, Error *r_error) {
-    Ref<SpineSkeletonJsonDataResource> skeleton = memnew(SpineSkeletonJsonDataResource);
-    skeleton->load_from_file(p_path);
-
-    if(r_error){
-        *r_error = OK;
-    }
-    return skeleton;
+void ResourceFormatLoaderSpineSkeletonJsonData::_register_methods() {
+	godot::register_method("load", &ResourceFormatLoaderSpineSkeletonJsonData::load);
+	godot::register_method("get_recognized_extensions", &ResourceFormatLoaderSpineSkeletonJsonData::get_recognized_extensions);
+	godot::register_method("get_resource_type", &ResourceFormatLoaderSpineSkeletonJsonData::get_resource_type);
+	godot::register_method("handles_type", &ResourceFormatLoaderSpineSkeletonJsonData::handles_type);
 }
 
-void ResourceFormatLoaderSpineSkeletonJsonData::get_recognized_extensions(List<String> *r_extensions) const {
-    const char json_ext[] = "spjson";
-    if(!r_extensions->find(json_ext)) {
-        r_extensions->push_back(json_ext);
-    }
+void ResourceFormatLoaderSpineSkeletonJsonData::_init() {}
+
+godot::Variant ResourceFormatLoaderSpineSkeletonJsonData::load(const godot::String &p_path, const godot::String &p_original_path) {
+	godot::Ref<SpineSkeletonJsonDataResource> skeleton;
+    skeleton.instance();
+	skeleton->load_from_file(p_path);
+
+	return skeleton;
 }
 
-String ResourceFormatLoaderSpineSkeletonJsonData::get_resource_type(const String &p_path) const {
-    return "SpineSkeletonJsonDataResource";
+godot::PoolStringArray ResourceFormatLoaderSpineSkeletonJsonData::get_recognized_extensions() const {
+	godot::PoolStringArray extensions;
+	extensions.push_back("spjson");
+	return extensions;
 }
 
-bool ResourceFormatLoaderSpineSkeletonJsonData::handles_type(const String &p_type) const {
-    return p_type == "SpineSkeletonJsonDataResource" || ClassDB::is_parent_class(p_type, "SpineSkeletonJsonDataResource");
+godot::String ResourceFormatLoaderSpineSkeletonJsonData::get_resource_type(const godot::String &p_path) const {
+	return "SpineSkeletonJsonDataResource";
+}
+
+bool ResourceFormatLoaderSpineSkeletonJsonData::handles_type(const godot::String &p_type) const {
+	return p_type == "SpineSkeletonJsonDataResource" || godot::ClassDB::get_singleton()->is_parent_class(p_type, "SpineSkeletonJsonDataResource");
 }

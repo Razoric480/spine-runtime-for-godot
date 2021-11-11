@@ -5,17 +5,17 @@
 #ifndef GODOT_SPINEEVENT_H
 #define GODOT_SPINEEVENT_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
 #include "SpineEventData.h"
 
-class SpineEvent : public Reference{
-	GDCLASS(SpineEvent, Reference);
+class SpineEvent : public godot::Reference{
+	GODOT_CLASS(SpineEvent, godot::Reference);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 private:
 	spine::Event *event;
 public:
@@ -39,9 +39,9 @@ public:
 	};
 
 
-	Ref<SpineEventData> get_data();
+	godot::Ref<SpineEventData> get_data();
 
-	String get_event_name();
+	godot::String get_event_name();
 
 	float get_time();
 
@@ -51,8 +51,8 @@ public:
 	float get_float_value();
 	void set_float_value(float inValue);
 
-	String get_string_value();
-	void set_string_value(const String &inValue);
+	godot::String get_string_value();
+	void set_string_value(const godot::String &inValue);
 
 	float get_volume();
 	void set_volume(float inValue);

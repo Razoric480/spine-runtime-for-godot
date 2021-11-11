@@ -6,18 +6,28 @@
 
 #include "SpineSkeletonJsonDataResource.h"
 
-Error ResourceFormatSaverSpineSkeletonJsonData::save(const String &p_path, const RES &p_resource, uint32_t p_flags) {
-    Ref<SpineSkeletonJsonDataResource> res = p_resource.get_ref_ptr();
-    Error error = res->save_to_file(p_path);
+void ResourceFormatSaverSpineSkeletonJsonData::_register_methods() {
+    godot::register_method("save", ResourceFormatSaverSpineSkeletonJsonData::save);
+    godot::register_method("get_recognized_extensions", ResourceFormatSaverSpineSkeletonJsonData::get_recognized_extensions);
+    godot::register_method("recognize", ResourceFormatSaverSpineSkeletonJsonData::recognize);
+}
+
+void ResourceFormatSaverSpineSkeletonJsonData::_init() {}
+
+godot::Error ResourceFormatSaverSpineSkeletonJsonData::save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags) {
+    godot::Ref<SpineSkeletonJsonDataResource> res = p_resource.ptr();
+    godot::Error error = res->save_to_file(p_path);
     return error;
 }
 
-void ResourceFormatSaverSpineSkeletonJsonData::get_recognized_extensions(const RES &p_resource, List<String> *p_extensions) const {
+godot::PoolStringArray ResourceFormatSaverSpineSkeletonJsonData::get_recognized_extensions(const godot::Ref<godot::Resource> &p_resource) const {
+    godot::PoolStringArray extensions;
     if (Object::cast_to<SpineSkeletonJsonDataResource>(*p_resource)) {
-        p_extensions->push_back("spjson");
+        extensions.push_back("spjson");
     }
+    return extensions;
 }
 
-bool ResourceFormatSaverSpineSkeletonJsonData::recognize(const RES &p_resource) const {
+bool ResourceFormatSaverSpineSkeletonJsonData::recognize(const godot::Ref<godot::Resource> &p_resource) const {
     return Object::cast_to<SpineSkeletonJsonDataResource>(*p_resource) != nullptr;
 }

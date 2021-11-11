@@ -2,18 +2,19 @@
 #ifndef _GODOT_RAIIX_SPINE_RUNTIME_
 #define _GODOT_RAIIX_SPINE_RUNTIME_
 
-#include "core/reference.h"
+#include <Godot.hpp>
 
-class SpineRuntime : public Reference {
-    GDCLASS(SpineRuntime, Reference);
+class SpineRuntime : public godot::Reference {
+	GODOT_CLASS(SpineRuntime, godot::Reference);
 
 protected:
-    static void _bind_methods();
+	static void _register_methods();
 
 public:
-    void hi();
+	void _init();
+	void hi();
 
-    SpineRuntime();
+	SpineRuntime();
 };
 
 #endif

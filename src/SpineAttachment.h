@@ -5,15 +5,15 @@
 #ifndef GODOT_SPINEATTACHMENT_H
 #define GODOT_SPINEATTACHMENT_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
-class SpineAttachment : public Reference {
-	GDCLASS(SpineAttachment, Reference);
+class SpineAttachment : public godot::Reference {
+	GODOT_CLASS(SpineAttachment, godot::Reference);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
 private:
 	spine::Attachment *attachment;
@@ -31,9 +31,9 @@ public:
 		return attachment;
 	}
 
-	String get_attachment_name();
+	godot::String get_attachment_name();
 
-	Ref<SpineAttachment> copy();
+	godot::Ref<SpineAttachment> copy();
 };
 
 #endif //GODOT_SPINEATTACHMENT_H

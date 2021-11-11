@@ -5,7 +5,7 @@
 #ifndef GODOT_SPINEIKCONSTRAINTDATA_H
 #define GODOT_SPINEIKCONSTRAINTDATA_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
@@ -13,10 +13,10 @@
 #include "SpineBoneData.h"
 
 class SpineIkConstraintData : public SpineConstraintData {
-	GDCLASS(SpineIkConstraintData, SpineConstraintData);
+	GODOT_CLASS(SpineIkConstraintData, SpineConstraintData);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
 public:
 	SpineIkConstraintData();
@@ -26,10 +26,10 @@ public:
 		return (spine::IkConstraintData*) SpineConstraintData::get_spine_object();
 	}
 
-	Array get_bones();
+	godot::Array get_bones();
 
-	Ref<SpineBoneData> get_target();
-	void set_target(Ref<SpineBoneData> v);
+	godot::Ref<SpineBoneData> get_target();
+	void set_target(godot::Ref<SpineBoneData> v);
 
 	int get_bend_direction();
 	void set_bend_direction(int v);

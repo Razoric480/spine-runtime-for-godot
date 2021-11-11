@@ -5,18 +5,18 @@
 #ifndef GODOT_SPINETRANSFORMCONSTRAINT_H
 #define GODOT_SPINETRANSFORMCONSTRAINT_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
 #include "SpineTransformConstraintData.h"
 #include "SpineBone.h"
 
-class SpineTransformConstraint : public Reference{
-	GDCLASS(SpineTransformConstraint, Reference);
+class SpineTransformConstraint : public godot::Reference{
+	GODOT_CLASS(SpineTransformConstraint, godot::Reference);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
 private:
 	spine::TransformConstraint *transform_constraint;
@@ -36,12 +36,12 @@ public:
 
 	int get_order();
 
-	Ref<SpineTransformConstraintData> get_data();
+	godot::Ref<SpineTransformConstraintData> get_data();
 
-	Array get_bones();
+	godot::Array get_bones();
 
-	Ref<SpineBone> get_target();
-	void set_target(Ref<SpineBone> v);
+	godot::Ref<SpineBone> get_target();
+	void set_target(godot::Ref<SpineBone> v);
 
 	float get_mix_rotate();
 	void set_mix_rotate(float v);

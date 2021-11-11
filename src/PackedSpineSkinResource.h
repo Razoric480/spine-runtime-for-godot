@@ -7,17 +7,17 @@
 
 #include "SpineSkin.h"
 #include <Godot.hpp>
+#include <Resource.hpp>
 
-
-class PackedSpineSkinResource : public Resource {
-	GODOT_CLASS(PackedSpineSkinResource, Resource);
+class PackedSpineSkinResource : public godot::Resource {
+	GODOT_CLASS(PackedSpineSkinResource, godot::Resource);
 
 protected:
 	static void _register_methods();
 
 private:
-	String skin_name;
-	Array sub_skin_names;
+	godot::String skin_name;
+	godot::Array sub_skin_names;
 
 public:
 	PackedSpineSkinResource();
@@ -25,11 +25,11 @@ public:
 
 	void _init();
 
-	void set_skin_name(const String &v);
-	String get_skin_name();
+	void set_skin_name(const godot::String &v);
+	const godot::String &get_skin_name();
 
-	void set_sub_skin_names(Array v);
-	Array get_sub_skin_names();
+	void set_sub_skin_names(godot::Array v);
+	godot::Array get_sub_skin_names();
 };
 
 #endif //GODOT_PACKEDSPINESKINRESOURCE_H

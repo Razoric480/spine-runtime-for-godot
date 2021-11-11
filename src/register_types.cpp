@@ -1,7 +1,7 @@
-
+/*
 #include "register_types.h"
 
-#include "core/class_db.h"
+#include <ClassDB.hpp>
 
 #include "spine_runtime.h"
 #include "SpineAtlasResource.h"
@@ -120,4 +120,4 @@ void unregister_spine_runtime_types(){
 
 	ResourceSaver::remove_resource_format_saver(json_skeleton_saver);
 	json_skeleton_saver.unref();
-}
+}*/

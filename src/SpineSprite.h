@@ -5,9 +5,7 @@
 #ifndef GODOT_SPINESPRITE_H
 #define GODOT_SPINESPRITE_H
 
-#include <scene/resources/texture.h>
-
-#include <scene/2d/collision_polygon_2d.h>
+#include <Godot.hpp>
 
 #include "SpineAnimationStateDataResource.h"
 #include "SpineSkeleton.h"

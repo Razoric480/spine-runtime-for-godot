@@ -5,15 +5,15 @@
 #ifndef GODOT_SPINECONSTRAINTDATA_H
 #define GODOT_SPINECONSTRAINTDATA_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
-class SpineConstraintData : public Reference {
-	GDCLASS(SpineConstraintData, Reference);
+class SpineConstraintData : public godot::Reference {
+	GODOT_CLASS(SpineConstraintData, godot::Reference);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
 private:
 	spine::ConstraintData *constraint_data;
@@ -29,7 +29,7 @@ public:
 		return constraint_data;
 	}
 
-	String get_constraint_data_name();
+	godot::String get_constraint_data_name();
 
 	uint64_t get_order();
 	void set_order(uint64_t v);

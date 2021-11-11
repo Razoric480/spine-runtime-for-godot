@@ -4,14 +4,15 @@
 
 #ifndef GODOT_SPINESLOTDATA_H
 #define GODOT_SPINESLOTDATA_H
-#include "core/variant_parser.h"
+
+#include <Godot.hpp>
 
 #include <spine/spine.h>
 
 #include "SpineBoneData.h"
 
-class SpineSlotData : public Reference {
-	GDCLASS(SpineSlotData, Reference);
+class SpineSlotData : public godot::Reference {
+	GODOT_CLASS(SpineSlotData, godot::Reference);
 
 protected:
 	static void _bind_methods();
@@ -39,25 +40,24 @@ public:
 
 	int get_index();
 
-	String get_slot_name();
+	godot::String get_slot_name();
 
-	Ref<SpineBoneData> get_bone_data();
+	godot::Ref<SpineBoneData> get_bone_data();
 
-	Color get_color();
-	void set_color(Color c);
+	godot::Color get_color();
+	void set_color(godot::Color c);
 
-	Color get_dark_color();
-	void set_dark_color(Color c);
+	godot::Color get_dark_color();
+	void set_dark_color(godot::Color c);
 
 	bool has_dark_color();
 	void set_has_dark_color(bool v);
 
-	String get_attachment_name();
-	void set_attachment_name(const String &v);
+	godot::String get_attachment_name();
+	void set_attachment_name(const godot::String &v);
 
 	BlendMode get_blend_mode();
 	void set_blend_mode(BlendMode v);
 };
 
-VARIANT_ENUM_CAST(SpineSlotData::BlendMode);
 #endif //GODOT_SPINESLOTDATA_H

@@ -6,7 +6,7 @@
 #ifndef GODOT_SPINEANIMATION_H
 #define GODOT_SPINEANIMATION_H
 
-#include "core/variant_parser.h"
+#include <Godot.hpp>
 
 #include "SpineConstant.h"
 
@@ -16,33 +16,33 @@ class SpineEvent;
 class SpineSkeleton;
 class SpineTimeline;
 
-class SpineAnimation : public Reference{
-	GDCLASS(SpineAnimation, Reference);
+class SpineAnimation : public godot::Reference {
+	GODOT_CLASS(SpineAnimation, godot::Reference);
 
 private:
 	spine::Animation *animation;
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
 public:
 	SpineAnimation();
 	~SpineAnimation();
 
-	inline void set_spine_object(spine::Animation *a){
+	inline void set_spine_object(spine::Animation *a) {
 		animation = a;
 	}
-	inline spine::Animation *get_spine_object(){
+	inline spine::Animation *get_spine_object() {
 		return animation;
 	}
 
 	// Vector<Ref<SpineEvent>> pEvents
-    void apply(Ref<SpineSkeleton> skeleton, float lastTime, float time, bool loop, Array pEvents, float alpha, SpineConstant::MixBlend blend, SpineConstant::MixDirection direction);
+	void apply(godot::Ref<SpineSkeleton> skeleton, float lastTime, float time, bool loop, godot::Array pEvents, float alpha, SpineConstant::MixBlend blend, SpineConstant::MixDirection direction);
 
-    Array get_timelines(); // Vector<Ref<SpineTimeline>>
-    bool has_timeline(Array ids); // Vector<SpineConstant::PropertyId>
+	godot::Array get_timelines(); // Vector<Ref<SpineTimeline>>
+	bool has_timeline(godot::Array ids); // Vector<SpineConstant::PropertyId>
 
-	String get_anim_name();
+	godot::String get_anim_name();
 	float get_duration();
 	void set_duration(float v);
 };

@@ -5,10 +5,7 @@
 #ifndef GODOT_SPINEBONE_H
 #define GODOT_SPINEBONE_H
 
-#include "core/variant_parser.h"
-#include <scene/2d/node_2d.h>
-
-#include <scene/2d/node_2d.h>
+#include <Godot.hpp>
 #include <spine/spine.h>
 
 #include "SpineBoneData.h"
@@ -19,8 +16,8 @@
 class SpineSkeleton;
 class SpineSprite;
 
-class SpineBone : public Reference {
-	GDCLASS(SpineBone, Reference);
+class SpineBone : public godot::Reference {
+	GODOT_CLASS(SpineBone, godot::Reference);
 
 protected:
 	static void _bind_methods();
@@ -46,9 +43,9 @@ public:
 
 	void set_to_setup_pose();
 
-	Vector2 world_to_local(Vector2 world_position);
+	godot::Vector2 world_to_local(godot::Vector2 world_position);
 
-	Vector2 local_to_world(Vector2 local_position);
+	godot::Vector2 local_to_world(godot::Vector2 local_position);
 
 	float world_to_local_rotation(float world_rotation);
 
@@ -59,13 +56,13 @@ public:
 	float get_world_to_local_rotation_x();
 	float get_world_to_local_rotation_y();
 
-	Ref<SpineBoneData> get_data();
+	godot::Ref<SpineBoneData> get_data();
 
-	Ref<SpineSkeleton> get_skeleton();
+	godot::Ref<SpineSkeleton> get_skeleton();
 
-	Ref<SpineBone> get_parent();
+	godot::Ref<SpineBone> get_parent();
 
-	Array get_children();
+	godot::Array get_children();
 
 	float get_x();
 	void set_x(float v);
@@ -137,13 +134,13 @@ public:
 	void set_active(bool v);
 
 	// External feature functions
-	void apply_world_transform_2d(Variant o);
+	void apply_world_transform_2d(godot::Variant o);
 
-	Transform2D get_godot_transform();
-	void set_godot_transform(Transform2D trans);
+	godot::Transform2D get_godot_transform();
+	void set_godot_transform(godot::Transform2D trans);
 
-	Transform2D get_godot_global_transform();
-	void set_godot_global_transform(Transform2D trans);
+	godot::Transform2D get_godot_global_transform();
+	void set_godot_global_transform(godot::Transform2D trans);
 };
 
 #endif //GODOT_SPINEBONE_H
