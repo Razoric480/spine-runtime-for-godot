@@ -1,5 +1,6 @@
 //
 // Created by Raiix on 2021/7/16.
+// Edited by Razoric on 2021/11/xx
 //
 
 #ifndef GODOT_SPINESPRITEANIMATEDIALOG_H

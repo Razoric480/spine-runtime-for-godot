@@ -1,5 +1,6 @@
 //
 // Created by Raiix on 2021/7/14.
+// Edited by Razoric on 2021/11/xx
 //
 
 #ifndef GODOT_SPINECONSTANT_H
@@ -47,6 +48,8 @@ public:
 		Property_PathConstraintSpacing = 1 << 17,
 		Property_PathConstraintMix = 1 << 18
 	};
+    
+    void _init();
 
 	int get_MixBlend_Setup() const;
 	int get_MixBlend_First() const;
