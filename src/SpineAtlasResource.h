@@ -5,50 +5,50 @@
 #ifndef GODOT_SPINEATLASRESOURCE_H
 #define GODOT_SPINEATLASRESOURCE_H
 
+#include <Godot.hpp>
 
-
-#include "core/variant_parser.h"
-
+#include "SpineRendererObject.h"
+#include <spine/Atlas.h>
 #include <spine/SpineString.h>
 #include <spine/TextureLoader.h>
-#include <spine/Atlas.h>
-#include <scene/resources/texture.h>
-#include <core/io/image_loader.h>
-#include "SpineRendererObject.h"
+#include <Texture.hpp>
 
-class SpineAtlasResource : public Resource{
-    GDCLASS(SpineAtlasResource, Resource);
+
+class SpineAtlasResource : public godot::Resource {
+	GODOT_CLASS(SpineAtlasResource, godot::Resource);
 
 protected:
-    static void _bind_methods();
+	static void _register_methods();
 
-    spine::Atlas *atlas;
+	spine::Atlas *atlas;
 
-    String source_path;
-    String atlas_data;
-    String normal_texture_prefix;
+	godot::String source_path;
+	godot::String atlas_data;
+	godot::String normal_texture_prefix;
 
-    Array tex_list;
-    Array ntex_list;
+	godot::Array tex_list;
+	godot::Array ntex_list;
+
 public:
-    inline String &get_atlas_data() {return atlas_data;}
+	void _init();
 
-    inline spine::Atlas *get_spine_atlas() {return atlas;}
+	inline godot::String &get_atlas_data() { return atlas_data; }
 
-    inline void set_normal_texture_prefix(const String &p) {normal_texture_prefix = p;}
+	inline spine::Atlas *get_spine_atlas() { return atlas; }
 
-    Error load_from_atlas_file(const String &p_path); // .atlas
+	inline void set_normal_texture_prefix(const godot::String &p) { normal_texture_prefix = p; }
 
-    Error load_from_file(const String &p_path); // .spatlas
-    Error save_to_file(const String &p_path); // .spatlas
+	godot::Error load_from_atlas_file(const godot::String &p_path); // .atlas
 
-    String get_source_path();
-	Array get_textures();
-	Array get_normal_textures();
+	godot::Error load_from_file(const godot::String &p_path); // .spatlas
+	godot::Error save_to_file(const godot::String &p_path); // .spatlas
+
+	godot::String get_source_path();
+	godot::Array get_textures();
+	godot::Array get_normal_textures();
 
 	SpineAtlasResource();
-    virtual ~SpineAtlasResource();
+	virtual ~SpineAtlasResource();
 };
-
 
 #endif //GODOT_SPINEATLASRESOURCE_H

@@ -5,8 +5,8 @@
 #ifndef GODOT_RAIIXSPINEEXTENSION_H
 #define GODOT_RAIIXSPINEEXTENSION_H
 
-
 #include <spine/Extension.h>
+
 class RaiixSpineExtension : public spine::SpineExtension {
 public:
 	RaiixSpineExtension();
@@ -25,8 +25,8 @@ protected:
 	virtual char *_readFile(const spine::String &path, int *length);
 };
 
-
-
-
+void *do_malloc(size_t size);
+void *do_realloc(void *ptr, size_t size);
+void do_free(void *ptr);
 
 #endif //GODOT_RAIIXSPINEEXTENSION_H
