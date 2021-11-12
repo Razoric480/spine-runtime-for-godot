@@ -9,18 +9,19 @@
 
 #include <spine/spine.h>
 
-#include "SpineAtlasResource.h"
-#include "SpineSkeletonJsonDataResource.h"
 #include "SpineAnimation.h"
+#include "SpineAtlasResource.h"
 #include "SpineBoneData.h"
-#include "SpineSlotData.h"
-#include "SpineSkin.h"
-#include "SpineIkConstraintData.h"
-#include "SpineTransformConstraintData.h"
-#include "SpinePathConstraintData.h"
 #include "SpineEventData.h"
+#include "SpineIkConstraintData.h"
+#include "SpinePathConstraintData.h"
+#include "SpineSkeletonJsonDataResource.h"
+#include "SpineSkin.h"
+#include "SpineSlotData.h"
+#include "SpineTransformConstraintData.h"
 
-class SpineSkeletonDataResource : public godot::Resource{
+
+class SpineSkeletonDataResource : public godot::Resource {
 	GODOT_CLASS(SpineSkeletonDataResource, godot::Resource);
 
 protected:
@@ -35,14 +36,14 @@ private:
 	spine::SkeletonData *skeleton_data;
 
 	void update_skeleton_data();
-public:
 
-	inline void set_spine_object(spine::SkeletonData *s){
+public:
+	inline void set_spine_object(spine::SkeletonData *s) {
 		skeleton_data = s;
-		if(s)
+		if (s)
 			spine_object = true;
 	}
-	inline spine::SkeletonData *get_spine_object(){
+	inline spine::SkeletonData *get_spine_object() {
 		return skeleton_data;
 	}
 
@@ -51,7 +52,7 @@ public:
 	SpineSkeletonDataResource();
 	virtual ~SpineSkeletonDataResource();
 
-    godot::Array _get_property_list() const;
+	godot::Array _get_property_list() const;
 
 	void set_atlas_res(const godot::Ref<SpineAtlasResource> &a);
 	godot::Ref<SpineAtlasResource> get_atlas_res();
@@ -59,12 +60,12 @@ public:
 	void set_skeleton_json_res(const godot::Ref<SpineSkeletonJsonDataResource> &s);
 	godot::Ref<SpineSkeletonJsonDataResource> get_skeleton_json_res();
 
-	inline spine::SkeletonData *get_skeleton_data(){return skeleton_data;}
+	inline spine::SkeletonData *get_skeleton_data() { return skeleton_data; }
 
 	bool is_skeleton_data_loaded() const;
 
 	void get_animation_names(godot::PoolStringArray &l) const;
-    void get_skin_names(godot::PoolStringArray &l) const;
+	void get_skin_names(godot::PoolStringArray &l) const;
 
 	// spine api
 	godot::Ref<SpineBoneData> find_bone(const godot::String &bone_name);

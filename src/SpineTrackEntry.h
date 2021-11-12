@@ -11,11 +11,11 @@
 
 #include "SpineAnimation.h"
 
-class SpineTrackEntry : public Reference{
-	GDCLASS(SpineTrackEntry, Reference);
+class SpineTrackEntry : public godot::Reference{
+	GODOT_CLASS(SpineTrackEntry, godot::Reference);
 
 protected:
-	static void _bind_methods();
+	static void _register_methods();
 
 private:
 	spine::TrackEntry *track_entry;
@@ -40,7 +40,7 @@ public:
 
 	int get_track_index();
 
-	Ref<SpineAnimation> get_animation();
+	godot::Ref<SpineAnimation> get_animation();
 
 	bool get_loop();
 	void set_loop(bool v);
@@ -83,7 +83,7 @@ public:
 	float get_draw_order_threshold();
 	void set_draw_order_threshold(float v);
 
-	Ref<SpineTrackEntry> get_next();
+	godot::Ref<SpineTrackEntry> get_next();
 
 	bool is_complete();
 
@@ -96,11 +96,10 @@ public:
 	MixBlend get_mix_blend();
 	void set_mix_blend(MixBlend v);
 
-	Ref<SpineTrackEntry> get_mixing_from();
-	Ref<SpineTrackEntry> get_mixing_to();
+	godot::Ref<SpineTrackEntry> get_mixing_from();
+	godot::Ref<SpineTrackEntry> get_mixing_to();
 
 	void reset_rotation_directions();
 };
 
-VARIANT_ENUM_CAST(SpineTrackEntry::MixBlend);
 #endif //GODOT_SPINETRACKENTRY_H
