@@ -29,6 +29,8 @@ private:
 public:
 	SpineBone();
 	~SpineBone();
+	
+	void _init();
 
 	inline void set_spine_object(spine::Bone *b){
 		bone = b;

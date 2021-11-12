@@ -28,8 +28,8 @@ protected:
 
 protected:
 	void _notification(int p_what);
-	void _get_property_list(godot::Array *p_list) const;
-	bool _get(const godot::String &p_property, godot::Variant &r_value) const;
+	godot::Array _get_property_list() const;
+	godot::Variant _get(const godot::String &p_property) const;
 	bool _set(const godot::String &p_property, const godot::Variant &p_value);
 
 	SpineSprite *get_spine_sprite() const;
@@ -38,11 +38,13 @@ protected:
 	void _clear_polygon();
 	void _sync_transform(SpineSprite *sprite);
 
-	void _get_slot_list(godot::Array &res) const;
+	void _get_slot_list(godot::PoolStringArray &res) const;
 
 public:
 	SpineCollisionShapeProxy();
 	~SpineCollisionShapeProxy();
+	
+	void _init();
 
 	godot::NodePath get_spine_sprite_path();
 	void set_spine_sprite_path(godot::NodePath v);

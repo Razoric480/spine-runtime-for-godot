@@ -21,6 +21,8 @@ private:
 public:
 	SpineBoneData();
 	~SpineBoneData();
+	
+	void _init();
 
 	inline void set_spine_object(spine::BoneData *b){
 		bone_data = b;
@@ -36,6 +38,12 @@ public:
 		TRANSFORMMODE_NOSCALE,
 		TRANSFORMMODE_NOSCALEORREFLECTION
 	};
+	
+	int get_TRANSFORMMODE_NORMAL();
+	int get_TRANSFORMMODE_ONLYTRANSLATION();
+	int get_TRANSFORMMODE_NOROTATIONORREFLECTION();
+	int get_TRANSFORMMODE_NOSCALE();
+	int get_TRANSFORMMODE_NOSCALEORREFLECTION();
 
 	int get_index();
 

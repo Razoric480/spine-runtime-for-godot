@@ -7,8 +7,8 @@
 #include "SpineSprite.h"
 #include "SpineSkeleton.h"
 
-void SpineBone::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("update_world_transform"), &SpineBone::update_world_transform);
+void SpineBone::_register_methods() {
+	godot::register_method("update_world_transform", &SpineBone::update_world_transform);
 //	void set_to_setup_pose();
 //
 //	Vector2 world_to_local(Vector2 world_position);
@@ -20,12 +20,12 @@ void SpineBone::_bind_methods() {
 //	float local_to_world_rotation(float local_rotation);
 //
 //	void rotate_world(float degrees);
-	ClassDB::bind_method(D_METHOD("set_to_setup_pose"), &SpineBone::set_to_setup_pose);
-	ClassDB::bind_method(D_METHOD("world_to_local", "world_position"), &SpineBone::world_to_local);
-	ClassDB::bind_method(D_METHOD("local_to_world", "local_position"), &SpineBone::local_to_world);
-	ClassDB::bind_method(D_METHOD("world_to_local_rotation", "world_rotation"), &SpineBone::world_to_local_rotation);
-	ClassDB::bind_method(D_METHOD("local_to_world_rotation", "local_rotation"), &SpineBone::local_to_world_rotation);
-	ClassDB::bind_method(D_METHOD("rotate_world"), &SpineBone::rotate_world);
+	godot::register_method("set_to_setup_pose", &SpineBone::set_to_setup_pose);
+	godot::register_method("world_to_local", &SpineBone::world_to_local);
+	godot::register_method("local_to_world", &SpineBone::local_to_world);
+	godot::register_method("world_to_local_rotation", &SpineBone::world_to_local_rotation);
+	godot::register_method("local_to_world_rotation", &SpineBone::local_to_world_rotation);
+	godot::register_method("rotate_world", &SpineBone::rotate_world);
 //
 //	float get_world_to_local_rotation_x();
 //	float get_world_to_local_rotation_y();
@@ -37,12 +37,12 @@ void SpineBone::_bind_methods() {
 //	Ref<SpineBone> get_parent();
 //
 //	Array get_children();
-	ClassDB::bind_method(D_METHOD("get_world_to_local_rotation_x"), &SpineBone::get_world_to_local_rotation_x);
-	ClassDB::bind_method(D_METHOD("get_world_to_local_rotation_y"), &SpineBone::get_world_to_local_rotation_y);
-	ClassDB::bind_method(D_METHOD("get_data"), &SpineBone::get_data);
-	ClassDB::bind_method(D_METHOD("get_skeleton"), &SpineBone::get_skeleton);
-	ClassDB::bind_method(D_METHOD("get_parent"), &SpineBone::get_parent);
-	ClassDB::bind_method(D_METHOD("get_children"), &SpineBone::get_children);
+	godot::register_method("get_world_to_local_rotation_x", &SpineBone::get_world_to_local_rotation_x);
+	godot::register_method("get_world_to_local_rotation_y", &SpineBone::get_world_to_local_rotation_y);
+	godot::register_method("get_data", &SpineBone::get_data);
+	godot::register_method("get_skeleton", &SpineBone::get_skeleton);
+	godot::register_method("get_parent", &SpineBone::get_parent);
+	godot::register_method("get_children", &SpineBone::get_children);
 //
 //	float get_x();
 //	void set_x(float v);
@@ -55,14 +55,14 @@ void SpineBone::_bind_methods() {
 //
 //	float get_scale_x();
 //	void set_scale_x(float v);
-	ClassDB::bind_method(D_METHOD("get_x"), &SpineBone::get_x);
-	ClassDB::bind_method(D_METHOD("set_x", "v"), &SpineBone::set_x);
-	ClassDB::bind_method(D_METHOD("get_y"), &SpineBone::get_y);
-	ClassDB::bind_method(D_METHOD("set_y", "v"), &SpineBone::set_y);
-	ClassDB::bind_method(D_METHOD("get_rotation"), &SpineBone::get_rotation);
-	ClassDB::bind_method(D_METHOD("set_rotation", "v"), &SpineBone::set_rotation);
-	ClassDB::bind_method(D_METHOD("get_scale_x"), &SpineBone::get_scale_x);
-	ClassDB::bind_method(D_METHOD("set_scale_x", "v"), &SpineBone::set_scale_x);
+	godot::register_method("get_x", &SpineBone::get_x);
+	godot::register_method("set_x", &SpineBone::set_x);
+	godot::register_method("get_y", &SpineBone::get_y);
+	godot::register_method("set_y", &SpineBone::set_y);
+	godot::register_method("get_rotation", &SpineBone::get_rotation);
+	godot::register_method("set_rotation", &SpineBone::set_rotation);
+	godot::register_method("get_scale_x", &SpineBone::get_scale_x);
+	godot::register_method("set_scale_x", &SpineBone::set_scale_x);
 //
 //	float get_scale_y();
 //	void set_scale_y(float v);
@@ -75,14 +75,14 @@ void SpineBone::_bind_methods() {
 //
 //	float get_applied_rotation();
 //	void set_applied_rotation(float v);
-	ClassDB::bind_method(D_METHOD("get_scale_y"), &SpineBone::get_scale_y);
-	ClassDB::bind_method(D_METHOD("set_scale_y", "v"), &SpineBone::set_scale_y);
-	ClassDB::bind_method(D_METHOD("get_shear_x"), &SpineBone::get_shear_x);
-	ClassDB::bind_method(D_METHOD("set_shear_x", "v"), &SpineBone::set_shear_x);
-	ClassDB::bind_method(D_METHOD("get_shear_y"), &SpineBone::get_shear_y);
-	ClassDB::bind_method(D_METHOD("set_shear_y", "v"), &SpineBone::set_shear_y);
-	ClassDB::bind_method(D_METHOD("get_applied_rotation"), &SpineBone::get_applied_rotation);
-	ClassDB::bind_method(D_METHOD("set_applied_rotation", "v"), &SpineBone::set_applied_rotation);
+	godot::register_method("get_scale_y", &SpineBone::get_scale_y);
+	godot::register_method("set_scale_y", &SpineBone::set_scale_y);
+	godot::register_method("get_shear_x", &SpineBone::get_shear_x);
+	godot::register_method("set_shear_x", &SpineBone::set_shear_x);
+	godot::register_method("get_shear_y", &SpineBone::get_shear_y);
+	godot::register_method("set_shear_y", &SpineBone::set_shear_y);
+	godot::register_method("get_applied_rotation", &SpineBone::get_applied_rotation);
+	godot::register_method("set_applied_rotation", &SpineBone::set_applied_rotation);
 //
 //	float get_a_x();
 //	void set_a_x(float v);
@@ -95,14 +95,14 @@ void SpineBone::_bind_methods() {
 //
 //	float get_a_scale_y();
 //	void set_a_scale_y(float v);
-	ClassDB::bind_method(D_METHOD("get_a_x"), &SpineBone::get_a_x);
-	ClassDB::bind_method(D_METHOD("set_a_x", "v"), &SpineBone::set_a_x);
-	ClassDB::bind_method(D_METHOD("get_a_y"), &SpineBone::get_a_y);
-	ClassDB::bind_method(D_METHOD("set_a_y", "v"), &SpineBone::set_a_y);
-	ClassDB::bind_method(D_METHOD("get_a_scale_x"), &SpineBone::get_a_scale_x);
-	ClassDB::bind_method(D_METHOD("set_a_scale_x", "v"), &SpineBone::set_a_scale_x);
-	ClassDB::bind_method(D_METHOD("get_a_scale_y"), &SpineBone::get_a_scale_y);
-	ClassDB::bind_method(D_METHOD("set_a_scale_y", "v"), &SpineBone::set_a_scale_y);
+	godot::register_method("get_a_x", &SpineBone::get_a_x);
+	godot::register_method("set_a_x", &SpineBone::set_a_x);
+	godot::register_method("get_a_y", &SpineBone::get_a_y);
+	godot::register_method("set_a_y", &SpineBone::set_a_y);
+	godot::register_method("get_a_scale_x", &SpineBone::get_a_scale_x);
+	godot::register_method("set_a_scale_x", &SpineBone::set_a_scale_x);
+	godot::register_method("get_a_scale_y", &SpineBone::get_a_scale_y);
+	godot::register_method("set_a_scale_y", &SpineBone::set_a_scale_y);
 //
 //	float get_a_shear_x();
 //	void set_a_shear_x(float v);
@@ -115,14 +115,14 @@ void SpineBone::_bind_methods() {
 //
 //	float get_b();
 //	void set_b(float v);
-	ClassDB::bind_method(D_METHOD("get_a_shear_x"), &SpineBone::get_a_shear_x);
-	ClassDB::bind_method(D_METHOD("set_a_shear_x", "v"), &SpineBone::set_a_shear_x);
-	ClassDB::bind_method(D_METHOD("get_a_shear_y"), &SpineBone::get_a_shear_y);
-	ClassDB::bind_method(D_METHOD("set_a_shear_y", "v"), &SpineBone::set_a_shear_y);
-	ClassDB::bind_method(D_METHOD("get_a"), &SpineBone::get_a);
-	ClassDB::bind_method(D_METHOD("set_a", "v"), &SpineBone::set_a);
-	ClassDB::bind_method(D_METHOD("get_b"), &SpineBone::get_b);
-	ClassDB::bind_method(D_METHOD("set_b", "v"), &SpineBone::set_b);
+	godot::register_method("get_a_shear_x", &SpineBone::get_a_shear_x);
+	godot::register_method("set_a_shear_x", &SpineBone::set_a_shear_x);
+	godot::register_method("get_a_shear_y", &SpineBone::get_a_shear_y);
+	godot::register_method("set_a_shear_y", &SpineBone::set_a_shear_y);
+	godot::register_method("get_a", &SpineBone::get_a);
+	godot::register_method("set_a", &SpineBone::set_a);
+	godot::register_method("get_b", &SpineBone::get_b);
+	godot::register_method("set_b", &SpineBone::set_b);
 //
 //	float get_c();
 //	void set_c(float v);
@@ -135,14 +135,14 @@ void SpineBone::_bind_methods() {
 //
 //	float get_world_y();
 //	void set_world_y(float v);
-	ClassDB::bind_method(D_METHOD("get_c"), &SpineBone::get_c);
-	ClassDB::bind_method(D_METHOD("set_c", "v"), &SpineBone::set_c);
-	ClassDB::bind_method(D_METHOD("get_d"), &SpineBone::get_d);
-	ClassDB::bind_method(D_METHOD("set_d", "v"), &SpineBone::set_d);
-	ClassDB::bind_method(D_METHOD("get_world_x"), &SpineBone::get_world_x);
-	ClassDB::bind_method(D_METHOD("set_world_x", "v"), &SpineBone::set_world_x);
-	ClassDB::bind_method(D_METHOD("get_world_y"), &SpineBone::get_world_y);
-	ClassDB::bind_method(D_METHOD("set_world_y", "v"), &SpineBone::set_world_y);
+	godot::register_method("get_c", &SpineBone::get_c);
+	godot::register_method("set_c", &SpineBone::set_c);
+	godot::register_method("get_d", &SpineBone::get_d);
+	godot::register_method("set_d", &SpineBone::set_d);
+	godot::register_method("get_world_x", &SpineBone::get_world_x);
+	godot::register_method("set_world_x", &SpineBone::set_world_x);
+	godot::register_method("get_world_y", &SpineBone::get_world_y);
+	godot::register_method("set_world_y", &SpineBone::set_world_y);
 //
 //	float get_world_rotation_x();
 //	float get_world_rotation_y();
@@ -155,23 +155,28 @@ void SpineBone::_bind_methods() {
 //
 //	bool is_active();
 //	void set_active(bool v);
-	ClassDB::bind_method(D_METHOD("get_world_rotation_x"), &SpineBone::get_world_rotation_x);
-	ClassDB::bind_method(D_METHOD("get_world_rotation_y"), &SpineBone::get_world_rotation_y);
-	ClassDB::bind_method(D_METHOD("get_world_scale_x"), &SpineBone::get_world_scale_x);
-	ClassDB::bind_method(D_METHOD("get_world_scale_y"), &SpineBone::get_world_scale_y);
-	ClassDB::bind_method(D_METHOD("is_active"), &SpineBone::is_active);
-	ClassDB::bind_method(D_METHOD("set_active", "v"), &SpineBone::set_active);
+	godot::register_method("get_world_rotation_x", &SpineBone::get_world_rotation_x);
+	godot::register_method("get_world_rotation_y", &SpineBone::get_world_rotation_y);
+	godot::register_method("get_world_scale_x", &SpineBone::get_world_scale_x);
+	godot::register_method("get_world_scale_y", &SpineBone::get_world_scale_y);
+	godot::register_method("is_active", &SpineBone::is_active);
+	godot::register_method("set_active", &SpineBone::set_active);
 
-	ClassDB::bind_method(D_METHOD("get_godot_transform"), &SpineBone::get_godot_transform);
-	ClassDB::bind_method(D_METHOD("set_godot_transform", "local_transform"), &SpineBone::set_godot_transform);
-    ClassDB::bind_method(D_METHOD("get_godot_global_transform"), &SpineBone::get_godot_global_transform);
-    ClassDB::bind_method(D_METHOD("set_godot_global_transform", "global_transform"), &SpineBone::set_godot_global_transform);
+	godot::register_method("get_godot_transform", &SpineBone::get_godot_transform);
+	godot::register_method("set_godot_transform", &SpineBone::set_godot_transform);
+    godot::register_method("get_godot_global_transform", &SpineBone::get_godot_global_transform);
+    godot::register_method("set_godot_global_transform", &SpineBone::set_godot_global_transform);
 
-	ClassDB::bind_method(D_METHOD("apply_world_transform_2d", "node2d"), &SpineBone::apply_world_transform_2d);
+	godot::register_method("apply_world_transform_2d", &SpineBone::apply_world_transform_2d);
 }
 
-SpineBone::SpineBone():bone(NULL), the_sprite(nullptr) {}
+SpineBone::SpineBone() {}
 SpineBone::~SpineBone() {}
+
+void SpineBone::_init() {
+	bone = nullptr;
+	the_sprite = nullptr;
+}
 
 void SpineBone::update_world_transform(){
 	bone->updateWorldTransform();
@@ -181,16 +186,16 @@ void SpineBone::set_to_setup_pose(){
 	bone->setToSetupPose();
 }
 
-Vector2 SpineBone::world_to_local(Vector2 world_position){
+godot::Vector2 SpineBone::world_to_local(godot::Vector2 world_position){
 	float x, y;
 	bone->worldToLocal(world_position.x, world_position.y, x, y);
-	return Vector2(x, y);
+	return godot::Vector2(x, y);
 }
 
-Vector2 SpineBone::local_to_world(Vector2 local_position){
+godot::Vector2 SpineBone::local_to_world(godot::Vector2 local_position){
 	float x, y;
 	bone->localToWorld(local_position.x, local_position.y, x, y);
-	return Vector2(x, y);
+	return godot::Vector2(x, y);
 }
 
 float SpineBone::world_to_local_rotation(float world_rotation){
@@ -212,38 +217,42 @@ float SpineBone::get_world_to_local_rotation_y(){
 	return bone->getWorldToLocalRotationY();
 }
 
-Ref<SpineBoneData> SpineBone::get_data(){
+godot::Ref<SpineBoneData> SpineBone::get_data(){
 	auto &bd = bone->getData();
-	Ref<SpineBoneData> gd_bd(memnew(SpineBoneData));
+	godot::Ref<SpineBoneData> gd_bd;
+	gd_bd.instance();
 	gd_bd->set_spine_object(&bd);
 	return gd_bd;
 }
 
-Ref<SpineSkeleton> SpineBone::get_skeleton(){
+godot::Ref<SpineSkeleton> SpineBone::get_skeleton(){
 	auto &s = bone->getSkeleton();
-	Ref<SpineSkeleton> gd_s(memnew(SpineSkeleton));
+	godot::Ref<SpineSkeleton> gd_s;
+	gd_s.instance();
 	gd_s->set_spine_object(&s);
 	gd_s->set_spine_sprite(the_sprite);
 	return gd_s;
 }
 
-Ref<SpineBone> SpineBone::get_parent(){
+godot::Ref<SpineBone> SpineBone::get_parent(){
 	auto b = bone->getParent();
-	if(b == NULL) return NULL;
-	Ref<SpineBone> gd_b(memnew(SpineBone));
+	if(b == nullptr) return NULL;
+	godot::Ref<SpineBone> gd_b;
+	gd_b.instance();
 	gd_b->set_spine_object(b);
 	gd_b->set_spine_sprite(the_sprite);
 	return gd_b;
 }
 
-Array SpineBone::get_children(){
+godot::Array SpineBone::get_children(){
 	auto bs = bone->getChildren();
-	Array gd_bs;
+	godot::Array gd_bs;
 	gd_bs.resize(bs.size());
 	for(size_t i=0; i < bs.size(); ++i){
 		auto b = bs[i];
-		if(b == NULL) gd_bs[i] = Ref<SpineBone>(NULL);
-		Ref<SpineBone> gd_b(memnew(SpineBone));
+		if(b == NULL) gd_bs[i] = godot::Ref<SpineBone>(nullptr);
+		godot::Ref<SpineBone> gd_b;
+		gd_b.instance();
 		gd_b->set_spine_object(b);
 		gd_b->set_spine_sprite(the_sprite);
 		gd_bs[i] = gd_b;
@@ -413,13 +422,13 @@ void SpineBone::set_active(bool v){
 }
 
 // External feature functions
-void SpineBone::apply_world_transform_2d(Variant o){
-	if(o.get_type() == Variant::OBJECT){
-		auto node = (Node*) o;
+void SpineBone::apply_world_transform_2d(godot::Variant o){
+	if(o.get_type() == godot::Variant::OBJECT){
+		auto node = (godot::Node*) o;
 		if(node->is_class("Node2D")){
-			auto node2d = (Node2D*) node;
+			auto node2d = (godot::Node2D*) node;
 			// In godot the y-axis is nag to spine
-			node2d->set_transform(Transform2D(
+			node2d->set_transform(godot::Transform2D(
 					get_a(), get_c(),
 					get_b(), get_d(),
 					get_world_x(), -get_world_y())
@@ -433,25 +442,25 @@ void SpineBone::apply_world_transform_2d(Variant o){
 	}
 }
 
-Transform2D SpineBone::get_godot_transform() {
+godot::Transform2D SpineBone::get_godot_transform() {
     if (get_spine_object() == nullptr)
-        return Transform2D();
-    Transform2D trans;
+        return godot::Transform2D();
+    godot::Transform2D trans;
     trans.translate(get_x(), -get_y());
     // It seems that spine uses degree for rotation
-    trans.rotate(Math::deg2rad(-get_rotation()));
-    trans.scale(Size2(get_scale_x(), get_scale_y()));
+    trans.rotate(godot::Math::deg2rad(-get_rotation()));
+    trans.scale(godot::Size2(get_scale_x(), get_scale_y()));
     return trans;
 }
 
-void SpineBone::set_godot_transform(Transform2D trans) {
+void SpineBone::set_godot_transform(godot::Transform2D trans) {
     if (get_spine_object() == nullptr)
         return;
-    Vector2 position = trans.get_origin();
+    godot::Vector2 position = trans.get_origin();
     position.y *= -1;
     real_t rotation = trans.get_rotation();
-    rotation = Math::rad2deg(-rotation);
-    Vector2 scale = trans.get_scale();
+    rotation = godot::Math::rad2deg(-rotation);
+    godot::Vector2 scale = trans.get_scale();
 
     set_x(position.x);
     set_y(position.y);
@@ -460,31 +469,31 @@ void SpineBone::set_godot_transform(Transform2D trans) {
     set_scale_y(scale.y);
 }
 
-Transform2D SpineBone::get_godot_global_transform() {
+godot::Transform2D SpineBone::get_godot_global_transform() {
     if (get_spine_object() == nullptr)
-        return Transform2D();
+        return godot::Transform2D();
     if (the_sprite == nullptr)
         return get_godot_transform();
-    Transform2D res = the_sprite->get_transform();
+    godot::Transform2D res = the_sprite->get_transform();
     res.translate(get_world_x(), -get_world_y());
-    res.rotate(Math::deg2rad(-get_world_rotation_x()));
-    res.scale(Vector2(get_world_scale_x(), get_world_scale_y()));
-    auto p = the_sprite->get_parent() ? Object::cast_to<CanvasItem>(the_sprite->get_parent()) : nullptr;
+    res.rotate(godot::Math::deg2rad(-get_world_rotation_x()));
+    res.scale(godot::Vector2(get_world_scale_x(), get_world_scale_y()));
+    auto p = the_sprite->get_parent() ? Object::cast_to<godot::CanvasItem>(the_sprite->get_parent()) : nullptr;
     if (p) {
         return p->get_global_transform() * res;
     }
     return res;
 }
 
-void SpineBone::set_godot_global_transform(Transform2D transform) {
+void SpineBone::set_godot_global_transform(godot::Transform2D transform) {
     if (get_spine_object() == nullptr)
         return;
     if (the_sprite == nullptr)
         set_godot_transform(transform);
     transform = the_sprite->get_global_transform().affine_inverse() * transform;
-    Vector2 position = transform.get_origin();
+    godot::Vector2 position = transform.get_origin();
     real_t rotation = transform.get_rotation();
-    Vector2 scale = transform.get_scale();
+    godot::Vector2 scale = transform.get_scale();
     position.y *= -1;
     auto parent = get_parent();
     if (parent.is_valid()) {
@@ -492,13 +501,13 @@ void SpineBone::set_godot_global_transform(Transform2D transform) {
         if (parent->get_world_scale_x() != 0)
             scale.x /= parent->get_world_scale_x();
         else
-            print_error("The parent scale.x is zero.");
+            godot_print_error("The parent scale.x is zero.", __FUNCTION__, __FILE__, __LINE__);
         if (parent->get_world_scale_y() != 0)
             scale.y /= parent->get_world_scale_y();
         else
-            print_error("The parent scale.y is zero.");
+            godot_print_error("The parent scale.y is zero.", __FUNCTION__, __FILE__, __LINE__);
     }
-    rotation = world_to_local_rotation(Math::rad2deg(-rotation));
+    rotation = world_to_local_rotation(godot::Math::rad2deg(-rotation));
 
     set_x(position.x);
     set_y(position.y);
