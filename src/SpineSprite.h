@@ -22,8 +22,8 @@ protected:
 
 	void _notification(int p_what);
 
-	void _get_property_list(godot::Array *p_list) const;
-	bool _get(const godot::String &p_property, godot::Variant &r_value) const;
+	godot::Array _get_property_list() const;
+	godot::Variant _get(const godot::String &p_property) const;
 	bool _set(const godot::String &p_property, const godot::Variant &p_value);
 
 	void _validate_and_play_current_animations();
@@ -58,8 +58,10 @@ private:
 public:
 	SpineSprite();
 	~SpineSprite();
+	
+	void _init();
 
-	void set_animation_state_data_res(const godot::Ref<SpineAnimationStateDataResource> &a);
+	void set_animation_state_data_res(godot::Ref<SpineAnimationStateDataResource> a);
 	godot::Ref<SpineAnimationStateDataResource> get_animation_state_data_res();
 
 	godot::Ref<SpineSkeleton> get_skeleton();
@@ -130,8 +132,8 @@ public:
 	int64_t get_current_animation_count() const;
 	void set_current_animation_count(int64_t v);
 
-	ProcessMode get_process_mode();
-	void set_process_mode(ProcessMode v);
+	int get_process_mode();
+	void set_process_mode(int v);
 };
 
 #endif //GODOT_SPINESPRITE_H

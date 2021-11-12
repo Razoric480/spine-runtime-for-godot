@@ -9,14 +9,15 @@
 
 #include <spine/spine.h>
 
-#include "SpineSlotData.h"
 #include "SpineAttachment.h"
+#include "SpineSlotData.h"
+
 
 class SpineSkeleton;
 
 class SpineBone;
 
-class SpineSlot : public godot::Reference{
+class SpineSlot : public godot::Reference {
 	GODOT_CLASS(SpineSlot, godot::Reference);
 
 protected:
@@ -29,10 +30,12 @@ public:
 	SpineSlot();
 	~SpineSlot();
 
-	inline void set_spine_object(spine::Slot *s){
+	void _init();
+
+	inline void set_spine_object(spine::Slot *s) {
 		slot = s;
 	}
-	inline spine::Slot *get_spine_object(){
+	inline spine::Slot *get_spine_object() {
 		return slot;
 	}
 

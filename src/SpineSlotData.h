@@ -24,10 +24,17 @@ public:
 	SpineSlotData();
 	~SpineSlotData();
 
-	inline void set_spine_object(spine::SlotData *s){
+	void _init();
+
+	int get_BLENDMODE_NORMAL();
+	int get_BLENDMODE_ADDITIVE();
+	int get_BLENDMODE_MULTIPLY();
+	int get_BLENDMODE_SCREEN();
+
+	inline void set_spine_object(spine::SlotData *s) {
 		slot_data = s;
 	}
-	inline spine::SlotData *get_spine_object(){
+	inline spine::SlotData *get_spine_object() {
 		return slot_data;
 	}
 

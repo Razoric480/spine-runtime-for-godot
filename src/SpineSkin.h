@@ -25,10 +25,12 @@ public:
 	SpineSkin();
 	~SpineSkin();
 
-	inline void set_spine_object(spine::Skin *s){
+	void _init();
+
+	inline void set_spine_object(spine::Skin *s) {
 		skin = s;
 	}
-	spine::Skin *get_spine_object(){
+	spine::Skin *get_spine_object() {
 		return skin;
 	}
 
