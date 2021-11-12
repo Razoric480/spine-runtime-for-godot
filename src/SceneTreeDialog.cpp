@@ -1,12 +1,9 @@
 #include "SceneTreeDialog.h"
-#include <VBoxContainer.hpp>
 
+#include <VBoxContainer.hpp>
 #include <Engine.hpp>
 #include <SceneTree.hpp>
 #include <TreeItem.hpp>
-#include <Texture.hpp>
-#include <Dictionary.hpp>
-#include <Array.hpp>
 
 namespace godot {
 

@@ -1,8 +1,9 @@
 #ifndef SCENE_TREE_DIALOG_H
 #define SCENE_TREE_DIALOG_H
 
-#include <ConfirmationDialog.hpp>
 #include <Godot.hpp>
+#include <Texture.hpp>
+#include <ConfirmationDialog.hpp>
 #include <LineEdit.hpp>
 #include <Tree.hpp>
 
