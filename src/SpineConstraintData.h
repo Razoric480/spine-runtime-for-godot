@@ -21,6 +21,8 @@ private:
 public:
 	SpineConstraintData();
 	~SpineConstraintData();
+	
+	void _init();
 
 	inline void set_spine_object(spine::ConstraintData *c){
 		constraint_data = c;

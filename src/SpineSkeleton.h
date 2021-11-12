@@ -9,13 +9,14 @@
 
 #include <spine/spine.h>
 
-#include "SpineSkeletonDataResource.h"
 #include "SpineBone.h"
+#include "SpineSkeletonDataResource.h"
 #include "SpineSlot.h"
+
 
 class SpineSprite;
 
-class SpineSkeleton : public godot::Reference{
+class SpineSkeleton : public godot::Reference {
 	GODOT_CLASS(SpineSkeleton, godot::Reference);
 
 protected:
@@ -26,23 +27,24 @@ private:
 	bool spine_object;
 
 	SpineSprite *the_sprite;
-public:
 
+public:
 	SpineSkeleton();
 	~SpineSkeleton();
+	
+	void _init();
 
 	void load_skeleton(godot::Ref<SpineSkeletonDataResource> sd);
 
-	inline void set_spine_object(spine::Skeleton *s){
+	inline void set_spine_object(spine::Skeleton *s) {
 		skeleton = s;
 		spine_object = true;
 	}
-	inline spine::Skeleton *get_spine_object(){
+	inline spine::Skeleton *get_spine_object() {
 		return skeleton;
 	}
 
 	void set_spine_sprite(SpineSprite *s);
-
 
 	void update_world_transform();
 
@@ -106,7 +108,6 @@ public:
 
 	float get_scale_y();
 	void set_scale_y(float v);
-
 };
 
 #endif //GODOT_SPINESKELETON_H

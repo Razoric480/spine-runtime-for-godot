@@ -10,10 +10,11 @@
 #include <spine/spine.h>
 
 #include "SpineBone.h"
-#include "SpineSlot.h"
 #include "SpinePathConstraintData.h"
+#include "SpineSlot.h"
 
-class SpinePathConstraint : public godot::Reference{
+
+class SpinePathConstraint : public godot::Reference {
 	GODOT_CLASS(SpinePathConstraint, godot::Reference);
 
 protected:
@@ -26,15 +27,17 @@ public:
 	SpinePathConstraint();
 	~SpinePathConstraint();
 
-	inline void set_spine_object(spine::PathConstraint *pc){
+	inline void set_spine_object(spine::PathConstraint *pc) {
 		path_constraint = pc;
 	}
-	inline spine::PathConstraint *get_spine_object(){
+	inline spine::PathConstraint *get_spine_object() {
 		return path_constraint;
 	}
 
+	void _init();
+
 	// The spine-runtime-cpp 4.0 seems to not have a apply function implementation.
-	// void apply(); 
+	// void apply();
 
 	void update();
 

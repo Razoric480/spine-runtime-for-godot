@@ -11,25 +11,29 @@
 
 #include "SpineEventData.h"
 
-class SpineEvent : public godot::Reference{
+class SpineEvent : public godot::Reference {
 	GODOT_CLASS(SpineEvent, godot::Reference);
 
 protected:
 	static void _register_methods();
+
 private:
 	spine::Event *event;
+
 public:
 	SpineEvent();
 	~SpineEvent();
 
-	inline void set_spine_object(spine::Event *e){
+	void _init();
+
+	inline void set_spine_object(spine::Event *e) {
 		event = e;
 	}
-	inline spine::Event *get_spine_object() const{
+	inline spine::Event *get_spine_object() const {
 		return event;
 	}
 
-	enum EventType{
+	enum EventType {
 		EVENTTYPE_START = spine::EventType_Start,
 		EVENTTYPE_INTERRUPT = spine::EventType_Interrupt,
 		EVENTTYPE_END = spine::EventType_End,
@@ -37,7 +41,6 @@ public:
 		EVENTTYPE_DISPOSE = spine::EventType_Dispose,
 		EVENTTYPE_EVENT = spine::EventType_Event
 	};
-
 
 	godot::Ref<SpineEventData> get_data();
 

@@ -25,6 +25,8 @@ private:
 public:
 	SpineIkConstraint();
 	~SpineIkConstraint();
+	
+	void _init();
 
 	inline void set_spine_object(spine::IkConstraint * ic){
 		ik_constraint = ic;

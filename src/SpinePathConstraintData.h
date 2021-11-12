@@ -9,9 +9,10 @@
 
 #include <spine/spine.h>
 
-#include "SpineConstraintData.h"
 #include "SpineBoneData.h"
+#include "SpineConstraintData.h"
 #include "SpineSlotData.h"
+
 
 class SpinePathConstraintData : public SpineConstraintData {
 	GODOT_CLASS(SpinePathConstraintData, SpineConstraintData);
@@ -22,9 +23,11 @@ protected:
 public:
 	SpinePathConstraintData();
 	~SpinePathConstraintData();
+	
+	void _init();
 
-	virtual inline spine::PathConstraintData *get_spine_data(){
-		return (spine::PathConstraintData*) SpineConstraintData::get_spine_object();
+	virtual inline spine::PathConstraintData *get_spine_data() {
+		return (spine::PathConstraintData *)SpineConstraintData::get_spine_object();
 	}
 
 	enum PositionMode {
@@ -43,6 +46,15 @@ public:
 		ROTATEMODE_CHAIN,
 		ROTATEMODE_CHAINSCALE
 	};
+	
+	int get_POSITIONMODE_FIXED(); 
+int get_POSITIONMODE_PERCENT(); 
+int get_SPACINGMODE_LENGTH(); 
+int get_SPACINGMODE_FIXED(); 
+int get_SPACINGMODE_PERCENT();
+int get_ROTATEMODE_TANGENT();
+int get_ROTATEMODE_CHAIN(); 
+int get_ROTATEMODE_CHAINSCALE();
 
 	godot::Array get_bones();
 

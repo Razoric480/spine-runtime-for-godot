@@ -9,8 +9,9 @@
 
 #include <spine/spine.h>
 
-#include "SpineConstraintData.h"
 #include "SpineBoneData.h"
+#include "SpineConstraintData.h"
+
 
 class SpineIkConstraintData : public SpineConstraintData {
 	GODOT_CLASS(SpineIkConstraintData, SpineConstraintData);
@@ -22,8 +23,10 @@ public:
 	SpineIkConstraintData();
 	~SpineIkConstraintData();
 
-	virtual inline spine::IkConstraintData *get_spine_data(){
-		return (spine::IkConstraintData*) SpineConstraintData::get_spine_object();
+	void _init();
+
+	virtual inline spine::IkConstraintData *get_spine_data() {
+		return (spine::IkConstraintData *)SpineConstraintData::get_spine_object();
 	}
 
 	godot::Array get_bones();
@@ -48,7 +51,6 @@ public:
 
 	float get_softness();
 	void set_softness(float v);
-
 };
 
 #endif //GODOT_SPINEIKCONSTRAINTDATA_H

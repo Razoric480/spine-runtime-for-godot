@@ -4,9 +4,13 @@
 
 #include "SpineEventData.h"
 
-void SpineEventData::_bind_methods() {
+void SpineEventData::_register_methods() {
 
 }
 
-SpineEventData::SpineEventData():event_data(NULL) {}
+SpineEventData::SpineEventData() {}
 SpineEventData::~SpineEventData(){}
+
+void SpineEventData::_init() {
+    event_data = nullptr;
+}

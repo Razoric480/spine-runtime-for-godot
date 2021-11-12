@@ -21,6 +21,8 @@ private:
 public:
 	SpineEventData();
 	~SpineEventData();
+	
+	void _init();
 
 	inline void set_spine_object(const spine::EventData *e) {
 		event_data = e;

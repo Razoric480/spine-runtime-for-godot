@@ -38,6 +38,8 @@ private:
 	void update_skeleton_data();
 
 public:
+	void _init();
+
 	inline void set_spine_object(spine::SkeletonData *s) {
 		skeleton_data = s;
 		if (s)
@@ -54,10 +56,10 @@ public:
 
 	godot::Array _get_property_list() const;
 
-	void set_atlas_res(const godot::Ref<SpineAtlasResource> &a);
+	void set_atlas_res(godot::Ref<SpineAtlasResource> a);
 	godot::Ref<SpineAtlasResource> get_atlas_res();
 
-	void set_skeleton_json_res(const godot::Ref<SpineSkeletonJsonDataResource> &s);
+	void set_skeleton_json_res(godot::Ref<SpineSkeletonJsonDataResource> s);
 	godot::Ref<SpineSkeletonJsonDataResource> get_skeleton_json_res();
 
 	inline spine::SkeletonData *get_skeleton_data() { return skeleton_data; }
