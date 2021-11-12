@@ -9,11 +9,11 @@
 void SpineSkeletonJsonDataResource::_register_methods() {
 }
 
-godot::Error SpineSkeletonJsonDataResource::load_from_file(const godot::String &p_path) {
-    godot::Error err;
+int SpineSkeletonJsonDataResource::load_from_file(const godot::String &p_path) {
+    int err;
     godot::Ref<godot::File> file;
     file.instance();
-    godot::Error err = file->open(p_path, godot::File::READ);
+    int err = file->open(p_path, godot::File::READ);
     if(err == godot::Error::OK) {
         json_string = file->get_as_text();
         file->close();
@@ -22,8 +22,8 @@ godot::Error SpineSkeletonJsonDataResource::load_from_file(const godot::String &
     return err;
 }
 
-godot::Error SpineSkeletonJsonDataResource::save_to_file(const godot::String &p_path) {
-    godot::Error err;
+int SpineSkeletonJsonDataResource::save_to_file(const godot::String &p_path) {
+    int err;
     godot::Ref<godot::File> file;
     file.instance();
     err = file->open(p_path, godot::File::WRITE);

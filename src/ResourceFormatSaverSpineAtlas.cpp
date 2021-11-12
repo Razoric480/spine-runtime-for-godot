@@ -15,9 +15,9 @@ void ResourceFormatSaverSpineAtlas::_register_methods() {
 
 void ResourceFormatSaverSpineAtlas::_init() {}
 
-godot::Error ResourceFormatSaverSpineAtlas::save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags) {
+int ResourceFormatSaverSpineAtlas::save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags) {
     godot::Ref<SpineAtlasResource> res = p_resource.ptr();
-    godot::Error error = res->save_to_file(p_path);
+    int error = res->save_to_file(p_path);
     return error;
 }
 

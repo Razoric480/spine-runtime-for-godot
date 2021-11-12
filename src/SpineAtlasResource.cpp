@@ -47,7 +47,7 @@ public:
 	}
 
 	virtual void load(spine::AtlasPage &page, const spine::String &path) {
-		godot::Error err = godot::Error::OK;
+		int err = godot::Error::OK;
 
 		//		print_line(String("Spine is loading texture: ") + String(path.buffer()));
 		auto fixed_path = fixPathIssue(godot::String(path.buffer()));
@@ -142,11 +142,11 @@ godot::String SpineAtlasResource::get_source_path() {
 	return source_path;
 }
 
-godot::Error SpineAtlasResource::load_from_atlas_file(const godot::String &p_path) {
+int SpineAtlasResource::load_from_atlas_file(const godot::String &p_path) {
 	//    print_line(vformat("Importing atlas file: %s", p_path));
 	source_path = p_path;
 
-	godot::Error err;
+	int err;
 
 	godot::Ref<godot::File> file;
 	file.instance();
@@ -177,8 +177,8 @@ godot::Error SpineAtlasResource::load_from_atlas_file(const godot::String &p_pat
 	return godot::Error::ERR_FILE_UNRECOGNIZED;
 }
 
-godot::Error SpineAtlasResource::load_from_file(const godot::String &p_path) {
-	godot::Error err;
+int SpineAtlasResource::load_from_file(const godot::String &p_path) {
+	int err;
 
 	godot::Ref<godot::File> file;
 	file.instance();
@@ -219,8 +219,8 @@ godot::Error SpineAtlasResource::load_from_file(const godot::String &p_path) {
 	return godot::Error::ERR_FILE_UNRECOGNIZED;
 }
 
-godot::Error SpineAtlasResource::save_to_file(const godot::String &p_path) {
-	godot::Error err;
+int SpineAtlasResource::save_to_file(const godot::String &p_path) {
+	int err;
 	godot::Ref<godot::File> file;
 	file.instance();
 	err = file->open(p_path, godot::File::WRITE);

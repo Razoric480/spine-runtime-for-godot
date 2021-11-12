@@ -38,10 +38,10 @@ public:
 
 	inline void set_normal_texture_prefix(const godot::String &p) { normal_texture_prefix = p; }
 
-	godot::Error load_from_atlas_file(const godot::String &p_path); // .atlas
+	int load_from_atlas_file(const godot::String &p_path); // .atlas
 
-	godot::Error load_from_file(const godot::String &p_path); // .spatlas
-	godot::Error save_to_file(const godot::String &p_path); // .spatlas
+	int load_from_file(const godot::String &p_path); // .spatlas
+	int save_to_file(const godot::String &p_path); // .spatlas
 
 	godot::String get_source_path();
 	godot::Array get_textures();

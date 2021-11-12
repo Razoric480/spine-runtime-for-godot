@@ -6,7 +6,7 @@
 #include "PackedSpineSkinResource.h"
 
 void PackedSpineSkinResource::_register_methods() {
-	godot::register_signal<PackedSpineSkinResource>("property_changed");
+	godot::register_signal<PackedSpineSkinResource>("property_changed", godot::Dictionary());
 
 	godot::register_property<PackedSpineSkinResource, const godot::String &>("skin_name", &PackedSpineSkinResource::set_skin_name, &PackedSpineSkinResource::get_skin_name, "");
 	godot::register_property<PackedSpineSkinResource, godot::Array>("sub_skin_names", &PackedSpineSkinResource::set_sub_skin_names, &PackedSpineSkinResource::get_sub_skin_names, godot::Array());

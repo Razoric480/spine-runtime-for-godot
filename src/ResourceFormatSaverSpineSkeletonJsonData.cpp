@@ -8,16 +8,16 @@
 #include "SpineSkeletonJsonDataResource.h"
 
 void ResourceFormatSaverSpineSkeletonJsonData::_register_methods() {
-    godot::register_method("save", ResourceFormatSaverSpineSkeletonJsonData::save);
-    godot::register_method("get_recognized_extensions", ResourceFormatSaverSpineSkeletonJsonData::get_recognized_extensions);
-    godot::register_method("recognize", ResourceFormatSaverSpineSkeletonJsonData::recognize);
+    godot::register_method("save", &ResourceFormatSaverSpineSkeletonJsonData::save);
+    godot::register_method("get_recognized_extensions", &ResourceFormatSaverSpineSkeletonJsonData::get_recognized_extensions);
+    godot::register_method("recognize", &ResourceFormatSaverSpineSkeletonJsonData::recognize);
 }
 
 void ResourceFormatSaverSpineSkeletonJsonData::_init() {}
 
-godot::Error ResourceFormatSaverSpineSkeletonJsonData::save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags) {
+int ResourceFormatSaverSpineSkeletonJsonData::save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags) {
     godot::Ref<SpineSkeletonJsonDataResource> res = p_resource.ptr();
-    godot::Error error = res->save_to_file(p_path);
+    int error = res->save_to_file(p_path);
     return error;
 }
 

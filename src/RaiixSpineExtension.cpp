@@ -53,7 +53,7 @@ void RaiixSpineExtension::_free(void *mem, const char *file, int line) {
 }
 
 char *RaiixSpineExtension::_readFile(const spine::String &path, int *length) {
-	godot::Error error;
+	int error;
 
 	godot::Ref<godot::File> file;
 	file.instance();

@@ -20,8 +20,8 @@ public:
     void _init();
 	inline const godot::String &get_json_string() { return json_string; }
 
-	godot::Error load_from_file(const godot::String &p_path);
-	godot::Error save_to_file(const godot::String &p_path);
+	int load_from_file(const godot::String &p_path);
+	int save_to_file(const godot::String &p_path);
 };
 
 #endif //GODOT_SPINESKELETONJSONDATARESOURCE_H

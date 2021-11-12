@@ -17,7 +17,7 @@ protected:
 
 public:
 	void _init();
-	godot::Error save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags = 0);
+	int save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags = 0);
 	godot::PoolStringArray get_recognized_extensions(const godot::Ref<godot::Resource> &p_resource) const;
 	bool recognize(const godot::Ref<godot::Resource> &p_resource) const;
 };

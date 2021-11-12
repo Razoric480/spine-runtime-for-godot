@@ -14,7 +14,7 @@
 
 #include "SpineSprite.h"
 
-godot::Error SpineAtlasResourceImportPlugin::import(const godot::String &p_source_file, const godot::String &p_save_path, const godot::Dictionary &p_options, godot::Array r_platform_variants, godot::Array r_gen_files) {
+int SpineAtlasResourceImportPlugin::import(const godot::String &p_source_file, const godot::String &p_save_path, const godot::Dictionary &p_options, godot::Array r_platform_variants, godot::Array r_gen_files) {
 	godot::Ref<SpineAtlasResource> res;
 	res.instance();
 	res->set_normal_texture_prefix(p_options["normal_texture_prefix"]);
@@ -38,7 +38,7 @@ godot::Array SpineAtlasResourceImportPlugin::get_import_options(int p_preset) co
 	return options;
 }
 
-godot::Error SpineJsonResourceImportPlugin::import(const godot::String &p_source_file, const godot::String &p_save_path, const godot::Dictionary &p_options, godot::Array r_platform_variants, godot::Array r_gen_files) {
+int SpineJsonResourceImportPlugin::import(const godot::String &p_source_file, const godot::String &p_save_path, const godot::Dictionary &p_options, godot::Array r_platform_variants, godot::Array r_gen_files) {
 	godot::Ref<SpineSkeletonJsonDataResource> res;
 	res.instance();
 	res->load_from_file(p_source_file);
