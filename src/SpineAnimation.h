@@ -28,10 +28,13 @@ protected:
 public:
 	SpineAnimation();
 	~SpineAnimation();
+	
+	void _init();
 
 	inline void set_spine_object(spine::Animation *a) {
 		animation = a;
 	}
+	
 	inline spine::Animation *get_spine_object() {
 		return animation;
 	}

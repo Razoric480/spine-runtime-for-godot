@@ -21,7 +21,8 @@ godot::Variant ResourceFormatLoaderSpineAtlas::load(const godot::String &p_path,
 	return atlas;
 }
 
-void ResourceFormatLoaderSpineAtlas::_init() {}
+void ResourceFormatLoaderSpineAtlas::_init() {
+}
 
 godot::PoolStringArray ResourceFormatLoaderSpineAtlas::get_recognized_extensions() const {
 	godot::PoolStringArray extensions;

@@ -23,6 +23,8 @@ private:
 	godot::Ref<SpineAnimationStateDataResource> anim_state_data_res;
 
 public:
+	void _init();
+
 	void load_animation_state(godot::Ref<SpineAnimationStateDataResource> ad);
 
 	inline void set_animation_state(spine::AnimationState *a) {
