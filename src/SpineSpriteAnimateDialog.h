@@ -13,7 +13,7 @@
 #include <ConfirmationDialog.hpp>
 #include <Tree.hpp>
 #include <AnimationPlayer.hpp>
-#include <SceneTree.hpp>
+#include "SceneTreeDialog.h"
 
 class SpineSprite;
 
@@ -31,7 +31,7 @@ protected:
     godot::ConfirmationDialog *animate_dialog;
     godot::Button *animate_dialog_override_button;
     godot::Tree *animate_dialog_tree;
-    godot::Variant *scene_tree_dialog;
+    godot::SceneTreeDialog *scene_tree_dialog;
 
     godot::NodePath spine_sprite_path;
     godot::NodePath anim_player_path;
@@ -52,6 +52,8 @@ protected:
 public:
     SpineSpriteAnimateDialog();
     ~SpineSpriteAnimateDialog();
+    
+    void _init();
 
     void set_animate_button(godot::ToolButton *b);
     inline godot::ToolButton *get_animate_button() {return animate_button;}

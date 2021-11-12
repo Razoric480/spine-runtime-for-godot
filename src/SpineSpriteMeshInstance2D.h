@@ -20,6 +20,8 @@ protected:
 public:
 	SpineSpriteMeshInstance2D();
 	~SpineSpriteMeshInstance2D();
+	
+	void _init();
 
 	inline void set_slot(godot::Ref<SpineSlot> s){
 		slot = s;

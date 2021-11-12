@@ -23,6 +23,8 @@ private:
 public:
 	SpineTrackEntry();
 	~SpineTrackEntry();
+	
+	void _init();
 
 	inline void set_spine_object(spine::TrackEntry *t){
 		track_entry = t;
@@ -41,6 +43,11 @@ public:
 	int get_track_index();
 
 	godot::Ref<SpineAnimation> get_animation();
+	
+	int get_MIXBLEND_SETUP();
+	int get_MIXBLEND_FIRST();
+	int get_MIXBLEND_REPLACE();
+	int get_MIXBLEND_ADD();
 
 	bool get_loop();
 	void set_loop(bool v);

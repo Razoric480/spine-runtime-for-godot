@@ -27,6 +27,8 @@ private:
 public:
 	SpineTimeline();
 	~SpineTimeline();
+	
+	void _init();
 
 	inline void set_spine_object(spine::Timeline *v) { timeline = v; }
 	inline spine::Timeline *get_spine_object() { return timeline; }

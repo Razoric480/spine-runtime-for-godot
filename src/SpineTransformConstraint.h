@@ -9,10 +9,11 @@
 
 #include <spine/spine.h>
 
-#include "SpineTransformConstraintData.h"
 #include "SpineBone.h"
+#include "SpineTransformConstraintData.h"
 
-class SpineTransformConstraint : public godot::Reference{
+
+class SpineTransformConstraint : public godot::Reference {
 	GODOT_CLASS(SpineTransformConstraint, godot::Reference);
 
 protected:
@@ -25,10 +26,12 @@ public:
 	SpineTransformConstraint();
 	~SpineTransformConstraint();
 
-	inline void set_spine_object(spine::TransformConstraint *tc){
+	void _init();
+
+	inline void set_spine_object(spine::TransformConstraint *tc) {
 		transform_constraint = tc;
 	}
-	inline spine::TransformConstraint *get_spine_object(){
+	inline spine::TransformConstraint *get_spine_object() {
 		return transform_constraint;
 	}
 

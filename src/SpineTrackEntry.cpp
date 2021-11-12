@@ -4,85 +4,95 @@
 
 #include "SpineTrackEntry.h"
 
-void SpineTrackEntry::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("get_track_index"), &SpineTrackEntry::get_track_index);
+void SpineTrackEntry::_register_methods() {
+	godot::register_method("get_track_index", &SpineTrackEntry::get_track_index);
 
-	ClassDB::bind_method(D_METHOD("get_animation"), &SpineTrackEntry::get_animation);
+	godot::register_method("get_animation", &SpineTrackEntry::get_animation);
 
-	ClassDB::bind_method(D_METHOD("get_loop"), &SpineTrackEntry::get_loop);
-	ClassDB::bind_method(D_METHOD("set_loop", "v"), &SpineTrackEntry::set_loop);
+	godot::register_method("get_loop", &SpineTrackEntry::get_loop);
+	godot::register_method("set_loop", &SpineTrackEntry::set_loop);
 
-	ClassDB::bind_method(D_METHOD("get_hold_previous"), &SpineTrackEntry::get_hold_previous);
-	ClassDB::bind_method(D_METHOD("set_hold_previous", "v"), &SpineTrackEntry::set_hold_previous);
+	godot::register_method("get_hold_previous", &SpineTrackEntry::get_hold_previous);
+	godot::register_method("set_hold_previous", &SpineTrackEntry::set_hold_previous);
 
-    ClassDB::bind_method(D_METHOD("get_reverse"), &SpineTrackEntry::get_reverse);
-    ClassDB::bind_method(D_METHOD("set_reverse", "v"), &SpineTrackEntry::set_reverse);
+    godot::register_method("get_reverse", &SpineTrackEntry::get_reverse);
+    godot::register_method("set_reverse", &SpineTrackEntry::set_reverse);
 
-	ClassDB::bind_method(D_METHOD("get_delay"), &SpineTrackEntry::get_delay);
-	ClassDB::bind_method(D_METHOD("set_delay", "v"), &SpineTrackEntry::set_delay);
+	godot::register_method("get_delay", &SpineTrackEntry::get_delay);
+	godot::register_method("set_delay", &SpineTrackEntry::set_delay);
 
-	ClassDB::bind_method(D_METHOD("get_track_time"), &SpineTrackEntry::get_track_time);
-	ClassDB::bind_method(D_METHOD("set_track_time", "v"), &SpineTrackEntry::set_track_time);
+	godot::register_method("get_track_time", &SpineTrackEntry::get_track_time);
+	godot::register_method("set_track_time", &SpineTrackEntry::set_track_time);
 
-	ClassDB::bind_method(D_METHOD("get_track_end"), &SpineTrackEntry::get_track_end);
-	ClassDB::bind_method(D_METHOD("set_track_end", "v"), &SpineTrackEntry::set_track_end);
+	godot::register_method("get_track_end", &SpineTrackEntry::get_track_end);
+	godot::register_method("set_track_end", &SpineTrackEntry::set_track_end);
 
-	ClassDB::bind_method(D_METHOD("get_animation_start"), &SpineTrackEntry::get_animation_start);
-	ClassDB::bind_method(D_METHOD("set_animation_start", "v"), &SpineTrackEntry::set_animation_start);
+	godot::register_method("get_animation_start", &SpineTrackEntry::get_animation_start);
+	godot::register_method("set_animation_start", &SpineTrackEntry::set_animation_start);
 
-	ClassDB::bind_method(D_METHOD("get_animation_last"), &SpineTrackEntry::get_animation_last);
-	ClassDB::bind_method(D_METHOD("set_animation_last", "v"), &SpineTrackEntry::set_animation_last);
+	godot::register_method("get_animation_last", &SpineTrackEntry::get_animation_last);
+	godot::register_method("set_animation_last", &SpineTrackEntry::set_animation_last);
 
-	ClassDB::bind_method(D_METHOD("get_animation_time"), &SpineTrackEntry::get_animation_time);
+	godot::register_method("get_animation_time", &SpineTrackEntry::get_animation_time);
 
-	ClassDB::bind_method(D_METHOD("get_time_scale"), &SpineTrackEntry::get_time_scale);
-	ClassDB::bind_method(D_METHOD("set_time_scale", "v"), &SpineTrackEntry::set_time_scale);
+	godot::register_method("get_time_scale", &SpineTrackEntry::get_time_scale);
+	godot::register_method("set_time_scale", &SpineTrackEntry::set_time_scale);
 
-	ClassDB::bind_method(D_METHOD("get_alpha"), &SpineTrackEntry::get_alpha);
-	ClassDB::bind_method(D_METHOD("set_alpha", "v"), &SpineTrackEntry::set_alpha);
+	godot::register_method("get_alpha", &SpineTrackEntry::get_alpha);
+	godot::register_method("set_alpha", &SpineTrackEntry::set_alpha);
 
-	ClassDB::bind_method(D_METHOD("get_event_threshold"), &SpineTrackEntry::get_event_threshold);
-	ClassDB::bind_method(D_METHOD("set_event_threshold", "v"), &SpineTrackEntry::set_event_threshold);
+	godot::register_method("get_event_threshold", &SpineTrackEntry::get_event_threshold);
+	godot::register_method("set_event_threshold", &SpineTrackEntry::set_event_threshold);
 
-	ClassDB::bind_method(D_METHOD("get_attachment_threshold"), &SpineTrackEntry::get_attachment_threshold);
-	ClassDB::bind_method(D_METHOD("set_attachment_threshold", "v"), &SpineTrackEntry::set_attachment_threshold);
+	godot::register_method("get_attachment_threshold", &SpineTrackEntry::get_attachment_threshold);
+	godot::register_method("set_attachment_threshold", &SpineTrackEntry::set_attachment_threshold);
 
-	ClassDB::bind_method(D_METHOD("get_draw_order_threshold"), &SpineTrackEntry::get_draw_order_threshold);
-	ClassDB::bind_method(D_METHOD("set_draw_order_threshold", "v"), &SpineTrackEntry::set_draw_order_threshold);
+	godot::register_method("get_draw_order_threshold", &SpineTrackEntry::get_draw_order_threshold);
+	godot::register_method("set_draw_order_threshold", &SpineTrackEntry::set_draw_order_threshold);
 
-	ClassDB::bind_method(D_METHOD("get_next"), &SpineTrackEntry::get_next);
+	godot::register_method("get_next", &SpineTrackEntry::get_next);
 
-	ClassDB::bind_method(D_METHOD("is_complete"), &SpineTrackEntry::is_complete);
+	godot::register_method("is_complete", &SpineTrackEntry::is_complete);
 
-	ClassDB::bind_method(D_METHOD("get_mix_time"), &SpineTrackEntry::get_mix_time);
-	ClassDB::bind_method(D_METHOD("set_mix_time", "v"), &SpineTrackEntry::set_mix_time);
+	godot::register_method("get_mix_time", &SpineTrackEntry::get_mix_time);
+	godot::register_method("set_mix_time", &SpineTrackEntry::set_mix_time);
 
-	ClassDB::bind_method(D_METHOD("get_mix_duration"), &SpineTrackEntry::get_mix_duration);
-	ClassDB::bind_method(D_METHOD("set_mix_duration", "v"), &SpineTrackEntry::set_mix_duration);
+	godot::register_method("get_mix_duration", &SpineTrackEntry::get_mix_duration);
+	godot::register_method("set_mix_duration", &SpineTrackEntry::set_mix_duration);
 
-	ClassDB::bind_method(D_METHOD("get_mix_blend"), &SpineTrackEntry::get_mix_blend);
-	ClassDB::bind_method(D_METHOD("set_mix_blend", "v"), &SpineTrackEntry::set_mix_blend);
+	godot::register_method("get_mix_blend", &SpineTrackEntry::get_mix_blend);
+	godot::register_method("set_mix_blend", &SpineTrackEntry::set_mix_blend);
 
-	ClassDB::bind_method(D_METHOD("get_mixing_from"), &SpineTrackEntry::get_mixing_from);
-	ClassDB::bind_method(D_METHOD("get_mixing_to"), &SpineTrackEntry::get_mixing_to);
+	godot::register_method("get_mixing_from", &SpineTrackEntry::get_mixing_from);
+	godot::register_method("get_mixing_to", &SpineTrackEntry::get_mixing_to);
 
-	ClassDB::bind_method(D_METHOD("reset_rotation_directions"), &SpineTrackEntry::reset_rotation_directions);
+	godot::register_method("reset_rotation_directions", &SpineTrackEntry::reset_rotation_directions);
 
-	BIND_ENUM_CONSTANT(MIXBLEND_SETUP);
-	BIND_ENUM_CONSTANT(MIXBLEND_FIRST);
-	BIND_ENUM_CONSTANT(MIXBLEND_REPLACE);
-	BIND_ENUM_CONSTANT(MIXBLEND_ADD);
+	godot::register_property<SpineTrackEntry, int>("MIXBLEND_SETUP", nullptr, &SpineTrackEntry::get_MIXBLEND_SETUP, 0);
+	godot::register_property<SpineTrackEntry, int>("MIXBLEND_FIRST", nullptr, &SpineTrackEntry::get_MIXBLEND_FIRST, 0);
+	godot::register_property<SpineTrackEntry, int>("MIXBLEND_REPLACE", nullptr, &SpineTrackEntry::get_MIXBLEND_REPLACE, 0);
+	godot::register_property<SpineTrackEntry, int>("MIXBLEND_ADD", nullptr, &SpineTrackEntry::get_MIXBLEND_ADD, 0);
 }
 
-SpineTrackEntry::SpineTrackEntry():track_entry(NULL) {}
+SpineTrackEntry::SpineTrackEntry() {}
 SpineTrackEntry::~SpineTrackEntry() {}
+
+int SpineTrackEntry::get_MIXBLEND_SETUP() { return MIXBLEND_SETUP; }
+int SpineTrackEntry::get_MIXBLEND_FIRST() { return MIXBLEND_FIRST; }
+int SpineTrackEntry::get_MIXBLEND_REPLACE() { return MIXBLEND_REPLACE; }
+int SpineTrackEntry::get_MIXBLEND_ADD() { return MIXBLEND_ADD; }
+
+void SpineTrackEntry::_init() {
+	track_entry = nullptr;
+}
 
 int SpineTrackEntry::get_track_index(){
 	return track_entry->getTrackIndex();
 }
 
-Ref<SpineAnimation> SpineTrackEntry::get_animation(){
-	Ref<SpineAnimation> gd_anim(memnew(SpineAnimation));
+godot::Ref<SpineAnimation> SpineTrackEntry::get_animation(){
+	godot::Ref<SpineAnimation> gd_anim;
+	gd_anim.instance();
 	auto anim = track_entry->getAnimation();
 	if(anim == NULL) return NULL;
 	gd_anim->set_spine_object(anim);
@@ -177,8 +187,9 @@ void SpineTrackEntry::set_draw_order_threshold(float v){
 	track_entry->setDrawOrderThreshold(v);
 }
 
-Ref<SpineTrackEntry> SpineTrackEntry::get_next(){
-	Ref<SpineTrackEntry> gd_entry(memnew(SpineTrackEntry));
+godot::Ref<SpineTrackEntry> SpineTrackEntry::get_next(){
+	godot::Ref<SpineTrackEntry> gd_entry;
+	gd_entry.instance();
 	auto entry = track_entry->getNext();
 	if(entry == NULL) return NULL;
 	gd_entry->set_spine_object(entry);
@@ -212,15 +223,18 @@ void SpineTrackEntry::set_mix_blend(SpineTrackEntry::MixBlend v){
 	track_entry->setMixBlend((spine::MixBlend)mb);
 }
 
-Ref<SpineTrackEntry> SpineTrackEntry::get_mixing_from(){
-	Ref<SpineTrackEntry> gd_entry(memnew(SpineTrackEntry));
+godot::Ref<SpineTrackEntry> SpineTrackEntry::get_mixing_from(){
+	godot::Ref<SpineTrackEntry> gd_entry;
+	gd_entry.instance();
 	auto entry = track_entry->getMixingFrom();
 	if(entry == NULL) return NULL;
 	gd_entry->set_spine_object(entry);
 	return gd_entry;
 }
-Ref<SpineTrackEntry> SpineTrackEntry::get_mixing_to(){
-	Ref<SpineTrackEntry> gd_entry(memnew(SpineTrackEntry));
+
+godot::Ref<SpineTrackEntry> SpineTrackEntry::get_mixing_to(){
+	godot::Ref<SpineTrackEntry> gd_entry;
+	gd_entry.instance();
 	auto entry = track_entry->getMixingTo();
 	if(entry == NULL) return NULL;
 	gd_entry->set_spine_object(entry);
