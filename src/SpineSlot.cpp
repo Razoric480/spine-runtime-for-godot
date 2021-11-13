@@ -8,36 +8,21 @@
 #include "SpineSkeleton.h"
 
 void SpineSlot::_register_methods() {
-godot:
-	register_method("set_to_setup_pos", &SpineSlot::set_to_setup_pos);
-godot:
-	register_method("get_data", &SpineSlot::get_data);
-godot:
-	register_method("get_bone", &SpineSlot::get_bone);
-godot:
-	register_method("get_skeleton", &SpineSlot::get_skeleton);
-godot:
-	register_method("get_color", &SpineSlot::get_color);
-godot:
-	register_method("set_color", &SpineSlot::set_color);
-godot:
-	register_method("get_dark_color", &SpineSlot::get_dark_color);
-godot:
-	register_method("set_dark_color", &SpineSlot::set_dark_color);
-godot:
-	register_method("has_dark_color", &SpineSlot::has_dark_color);
-godot:
-	register_method("get_attachment", &SpineSlot::get_attachment);
-godot:
-	register_method("set_attachment", &SpineSlot::set_attachment);
-godot:
-	register_method("get_attachment_state", &SpineSlot::get_attachment_state);
-godot:
-	register_method("set_attachment_state", &SpineSlot::set_attachment_state);
-godot:
-	register_method("get_deform", &SpineSlot::get_deform);
-godot:
-	register_method("set_deform", &SpineSlot::set_deform);
+	godot::register_method("set_to_setup_pos", &SpineSlot::set_to_setup_pos);
+	godot::register_method("get_data", &SpineSlot::get_data);
+	godot::register_method("get_bone", &SpineSlot::get_bone);
+	godot::register_method("get_skeleton", &SpineSlot::get_skeleton);
+	godot::register_method("get_color", &SpineSlot::get_color);
+	godot::register_method("set_color", &SpineSlot::set_color);
+	godot::register_method("get_dark_color", &SpineSlot::get_dark_color);
+	godot::register_method("set_dark_color", &SpineSlot::set_dark_color);
+	godot::register_method("has_dark_color", &SpineSlot::has_dark_color);
+	godot::register_method("get_attachment", &SpineSlot::get_attachment);
+	godot::register_method("set_attachment", &SpineSlot::set_attachment);
+	godot::register_method("get_attachment_state", &SpineSlot::get_attachment_state);
+	godot::register_method("set_attachment_state", &SpineSlot::set_attachment_state);
+	godot::register_method("get_deform", &SpineSlot::get_deform);
+	godot::register_method("set_deform", &SpineSlot::set_deform);
 }
 
 SpineSlot::SpineSlot() {}

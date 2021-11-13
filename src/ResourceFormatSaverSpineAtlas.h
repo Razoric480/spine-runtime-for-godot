@@ -10,16 +10,16 @@
 #include <ResourceFormatSaver.hpp>
 
 class ResourceFormatSaverSpineAtlas : public godot::ResourceFormatSaver {
-    GODOT_CLASS(ResourceFormatSaverSpineAtlas, godot::ResourceFormatSaver);
-    
+	GODOT_CLASS(ResourceFormatSaverSpineAtlas, godot::ResourceFormatSaver);
+
 protected:
-    static void _register_methods();
-    
+	static void _register_methods();
+
 public:
-    void _init();
-    int save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags = 0);
-    godot::PoolStringArray get_recognized_extensions(const godot::Ref<godot::Resource> &p_resource) const;
-    bool recognize(const godot::Ref<godot::Resource> &p_resource) const;
+	void _init();
+	int save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags = 0);
+	godot::PoolStringArray get_recognized_extensions(const godot::Ref<godot::Resource> &p_resource) const;
+	bool recognize(const godot::Ref<godot::Resource> &p_resource) const;
 };
 
 #endif //GODOT_RESOURCEFORMATSAVERSPINEATLAS_H

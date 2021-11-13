@@ -55,13 +55,13 @@ void SpineSprite::_register_methods() {
 	godot::register_method("_get", &SpineSprite::_get);
 	godot::register_method("_set", &SpineSprite::_set);
 
-	godot::register_signal<SpineSprite>("animation_state_ready", "animation_state", "skeleton");
-	godot::register_signal<SpineSprite>("animation_start", "animation_state", "track_entry", "event");
-	godot::register_signal<SpineSprite>("animation_interrupt", "animation_state", "track_entry", "event");
-	godot::register_signal<SpineSprite>("animation_end", "animation_state", "track_entry", "event");
-	godot::register_signal<SpineSprite>("animation_complete", "animation_state", "track_entry", "event");
-	godot::register_signal<SpineSprite>("animation_dispose", "animation_state", "track_entry", "event");
-	godot::register_signal<SpineSprite>("animation_event", "animation_state", "track_entry", "event");
+	godot::register_signal<SpineSprite>("animation_state_ready", "animation_state", GODOT_VARIANT_TYPE_OBJECT, "skeleton", GODOT_VARIANT_TYPE_OBJECT);
+	godot::register_signal<SpineSprite>("animation_start", "animation_state", GODOT_VARIANT_TYPE_OBJECT, "track_entry", GODOT_VARIANT_TYPE_OBJECT, "event", GODOT_VARIANT_TYPE_OBJECT);
+	godot::register_signal<SpineSprite>("animation_interrupt", "animation_state", GODOT_VARIANT_TYPE_OBJECT, "track_entry", GODOT_VARIANT_TYPE_OBJECT, "event", GODOT_VARIANT_TYPE_OBJECT);
+	godot::register_signal<SpineSprite>("animation_end", "animation_state", GODOT_VARIANT_TYPE_OBJECT, "track_entry", GODOT_VARIANT_TYPE_OBJECT, "event", GODOT_VARIANT_TYPE_OBJECT);
+	godot::register_signal<SpineSprite>("animation_complete", "animation_state", GODOT_VARIANT_TYPE_OBJECT, "track_entry", GODOT_VARIANT_TYPE_OBJECT, "event", GODOT_VARIANT_TYPE_OBJECT);
+	godot::register_signal<SpineSprite>("animation_dispose", "animation_state", GODOT_VARIANT_TYPE_OBJECT, "track_entry", GODOT_VARIANT_TYPE_OBJECT, "event", GODOT_VARIANT_TYPE_OBJECT);
+	godot::register_signal<SpineSprite>("animation_event", "animation_state", GODOT_VARIANT_TYPE_OBJECT, "track_entry", GODOT_VARIANT_TYPE_OBJECT, "event", GODOT_VARIANT_TYPE_OBJECT);
 
 	godot::register_property<SpineSprite, godot::Ref<SpineAnimationStateDataResource>>("animation_state_data_res", &SpineSprite::set_animation_state_data_res, &SpineSprite::get_animation_state_data_res, nullptr, GODOT_METHOD_RPC_MODE_DISABLED, GODOT_PROPERTY_USAGE_DEFAULT, GODOT_PROPERTY_HINT_RESOURCE_TYPE, "SpineAnimationStateDataResource");
 
@@ -697,7 +697,7 @@ godot::Ref<SpineSkin> SpineSprite::gen_spine_skin_from_packed_resource(godot::Re
 	new_skin->init(res->get_skin_name());
 	auto sub_skin_names = res->get_sub_skin_names();
 	for (size_t i = 0; i < sub_skin_names.size(); ++i) {
-		auto skin_name = (godot::String)sub_skin_names[i];
+		godot::String skin_name = sub_skin_names[i];
 		auto sub_skin = animation_state_data_res->get_skeleton()->find_skin(skin_name);
 		if (sub_skin.is_valid())
 			new_skin->add_skin(sub_skin);
@@ -876,8 +876,7 @@ godot::Variant SpineSprite::_get(const godot::String &p_property) const {
 						else if (key == "delay")
 							return 0;
 						else {
-						godot:
-							Object *nothing = nullptr;
+							godot::Object *nothing = nullptr;
 							return nothing;
 						}
 					}

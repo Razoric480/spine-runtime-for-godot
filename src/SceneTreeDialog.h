@@ -1,10 +1,10 @@
 #ifndef SCENE_TREE_DIALOG_H
 #define SCENE_TREE_DIALOG_H
 
-#include <Godot.hpp>
-#include <Texture.hpp>
 #include <ConfirmationDialog.hpp>
+#include <Godot.hpp>
 #include <LineEdit.hpp>
+#include <Texture.hpp>
 #include <Tree.hpp>
 
 namespace godot {
@@ -20,7 +20,7 @@ class SceneTreeDialog : public ConfirmationDialog {
 	void _select();
 	void _cancel();
 	void _filter_changed(const String &p_filter);
-	
+
 	bool _add_nodes(Node *p_node, TreeItem *p_parent);
 	void _update_tree();
 

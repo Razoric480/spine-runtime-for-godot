@@ -38,7 +38,7 @@ void SpineBoneData::_register_methods() {
 
 	godot::register_method("is_skin_required", &SpineBoneData::is_skin_required);
 	godot::register_method("set_skin_required", &SpineBoneData::set_skin_required);
-	
+
 	godot::register_property<SpineBoneData, int>("TRANSFORMMODE_NORMAL", nullptr, &SpineBoneData::get_TRANSFORMMODE_NORMAL, 0);
 	godot::register_property<SpineBoneData, int>("TRANSFORMMODE_ONLYTRANSLATION", nullptr, &SpineBoneData::get_TRANSFORMMODE_ONLYTRANSLATION, 1);
 	godot::register_property<SpineBoneData, int>("TRANSFORMMODE_NOROTATIONORREFLECTION", nullptr, &SpineBoneData::get_TRANSFORMMODE_NOROTATIONORREFLECTION, 2);
@@ -47,19 +47,19 @@ void SpineBoneData::_register_methods() {
 }
 
 int SpineBoneData::get_TRANSFORMMODE_NORMAL() {
-	return TRANSFORMMODE_NORMAL;
+	return (int)TRANSFORMMODE_NORMAL;
 }
 int SpineBoneData::get_TRANSFORMMODE_ONLYTRANSLATION() {
-	return TRANSFORMMODE_ONLYTRANSLATION;
+	return (int)TRANSFORMMODE_ONLYTRANSLATION;
 }
 int SpineBoneData::get_TRANSFORMMODE_NOROTATIONORREFLECTION() {
-	return TRANSFORMMODE_NOROTATIONORREFLECTION;
+	return (int)TRANSFORMMODE_NOROTATIONORREFLECTION;
 }
 int SpineBoneData::get_TRANSFORMMODE_NOSCALE() {
-	return TRANSFORMMODE_NOSCALE;
+	return (int)TRANSFORMMODE_NOSCALE;
 }
 int SpineBoneData::get_TRANSFORMMODE_NOSCALEORREFLECTION() {
-	return TRANSFORMMODE_NOSCALEORREFLECTION;
+	return (int)TRANSFORMMODE_NOSCALEORREFLECTION;
 }
 
 SpineBoneData::SpineBoneData() {}
@@ -143,11 +143,11 @@ void SpineBoneData::set_shear_y(float v) {
 	bone_data->setShearY(v);
 }
 
-SpineBoneData::TransformMode SpineBoneData::get_transform_mode() {
+int SpineBoneData::get_transform_mode() {
 	auto tm = (int)bone_data->getTransformMode();
 	return (TransformMode)tm;
 }
-void SpineBoneData::set_transform_mode(TransformMode v) {
+void SpineBoneData::set_transform_mode(int v) {
 	auto tm = (int)v;
 	bone_data->setTransformMode((spine::TransformMode)tm);
 }

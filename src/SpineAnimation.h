@@ -28,19 +28,19 @@ protected:
 public:
 	SpineAnimation();
 	~SpineAnimation();
-	
+
 	void _init();
 
 	inline void set_spine_object(spine::Animation *a) {
 		animation = a;
 	}
-	
+
 	inline spine::Animation *get_spine_object() {
 		return animation;
 	}
 
 	// Vector<Ref<SpineEvent>> pEvents
-	void apply(godot::Ref<SpineSkeleton> skeleton, float lastTime, float time, bool loop, godot::Array pEvents, float alpha, SpineConstant::MixBlend blend, SpineConstant::MixDirection direction);
+	void apply(godot::Ref<SpineSkeleton> skeleton, float lastTime, float time, bool loop, godot::Array pEvents, float alpha, int blend, int direction);
 
 	godot::Array get_timelines(); // Vector<Ref<SpineTimeline>>
 	bool has_timeline(godot::Array ids); // Vector<SpineConstant::PropertyId>

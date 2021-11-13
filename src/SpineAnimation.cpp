@@ -38,8 +38,8 @@ void SpineAnimation::set_duration(float v) {
 }
 
 void SpineAnimation::apply(godot::Ref<SpineSkeleton> skeleton, float lastTime, float time, bool loop,
-		godot::Array pEvents, float alpha, SpineConstant::MixBlend blend,
-		SpineConstant::MixDirection direction) {
+		godot::Array pEvents, float alpha, int blend,
+		int direction) {
 	spine::Vector<spine::Event *> events;
 	events.setSize(pEvents.size(), nullptr);
 	for (size_t i = 0; i < events.size(); ++i) {

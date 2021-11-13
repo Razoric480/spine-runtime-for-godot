@@ -101,11 +101,11 @@ void SpineSlotData::set_attachment_name(const godot::String &v) {
 	slot_data->setAttachmentName(S_T(v));
 }
 
-SpineSlotData::BlendMode SpineSlotData::get_blend_mode() {
+int SpineSlotData::get_blend_mode() {
 	auto bm = (int)slot_data->getBlendMode();
-	return (BlendMode)bm;
+	return bm;
 }
-void SpineSlotData::set_blend_mode(BlendMode v) {
+void SpineSlotData::set_blend_mode(int v) {
 	auto bm = (int)v;
 	slot_data->setBlendMode((spine::BlendMode)bm);
 }

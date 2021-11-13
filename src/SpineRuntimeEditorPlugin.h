@@ -99,7 +99,7 @@ class SpineRuntimeEditorPlugin : public godot::EditorPlugin {
 
 protected:
 	SpineSpriteAnimateDialog *animate_dialog;
-	
+
 	static void _register_methods() {
 		godot::register_method("get_name", &SpineRuntimeEditorPlugin::get_name);
 		godot::register_method("handles", &SpineRuntimeEditorPlugin::handles);
@@ -110,7 +110,7 @@ protected:
 public:
 	SpineRuntimeEditorPlugin();
 	~SpineRuntimeEditorPlugin();
-	
+
 	void _init();
 
 	godot::String get_name() const { return "SpineRuntimeEditorPlugin"; }

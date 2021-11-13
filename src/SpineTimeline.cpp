@@ -28,7 +28,7 @@ void SpineTimeline::_init() {
 }
 
 void SpineTimeline::apply(godot::Ref<SpineSkeleton> skeleton, float lastTime, float time, godot::Array pEvents, float alpha,
-		SpineConstant::MixBlend blend, SpineConstant::MixDirection direction) {
+		int blend, int direction) {
 	spine::Vector<spine::Event *> events;
 	events.setSize(pEvents.size(), nullptr);
 	for (size_t i = 0; i < events.size(); ++i) {

@@ -63,8 +63,8 @@ public:
 	godot::String get_attachment_name();
 	void set_attachment_name(const godot::String &v);
 
-	BlendMode get_blend_mode();
-	void set_blend_mode(BlendMode v);
+	int get_blend_mode();
+	void set_blend_mode(int v);
 };
 
 #endif //GODOT_SPINESLOTDATA_H

@@ -17,7 +17,7 @@ protected:
 	godot::String json_string;
 
 public:
-    void _init();
+	void _init();
 	inline const godot::String &get_json_string() { return json_string; }
 
 	int load_from_file(const godot::String &p_path);

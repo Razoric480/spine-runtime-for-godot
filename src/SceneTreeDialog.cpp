@@ -1,9 +1,9 @@
 #include "SceneTreeDialog.h"
 
-#include <VBoxContainer.hpp>
 #include <Engine.hpp>
 #include <SceneTree.hpp>
 #include <TreeItem.hpp>
+#include <VBoxContainer.hpp>
 
 namespace godot {
 
@@ -82,7 +82,7 @@ void SceneTreeDialog::_register_methods() {
 	register_method("_filter_changed", &SceneTreeDialog::_filter_changed);
 	register_method("get_scene_tree", &SceneTreeDialog::get_scene_tree);
 
-	register_signal<SceneTreeDialog>("selected", "path");
+	register_signal<SceneTreeDialog>("selected", "path", GODOT_VARIANT_TYPE_NODE_PATH);
 }
 
 void SceneTreeDialog::_init() {

@@ -37,7 +37,7 @@ void SpineCollisionShapeProxy::_notification(int p_what) {
 			set_process_internal(true);
 		} break;
 		case NOTIFICATION_INTERNAL_PROCESS: {
-			if (!is_disabled) {
+			if (!is_disabled()) {
 				if (sync_transform)
 					_sync_transform(get_spine_sprite());
 				_update_polygon_from_spine_sprite(get_spine_sprite());

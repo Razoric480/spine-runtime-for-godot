@@ -21,13 +21,13 @@ private:
 public:
 	SpineBoneData();
 	~SpineBoneData();
-	
+
 	void _init();
 
-	inline void set_spine_object(spine::BoneData *b){
+	inline void set_spine_object(spine::BoneData *b) {
 		bone_data = b;
 	}
-	inline spine::BoneData *get_spine_object(){
+	inline spine::BoneData *get_spine_object() {
 		return bone_data;
 	}
 
@@ -38,7 +38,7 @@ public:
 		TRANSFORMMODE_NOSCALE,
 		TRANSFORMMODE_NOSCALEORREFLECTION
 	};
-	
+
 	int get_TRANSFORMMODE_NORMAL();
 	int get_TRANSFORMMODE_ONLYTRANSLATION();
 	int get_TRANSFORMMODE_NOROTATIONORREFLECTION();
@@ -75,12 +75,11 @@ public:
 	float get_shear_y();
 	void set_shear_y(float v);
 
-	TransformMode get_transform_mode();
-	void set_transform_mode(TransformMode v);
+	int get_transform_mode();
+	void set_transform_mode(int v);
 
 	bool is_skin_required();
 	void set_skin_required(bool v);
-
 };
 
 #endif //GODOT_SPINEBONEDATA_H

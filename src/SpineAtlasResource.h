@@ -13,7 +13,6 @@
 #include <spine/TextureLoader.h>
 #include <Texture.hpp>
 
-
 class SpineAtlasResource : public godot::Resource {
 	GODOT_CLASS(SpineAtlasResource, godot::Resource);
 

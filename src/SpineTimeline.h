@@ -27,14 +27,14 @@ private:
 public:
 	SpineTimeline();
 	~SpineTimeline();
-	
+
 	void _init();
 
 	inline void set_spine_object(spine::Timeline *v) { timeline = v; }
 	inline spine::Timeline *get_spine_object() { return timeline; }
 
 	// Vector<Event *>
-	void apply(godot::Ref<SpineSkeleton> skeleton, float lastTime, float time, godot::Array pEvents, float alpha, SpineConstant::MixBlend blend, SpineConstant::MixDirection direction);
+	void apply(godot::Ref<SpineSkeleton> skeleton, float lastTime, float time, godot::Array pEvents, float alpha, int blend, int direction);
 
 	int64_t get_frame_entries();
 

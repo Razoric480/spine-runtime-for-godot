@@ -109,32 +109,32 @@ void SpinePathConstraintData::set_target(godot::Ref<SpineSlotData> v) {
 	}
 }
 
-SpinePathConstraintData::PositionMode SpinePathConstraintData::get_position_mode() {
+int SpinePathConstraintData::get_position_mode() {
 	auto m = (int)get_spine_data()->getPositionMode();
-	return (PositionMode)m;
+	return m;
 }
 
-void SpinePathConstraintData::set_position_mode(PositionMode v) {
+void SpinePathConstraintData::set_position_mode(int v) {
 	auto m = (int)v;
 	get_spine_data()->setPositionMode((spine::PositionMode)m);
 }
 
-SpinePathConstraintData::SpacingMode SpinePathConstraintData::get_spacing_mode() {
+int SpinePathConstraintData::get_spacing_mode() {
 	auto m = (int)get_spine_data()->getSpacingMode();
-	return (SpacingMode)m;
+	return m;
 }
 
-void SpinePathConstraintData::set_spacing_mode(SpacingMode v) {
+void SpinePathConstraintData::set_spacing_mode(int v) {
 	auto m = (int)v;
 	get_spine_data()->setSpacingMode((spine::SpacingMode)m);
 }
 
-SpinePathConstraintData::RotateMode SpinePathConstraintData::get_rotate_mode() {
+int SpinePathConstraintData::get_rotate_mode() {
 	auto m = (int)get_spine_data()->getRotateMode();
-	return (RotateMode)m;
+	return m;
 }
 
-void SpinePathConstraintData::set_rotate_mode(RotateMode v) {
+void SpinePathConstraintData::set_rotate_mode(int v) {
 	auto m = (int)v;
 	get_spine_data()->setRotateMode((spine::RotateMode)m);
 }

@@ -21,7 +21,7 @@ int SpineAtlasResourceImportPlugin::import(const godot::String &p_source_file, c
 	res->load_from_atlas_file(p_source_file);
 
 	godot::String file_name = p_save_path + "." + get_save_extension();
-	auto err = godot::ResourceSaver::get_singleton()->save(file_name, res);
+	int err = (int)godot::ResourceSaver::get_singleton()->save(file_name, res);
 	return err;
 }
 
@@ -44,7 +44,7 @@ int SpineJsonResourceImportPlugin::import(const godot::String &p_source_file, co
 	res->load_from_file(p_source_file);
 
 	godot::String file_name = p_save_path + "." + get_save_extension();
-	auto err = godot::ResourceSaver::get_singleton()->save(file_name, res);
+	auto err = (int)godot::ResourceSaver::get_singleton()->save(file_name, res);
 	return err;
 }
 

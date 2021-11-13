@@ -26,9 +26,9 @@ void SpineAnimationStateDataResource::_register_methods() {
 	godot::register_method("get_mix", &SpineAnimationStateDataResource::get_mix);
 	godot::register_method("set_mix", &SpineAnimationStateDataResource::set_mix);
 
-	godot::register_signal<SpineAnimationStateDataResource>("animation_state_data_created");
-	godot::register_signal<SpineAnimationStateDataResource>("skeleton_data_res_changed");
-	godot::register_signal<SpineAnimationStateDataResource>("animation_state_data_changed");
+	godot::register_signal<SpineAnimationStateDataResource>("animation_state_data_created", godot::Dictionary());
+	godot::register_signal<SpineAnimationStateDataResource>("skeleton_data_res_changed", godot::Dictionary());
+	godot::register_signal<SpineAnimationStateDataResource>("animation_state_data_changed", godot::Dictionary());
 
 	godot::register_property<SpineAnimationStateDataResource, godot::Ref<SpineSkeletonDataResource>>("skeleton", &SpineAnimationStateDataResource::set_skeleton, &SpineAnimationStateDataResource::get_skeleton, nullptr, GODOT_METHOD_RPC_MODE_DISABLED, GODOT_PROPERTY_USAGE_DEFAULT, GODOT_PROPERTY_HINT_RESOURCE_TYPE, "SpineSkeletonDataResource");
 	godot::register_property<SpineAnimationStateDataResource, float>("default_mix", &SpineAnimationStateDataResource::set_default_mix, &SpineAnimationStateDataResource::get_default_mix, 0.0f, GODOT_METHOD_RPC_MODE_DISABLED, GODOT_PROPERTY_USAGE_DEFAULT, GODOT_PROPERTY_HINT_EXP_RANGE, "0,1,0.01");

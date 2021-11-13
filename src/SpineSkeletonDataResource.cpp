@@ -46,9 +46,9 @@ void SpineSkeletonDataResource::_register_methods() {
 
 	godot::register_method("_get_property_list", &SpineSkeletonDataResource::_get_property_list);
 
-	godot::register_signal<SpineSkeletonDataResource>("skeleton_data_loaded");
-	godot::register_signal<SpineSkeletonDataResource>("atlas_res_changed");
-	godot::register_signal<SpineSkeletonDataResource>("skeleton_json_res_changed");
+	godot::register_signal<SpineSkeletonDataResource>("skeleton_data_loaded", godot::Dictionary());
+	godot::register_signal<SpineSkeletonDataResource>("atlas_res_changed", godot::Dictionary());
+	godot::register_signal<SpineSkeletonDataResource>("skeleton_json_res_changed", godot::Dictionary());
 
 	godot::register_property<SpineSkeletonDataResource, godot::Ref<SpineAtlasResource>>("atlas_res", &SpineSkeletonDataResource::set_atlas_res, &SpineSkeletonDataResource::get_atlas_res, nullptr, GODOT_METHOD_RPC_MODE_DISABLED, GODOT_PROPERTY_USAGE_DEFAULT, GODOT_PROPERTY_HINT_RESOURCE_TYPE, "SpineAtlasResource");
 	godot::register_property<SpineSkeletonDataResource, godot::Ref<SpineSkeletonJsonDataResource>>("atlas_res", &SpineSkeletonDataResource::set_skeleton_json_res, &SpineSkeletonDataResource::get_skeleton_json_res, nullptr, GODOT_METHOD_RPC_MODE_DISABLED, GODOT_PROPERTY_USAGE_DEFAULT, GODOT_PROPERTY_HINT_RESOURCE_TYPE, "SpineSkeletonJsonDataResource");

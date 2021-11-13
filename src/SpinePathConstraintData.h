@@ -13,7 +13,6 @@
 #include "SpineConstraintData.h"
 #include "SpineSlotData.h"
 
-
 class SpinePathConstraintData : public SpineConstraintData {
 	GODOT_CLASS(SpinePathConstraintData, SpineConstraintData);
 
@@ -23,7 +22,7 @@ protected:
 public:
 	SpinePathConstraintData();
 	~SpinePathConstraintData();
-	
+
 	void _init();
 
 	virtual inline spine::PathConstraintData *get_spine_data() {
@@ -46,29 +45,29 @@ public:
 		ROTATEMODE_CHAIN,
 		ROTATEMODE_CHAINSCALE
 	};
-	
-	int get_POSITIONMODE_FIXED(); 
-int get_POSITIONMODE_PERCENT(); 
-int get_SPACINGMODE_LENGTH(); 
-int get_SPACINGMODE_FIXED(); 
-int get_SPACINGMODE_PERCENT();
-int get_ROTATEMODE_TANGENT();
-int get_ROTATEMODE_CHAIN(); 
-int get_ROTATEMODE_CHAINSCALE();
+
+	int get_POSITIONMODE_FIXED();
+	int get_POSITIONMODE_PERCENT();
+	int get_SPACINGMODE_LENGTH();
+	int get_SPACINGMODE_FIXED();
+	int get_SPACINGMODE_PERCENT();
+	int get_ROTATEMODE_TANGENT();
+	int get_ROTATEMODE_CHAIN();
+	int get_ROTATEMODE_CHAINSCALE();
 
 	godot::Array get_bones();
 
 	godot::Ref<SpineSlotData> get_target();
 	void set_target(godot::Ref<SpineSlotData> v);
 
-	PositionMode get_position_mode();
-	void set_position_mode(PositionMode v);
+	int get_position_mode();
+	void set_position_mode(int v);
 
-	SpacingMode get_spacing_mode();
-	void set_spacing_mode(SpacingMode v);
+	int get_spacing_mode();
+	void set_spacing_mode(int v);
 
-	RotateMode get_rotate_mode();
-	void set_rotate_mode(RotateMode v);
+	int get_rotate_mode();
+	void set_rotate_mode(int v);
 
 	float get_offset_rotation();
 	void set_offset_rotation(float v);
