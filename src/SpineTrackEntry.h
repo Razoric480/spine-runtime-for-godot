@@ -14,7 +14,7 @@
 class SpineTrackEntry : public godot::Reference {
 	GODOT_CLASS(SpineTrackEntry, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

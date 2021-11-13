@@ -16,7 +16,7 @@
 class SpineTransformConstraint : public godot::Reference {
 	GODOT_CLASS(SpineTransformConstraint, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

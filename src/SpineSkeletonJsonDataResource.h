@@ -11,9 +11,10 @@
 class SpineSkeletonJsonDataResource : public godot::Resource {
 	GODOT_CLASS(SpineSkeletonJsonDataResource, godot::Resource);
 
-protected:
+public:
 	static void _register_methods();
 
+protected:
 	godot::String json_string;
 
 public:

@@ -16,9 +16,10 @@
 class SpineAtlasResource : public godot::Resource {
 	GODOT_CLASS(SpineAtlasResource, godot::Resource);
 
-protected:
+public:
 	static void _register_methods();
 
+protected:
 	spine::Atlas *atlas;
 
 	godot::String source_path;

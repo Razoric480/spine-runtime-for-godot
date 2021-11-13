@@ -12,7 +12,7 @@
 class SpineEventData : public godot::Reference {
 	GODOT_CLASS(SpineEventData, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

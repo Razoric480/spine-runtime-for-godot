@@ -7,7 +7,7 @@
 class SpineRuntime : public godot::Reference {
 	GODOT_CLASS(SpineRuntime, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 public:

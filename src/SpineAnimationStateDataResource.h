@@ -12,7 +12,7 @@
 class SpineAnimationStateDataResource : public godot::Resource {
 	GODOT_CLASS(SpineAnimationStateDataResource, godot::Resource);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

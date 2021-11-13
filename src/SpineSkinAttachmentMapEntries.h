@@ -14,7 +14,7 @@
 class SpineSkinAttachmentMapEntry : public godot::Reference {
 	GODOT_CLASS(SpineSkinAttachmentMapEntry, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:
@@ -46,7 +46,7 @@ public:
 class SpineSkinAttachmentMapEntries : public godot::Reference {
 	GODOT_CLASS(SpineSkinAttachmentMapEntries, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

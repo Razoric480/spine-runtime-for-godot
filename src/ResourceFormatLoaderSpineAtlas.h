@@ -11,7 +11,7 @@
 class ResourceFormatLoaderSpineAtlas : public godot::ResourceFormatLoader {
 	GODOT_CLASS(ResourceFormatLoaderSpineAtlas, godot::ResourceFormatLoader);
 
-protected:
+public:
 	static void _register_methods();
 
 public:

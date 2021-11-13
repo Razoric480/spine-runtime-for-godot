@@ -14,7 +14,7 @@
 class SpineSlotData : public godot::Reference {
 	GODOT_CLASS(SpineSlotData, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

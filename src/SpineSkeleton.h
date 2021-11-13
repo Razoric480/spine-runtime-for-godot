@@ -19,7 +19,7 @@ class SpineSprite;
 class SpineSkeleton : public godot::Reference {
 	GODOT_CLASS(SpineSkeleton, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

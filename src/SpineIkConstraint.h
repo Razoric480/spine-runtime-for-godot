@@ -16,7 +16,7 @@ class SpineBone;
 class SpineIkConstraint : public godot::Reference {
 	GODOT_CLASS(SpineIkConstraint, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

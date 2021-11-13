@@ -17,9 +17,10 @@ class SpineSkeleton;
 class SpineCollisionShapeProxy : public godot::CollisionPolygon2D {
 	GODOT_CLASS(SpineCollisionShapeProxy, godot::CollisionPolygon2D)
     
-protected:
+public:
 	static void _register_methods();
 
+protected:
 	godot::NodePath spine_sprite_path;
 
 	godot::String slot;

@@ -12,7 +12,7 @@
 class ResourceFormatSaverSpineSkeletonJsonData : public godot::ResourceFormatSaver {
 	GODOT_CLASS(ResourceFormatSaverSpineSkeletonJsonData, godot::ResourceFormatSaver);
 
-protected:
+public:
 	static void _register_methods();
 
 public:

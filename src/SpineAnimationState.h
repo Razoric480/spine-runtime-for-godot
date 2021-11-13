@@ -14,7 +14,7 @@
 class SpineAnimationState : public godot::Reference {
 	GODOT_CLASS(SpineAnimationState, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

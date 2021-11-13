@@ -18,7 +18,7 @@ class SpineEvent;
 class SpineTimeline : public godot::Reference {
 	GODOT_CLASS(SpineTimeline, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

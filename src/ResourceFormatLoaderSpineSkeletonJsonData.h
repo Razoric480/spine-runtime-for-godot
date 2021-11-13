@@ -11,7 +11,7 @@
 class ResourceFormatLoaderSpineSkeletonJsonData : public godot::ResourceFormatLoader {
 	GODOT_CLASS(ResourceFormatLoaderSpineSkeletonJsonData, godot::ResourceFormatLoader);
 
-protected:
+public:
 	static void _register_methods();
 
 public:

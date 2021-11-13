@@ -13,7 +13,7 @@
 class PackedSpineSkinResource : public godot::Resource {
 	GODOT_CLASS(PackedSpineSkinResource, godot::Resource);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

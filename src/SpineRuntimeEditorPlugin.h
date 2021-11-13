@@ -13,7 +13,7 @@
 class SpineAtlasResourceImportPlugin : public godot::EditorImportPlugin {
 	GODOT_CLASS(SpineAtlasResourceImportPlugin, godot::EditorImportPlugin);
 
-protected:
+public:
 	static void _register_methods() {
 		godot::register_method("get_importer_name", &SpineAtlasResourceImportPlugin::get_importer_name);
 		godot::register_method("get_visible_name", &SpineAtlasResourceImportPlugin::get_visible_name);
@@ -54,7 +54,7 @@ public:
 class SpineJsonResourceImportPlugin : public godot::EditorImportPlugin {
 	GODOT_CLASS(SpineJsonResourceImportPlugin, godot::EditorImportPlugin);
 
-protected:
+public:
 	static void _register_methods() {
 		godot::register_method("get_importer_name", &SpineJsonResourceImportPlugin::get_importer_name);
 		godot::register_method("get_visible_name", &SpineJsonResourceImportPlugin::get_visible_name);
@@ -100,6 +100,7 @@ class SpineRuntimeEditorPlugin : public godot::EditorPlugin {
 protected:
 	SpineSpriteAnimateDialog *animate_dialog;
 
+public:
 	static void _register_methods() {
 		godot::register_method("get_name", &SpineRuntimeEditorPlugin::get_name);
 		godot::register_method("handles", &SpineRuntimeEditorPlugin::handles);

@@ -15,7 +15,7 @@
 class SpineTransformConstraintData : public SpineConstraintData {
 	GODOT_CLASS(SpineTransformConstraintData, SpineConstraintData);
 
-protected:
+public:
 	static void _register_methods();
 
 public:

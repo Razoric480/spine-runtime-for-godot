@@ -26,6 +26,8 @@ class SceneTreeDialog : public ConfirmationDialog {
 
 protected:
 	void _notification(int p_what);
+	
+public:
 	static void _register_methods();
 
 public:

@@ -12,7 +12,7 @@
 class ResourceFormatSaverSpineAtlas : public godot::ResourceFormatSaver {
 	GODOT_CLASS(ResourceFormatSaverSpineAtlas, godot::ResourceFormatSaver);
 
-protected:
+public:
 	static void _register_methods();
 
 public:

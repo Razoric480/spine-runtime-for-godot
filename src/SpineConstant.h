@@ -11,7 +11,7 @@
 class SpineConstant : public godot::Object {
 	GODOT_CLASS(SpineConstant, Object);
 
-protected:
+public:
 	static void _register_methods();
 
 public:

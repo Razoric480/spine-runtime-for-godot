@@ -9,6 +9,8 @@
 void SpineSkeletonJsonDataResource::_register_methods() {
 }
 
+void SpineSkeletonJsonDataResource::_init() {}
+
 int SpineSkeletonJsonDataResource::load_from_file(const godot::String &p_path) {
 	godot::Ref<godot::File> file;
 	file.instance();

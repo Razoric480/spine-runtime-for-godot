@@ -13,17 +13,19 @@
 class SpineSpriteMeshInstance2D : public godot::MeshInstance2D {
 	GODOT_CLASS(SpineSpriteMeshInstance2D, godot::MeshInstance2D);
 
-protected:
+public:
 	static void _register_methods();
 
+protected:
 	godot::Ref<SpineSlot> slot;
+
 public:
 	SpineSpriteMeshInstance2D();
 	~SpineSpriteMeshInstance2D();
-	
+
 	void _init();
 
-	inline void set_slot(godot::Ref<SpineSlot> s){
+	inline void set_slot(godot::Ref<SpineSlot> s) {
 		slot = s;
 	}
 	godot::Ref<SpineSlot> get_slot();

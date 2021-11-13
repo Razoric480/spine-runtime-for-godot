@@ -17,7 +17,7 @@
 class SpinePathConstraint : public godot::Reference {
 	GODOT_CLASS(SpinePathConstraint, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

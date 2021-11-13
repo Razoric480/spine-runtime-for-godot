@@ -22,7 +22,7 @@ class SpineAnimation : public godot::Reference {
 private:
 	spine::Animation *animation;
 
-protected:
+public:
 	static void _register_methods();
 
 public:

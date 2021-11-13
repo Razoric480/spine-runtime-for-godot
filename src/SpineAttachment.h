@@ -12,7 +12,7 @@
 class SpineAttachment : public godot::Reference {
 	GODOT_CLASS(SpineAttachment, godot::Reference);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

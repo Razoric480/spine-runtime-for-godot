@@ -24,7 +24,7 @@
 class SpineSkeletonDataResource : public godot::Resource {
 	GODOT_CLASS(SpineSkeletonDataResource, godot::Resource);
 
-protected:
+public:
 	static void _register_methods();
 
 private:

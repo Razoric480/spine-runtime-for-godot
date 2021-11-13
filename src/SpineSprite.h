@@ -17,9 +17,10 @@
 class SpineSprite : public godot::Node2D, public spine::AnimationStateListenerObject {
 	GODOT_CLASS(SpineSprite, godot::Node2D);
 
-protected:
+public:
 	static void _register_methods();
 
+protected:
 	void _notification(int p_what);
 
 	godot::Array _get_property_list() const;
