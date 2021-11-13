@@ -7,3 +7,11 @@ __pycache__
 
 *.obj
 *.bc
+
+VC/
+
+*.dblite
+*.dll
+*.ilk
+*.pdb
+*.idb
