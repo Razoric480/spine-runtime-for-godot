@@ -81,10 +81,10 @@ void SpineSkeletonDataResource::load_res(spine::Atlas *a, const godot::String &j
 	spine::SkeletonJson json(a);
 	auto temp_skeleton_data = json.readSkeletonData(json_string.utf8().get_data());
 	if (!temp_skeleton_data) {
-		godot_print_error(godot::String("Error happened while loading skeleton json data: " + path).utf8().get_data(), __FUNCTION__, __FILE__, __LINE__);
+		godot::Godot::print_error(godot::String("Error happened while loading skeleton json data: " + path).utf8().get_data(), __FUNCTION__, __FILE__, __LINE__);
 		godot::String error_message = "Error msg: ";
 		error_message += json.getError().buffer();
-		godot_print_error(error_message.utf8().get_data(), __FUNCTION__, __FILE__, __LINE__);
+		godot::Godot::print_error(error_message.utf8().get_data(), __FUNCTION__, __FILE__, __LINE__);
 		return;
 	}
 	if (skeleton_data) {

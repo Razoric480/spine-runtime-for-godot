@@ -59,7 +59,7 @@ public:
 			spine::String error_message = spine::String("Can't load texture \"");
 			error_message.append(path);
 			error_message.append("\"");
-			godot_print_error(error_message.buffer(), __FUNCTION__, __FILE__, __LINE__);
+			godot::Godot::print_error(error_message.buffer(), __FUNCTION__, __FILE__, __LINE__);
 			page.setRendererObject((void *)new SpineRendererObject{ nullptr });
 			return;
 		}

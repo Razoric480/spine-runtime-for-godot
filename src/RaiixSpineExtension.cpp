@@ -15,8 +15,8 @@ spine::SpineExtension *spine::getDefaultExtension() {
 	return new RaiixSpineExtension();
 }
 
-void *do_alloc(size_t size) {
-	return malloc(size);
+void *do_malloc(size_t size) {
+	return nullptr;
 }
 
 void *do_realloc(void *ptr, size_t size) {

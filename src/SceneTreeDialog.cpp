@@ -7,6 +7,15 @@
 
 namespace godot {
 
+void SceneTreeDialog::_register_methods() {
+	register_method("_select", &SceneTreeDialog::_select);
+	register_method("_cancel", &SceneTreeDialog::_cancel);
+	register_method("_filter_changed", &SceneTreeDialog::_filter_changed);
+	register_method("get_scene_tree", &SceneTreeDialog::get_scene_tree);
+
+	register_signal<SceneTreeDialog>("selected", "path", GODOT_VARIANT_TYPE_NODE_PATH);
+}
+
 void SceneTreeDialog::_notification(int p_what) {
 	switch (p_what) {
 		case NOTIFICATION_ENTER_TREE: {
@@ -19,7 +28,7 @@ void SceneTreeDialog::_notification(int p_what) {
 		} break;
 		case NOTIFICATION_VISIBILITY_CHANGED: {
 			if (is_visible_in_tree()) {
-				update_tree();
+				_update_tree();
 			}
 		} break;
 	}
@@ -44,7 +53,7 @@ void SceneTreeDialog::_update_tree() {
 }
 
 void SceneTreeDialog::_filter_changed(const String &p_filter) {
-	update_tree();
+	_update_tree();
 }
 
 bool SceneTreeDialog::_add_nodes(Node *p_node, TreeItem *p_parent) {
@@ -74,15 +83,6 @@ bool SceneTreeDialog::_add_nodes(Node *p_node, TreeItem *p_parent) {
 
 void SceneTreeDialog::set_valid_types(PoolStringArray p_valid_types) {
 	valid_types = p_valid_types;
-}
-
-void SceneTreeDialog::_register_methods() {
-	register_method("_select", &SceneTreeDialog::_select);
-	register_method("_cancel", &SceneTreeDialog::_cancel);
-	register_method("_filter_changed", &SceneTreeDialog::_filter_changed);
-	register_method("get_scene_tree", &SceneTreeDialog::get_scene_tree);
-
-	register_signal<SceneTreeDialog>("selected", "path", GODOT_VARIANT_TYPE_NODE_PATH);
 }
 
 void SceneTreeDialog::_init() {

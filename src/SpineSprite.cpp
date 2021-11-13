@@ -768,7 +768,7 @@ godot::Transform2D SpineSprite::bone_get_global_transform(const godot::String &b
 	auto bone = skeleton->find_bone(bone_name);
 	if (!bone.is_valid()) {
 		godot::String message = "Bone: '" + bone_name + "' not found.";
-		godot_print_error(message.utf8().get_data(), __FUNCTION__, __FILE__, __LINE__);
+		godot::Godot::print_error(message.utf8().get_data(), __FUNCTION__, __FILE__, __LINE__);
 		return get_global_transform();
 	}
 	return bone->get_godot_global_transform();
