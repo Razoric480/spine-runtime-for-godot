@@ -8,6 +8,34 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "ResourceFormatLoader",
+"class": "ResourceFormatLoaderSpineAtlas",
+"language": "GDScript",
+"path": "res://addons/spine-runtime/ResourceFormatLoaderSpineAtlas.gd"
+}, {
+"base": "ResourceFormatLoader",
+"class": "ResourceFormatLoaderSpineSkeletonJsonData",
+"language": "GDScript",
+"path": "res://addons/spine-runtime/ResourceFormatLoaderSpineSkeletonJsonData.gd"
+}, {
+"base": "ResourceFormatSaver",
+"class": "ResourceFormatSaverSpineAtlas",
+"language": "GDScript",
+"path": "res://addons/spine-runtime/ResourceFormatSaverSpineAtlas.gd"
+}, {
+"base": "ResourceFormatSaver",
+"class": "ResourceFormatSaverSpineSkeletonJsonData",
+"language": "GDScript",
+"path": "res://addons/spine-runtime/ResourceFormatSaverSpineSkeletonJsonData.gd"
+} ]
+_global_script_class_icons={
+"ResourceFormatLoaderSpineAtlas": "",
+"ResourceFormatLoaderSpineSkeletonJsonData": "",
+"ResourceFormatSaverSpineAtlas": "",
+"ResourceFormatSaverSpineSkeletonJsonData": ""
+}
+
 [application]
 
 config/name="Spine Runtime Test"

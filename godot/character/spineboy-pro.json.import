@@ -1,0 +1,13 @@
+[remap]
+
+importer="raiix.spine_runtime.json"
+type="SpineSkeletonJsonDataResource"
+path="res://.import/spineboy-pro.json-a03c92ccf1478bf74d70059b4e6d7b44.spjson"
+
+[deps]
+
+source_file="res://character/spineboy-pro.json"
+dest_files=[ "res://.import/spineboy-pro.json-a03c92ccf1478bf74d70059b4e6d7b44.spjson" ]
+
+[params]
+

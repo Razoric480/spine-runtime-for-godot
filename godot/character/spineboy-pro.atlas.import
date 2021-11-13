@@ -1,0 +1,14 @@
+[remap]
+
+importer="raiix.spine_runtime.atlas"
+type="SpineAtlasResource"
+path="res://.import/spineboy-pro.atlas-718e6664050e4ad5806255960f85e2c9.spatlas"
+
+[deps]
+
+source_file="res://character/spineboy-pro.atlas"
+dest_files=[ "res://.import/spineboy-pro.atlas-718e6664050e4ad5806255960f85e2c9.spatlas" ]
+
+[params]
+
+normal_texture_prefix="n"

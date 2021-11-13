@@ -16,7 +16,7 @@ spine::SpineExtension *spine::getDefaultExtension() {
 }
 
 void *do_malloc(size_t size) {
-	return nullptr;
+	return malloc(size);
 }
 
 void *do_realloc(void *ptr, size_t size) {

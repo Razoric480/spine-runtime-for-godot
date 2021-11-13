@@ -46,7 +46,7 @@ protected:
 	godot::Dictionary get_data_from_tree();
 
 	void gen_new_animation_player(SpineSprite *sprite, bool &err);
-	void gen_animations(SpineSprite *sprite, godot::AnimationPlayer *anim_player, const godot::Dictionary &config, float min_duration, bool &err);
+	void gen_animations(SpineSprite *sprite, godot::AnimationPlayer *anim_player, godot::Dictionary config, float min_duration, bool &err);
 	godot::Dictionary gen_current_animation_data(const godot::String &animation, int64_t track_id, bool loop, bool clear, bool empty, bool empty_duration, float delay);
 
 public:

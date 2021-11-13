@@ -32,11 +32,11 @@ protected:
 public:
 	void _init();
 
-	inline godot::String &get_atlas_data() { return atlas_data; }
+	godot::String &get_atlas_data() { return atlas_data; }
 
-	inline spine::Atlas *get_spine_atlas() { return atlas; }
+	spine::Atlas *get_spine_atlas() { return atlas; }
 
-	inline void set_normal_texture_prefix(const godot::String &p) { normal_texture_prefix = p; }
+	void set_normal_texture_prefix(const godot::String &p) { normal_texture_prefix = p; }
 
 	int load_from_atlas_file(const godot::String &p_path); // .atlas
 
@@ -48,7 +48,7 @@ public:
 	godot::Array get_normal_textures();
 
 	SpineAtlasResource();
-	virtual ~SpineAtlasResource();
+	~SpineAtlasResource();
 };
 
 #endif //GODOT_SPINEATLASRESOURCE_H

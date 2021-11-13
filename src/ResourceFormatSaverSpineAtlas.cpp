@@ -15,13 +15,13 @@ void ResourceFormatSaverSpineAtlas::_register_methods() {
 
 void ResourceFormatSaverSpineAtlas::_init() {}
 
-int ResourceFormatSaverSpineAtlas::save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags) {
+int ResourceFormatSaverSpineAtlas::save(const godot::String &p_path, godot::Ref<godot::Resource> p_resource, const int &p_flags) {
 	godot::Ref<SpineAtlasResource> res = p_resource;
 	int error = res->save_to_file(p_path);
 	return error;
 }
 
-godot::PoolStringArray ResourceFormatSaverSpineAtlas::get_recognized_extensions(const godot::Ref<godot::Resource> &p_resource) const {
+godot::PoolStringArray ResourceFormatSaverSpineAtlas::get_recognized_extensions(godot::Ref<godot::Resource> p_resource) const {
 	godot::PoolStringArray extensions;
 	godot::Ref<SpineAtlasResource> resource = p_resource;
 	if (resource.is_valid()) {
@@ -30,6 +30,6 @@ godot::PoolStringArray ResourceFormatSaverSpineAtlas::get_recognized_extensions(
 	return extensions;
 }
 
-bool ResourceFormatSaverSpineAtlas::recognize(const godot::Ref<godot::Resource> &p_resource) const {
+bool ResourceFormatSaverSpineAtlas::recognize(godot::Ref<godot::Resource> p_resource) const {
 	return godot::Object::cast_to<SpineAtlasResource>(*p_resource) != nullptr;
 }

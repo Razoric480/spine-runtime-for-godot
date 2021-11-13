@@ -48,8 +48,8 @@ public:
 	godot::String get_save_extension() const { return "spatlas"; }
 	godot::String get_resource_type() const { return "SpineAtlasResource"; }
 	godot::Array get_import_options(int p_preset) const;
-	bool get_option_visibility(const godot::String &p_option, const godot::Dictionary &p_options) const { return true; }
-	int import(const godot::String &p_source_file, const godot::String &p_save_path, const godot::Dictionary &p_options, godot::Array r_platform_variants, godot::Array r_gen_files);
+	bool get_option_visibility(const godot::String &p_option, godot::Dictionary p_options) const { return true; }
+	int import(const godot::String &p_source_file, const godot::String &p_save_path, godot::Dictionary p_options, godot::Array r_platform_variants, godot::Array r_gen_files);
 };
 
 class SpineJsonResourceImportPlugin : public godot::EditorImportPlugin {
@@ -89,8 +89,8 @@ public:
 	godot::String get_save_extension() const { return "spjson"; }
 	godot::String get_resource_type() const { return "SpineSkeletonJsonDataResource"; }
 	godot::Array get_import_options(int p_preset) const { return godot::Array(); }
-	bool get_option_visibility(const godot::String &p_option, const godot::Dictionary &p_options) const { return true; }
-	int import(const godot::String &p_source_file, const godot::String &p_save_path, const godot::Dictionary &p_options, godot::Array r_platform_variants, godot::Array r_gen_files);
+	bool get_option_visibility(const godot::String &p_option, godot::Dictionary p_options) const { return true; }
+	int import(const godot::String &p_source_file, const godot::String &p_save_path, godot::Dictionary p_options, godot::Array r_platform_variants, godot::Array r_gen_files);
 };
 
 class SpineSpriteAnimateDialog;

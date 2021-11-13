@@ -7,6 +7,8 @@
 #include <File.hpp>
 
 void SpineSkeletonJsonDataResource::_register_methods() {
+	godot::register_method("load_from_file", &SpineSkeletonJsonDataResource::load_from_file);
+	godot::register_method("save_to_file", &SpineSkeletonJsonDataResource::save_to_file);
 }
 
 void SpineSkeletonJsonDataResource::_init() {}

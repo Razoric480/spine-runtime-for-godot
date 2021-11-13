@@ -17,9 +17,9 @@ public:
 
 public:
 	void _init();
-	int save(const godot::String &p_path, const godot::Ref<godot::Resource> &p_resource, uint32_t p_flags = 0);
-	godot::PoolStringArray get_recognized_extensions(const godot::Ref<godot::Resource> &p_resource) const;
-	bool recognize(const godot::Ref<godot::Resource> &p_resource) const;
+	int save(const godot::String &p_path, godot::Ref<godot::Resource> p_resource, uint32_t p_flags = 0);
+	godot::PoolStringArray get_recognized_extensions(godot::Ref<godot::Resource> p_resource) const;
+	bool recognize(godot::Ref<godot::Resource> p_resource) const;
 };
 
 #endif //GODOT_RESOURCEFORMATSAVERSPINESKELETONJSONDATA_H

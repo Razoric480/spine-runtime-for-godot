@@ -187,7 +187,7 @@ godot::Dictionary SpineSpriteAnimateDialog::get_data_from_tree() {
 	return res;
 }
 
-void SpineSpriteAnimateDialog::gen_animations(SpineSprite *sprite, godot::AnimationPlayer *anim_player, const godot::Dictionary &config, float min_duration, bool &err) {
+void SpineSpriteAnimateDialog::gen_animations(SpineSprite *sprite, godot::AnimationPlayer *anim_player, godot::Dictionary config, float min_duration, bool &err) {
 	if (sprite == nullptr || anim_player == nullptr) {
 		ERROR_MSG("The sprite or animation player is null.");
 	}

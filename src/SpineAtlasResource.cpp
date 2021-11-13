@@ -54,7 +54,7 @@ public:
 		//        print_line("Fixed path: " + fixed_path);
 
 		// Load texture (e.g. tex.png)
-		godot::Ref<godot::Texture> tex = godot::ResourceLoader::get_singleton()->load(fixed_path, "", false);
+		godot::Ref<godot::Texture> tex = godot::ResourceLoader::get_singleton()->load(fixed_path);
 		if (!tex.is_valid()) {
 			spine::String error_message = spine::String("Can't load texture \"");
 			error_message.append(path);
@@ -119,6 +119,8 @@ SpineAtlasResource::~SpineAtlasResource() {
 
 void SpineAtlasResource::_register_methods() {
 	godot::register_method("load_from_atlas_file", &SpineAtlasResource::load_from_atlas_file);
+	godot::register_method("load_from_file", &SpineAtlasResource::load_from_file);
+	godot::register_method("save_to_file", &SpineAtlasResource::save_to_file);
 
 	godot::register_method("get_source_path", &SpineAtlasResource::get_source_path);
 
@@ -163,7 +165,8 @@ int SpineAtlasResource::load_from_atlas_file(const godot::String &p_path) {
 
 	tex_list.clear();
 	ntex_list.clear();
-	atlas = new spine::Atlas(atlas_data.utf8().get_data(), atlas_data.length(), source_path.get_base_dir().utf8().get_data(), new RaiixSpineTextureLoader(&tex_list, &ntex_list, normal_texture_prefix));
+
+	atlas = new spine::Atlas(atlas_data.alloc_c_string(), atlas_data.length(), source_path.get_base_dir().alloc_c_string(), new RaiixSpineTextureLoader(&tex_list, &ntex_list, normal_texture_prefix));
 
 	//    print_line(vformat("atlas loaded!"));
 

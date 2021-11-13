@@ -42,17 +42,17 @@ extern "C" void GDN_EXPORT godot_gdnative_terminate(godot_gdnative_terminate_opt
 extern "C" void GDN_EXPORT godot_nativescript_init(void *handle) {
     godot::Godot::nativescript_init(handle);
 
+	godot::register_tool_class<SpineAtlasResource>();
     godot::register_tool_class<PackedSpineSkinResource>();
-	godot::register_tool_class<ResourceFormatLoaderSpineAtlas>();
-	godot::register_tool_class<ResourceFormatLoaderSpineSkeletonJsonData>();
-	godot::register_tool_class<ResourceFormatSaverSpineAtlas>();
-	godot::register_tool_class<ResourceFormatSaverSpineSkeletonJsonData>();
+	// godot::register_tool_class<ResourceFormatLoaderSpineAtlas>();
+	// godot::register_tool_class<ResourceFormatLoaderSpineSkeletonJsonData>();
+	// godot::register_tool_class<ResourceFormatSaverSpineAtlas>();
+	// godot::register_tool_class<ResourceFormatSaverSpineSkeletonJsonData>();
 	godot::register_tool_class<godot::SceneTreeDialog>();
 	godot::register_tool_class<SpineRuntime>();
 	godot::register_tool_class<SpineAnimation>();
 	godot::register_tool_class<SpineAnimationState>();
 	godot::register_tool_class<SpineAnimationStateDataResource>();
-	godot::register_tool_class<SpineAtlasResource>();
 	godot::register_tool_class<SpineAnimationStateDataResource>();
 	godot::register_tool_class<SpineAtlasResource>();
 	godot::register_tool_class<SpineAttachment>();

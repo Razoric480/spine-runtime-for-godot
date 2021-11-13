@@ -4,8 +4,7 @@
 
 #include "SpineAnimationStateDataResource.h"
 
-SpineAnimationStateDataResource::SpineAnimationStateDataResource() :
-		animation_state_data(NULL), animation_state_data_created(false), default_mix(0.5f) {
+SpineAnimationStateDataResource::SpineAnimationStateDataResource() {
 }
 
 SpineAnimationStateDataResource::~SpineAnimationStateDataResource() {
@@ -35,6 +34,9 @@ void SpineAnimationStateDataResource::_register_methods() {
 }
 
 void SpineAnimationStateDataResource::_init() {
+	 animation_state_data = nullptr;
+	 animation_state_data_created = false;
+	 default_mix = 0.5f;
 }
 
 void SpineAnimationStateDataResource::set_skeleton(godot::Ref<SpineSkeletonDataResource> s) {

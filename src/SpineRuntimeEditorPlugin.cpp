@@ -11,10 +11,11 @@
 #include <EditorInterface.hpp>
 #include <EditorSelection.hpp>
 #include <ResourceSaver.hpp>
+#include <ResourceLoader.hpp>
 
 #include "SpineSprite.h"
 
-int SpineAtlasResourceImportPlugin::import(const godot::String &p_source_file, const godot::String &p_save_path, const godot::Dictionary &p_options, godot::Array r_platform_variants, godot::Array r_gen_files) {
+int SpineAtlasResourceImportPlugin::import(const godot::String &p_source_file, const godot::String &p_save_path, godot::Dictionary p_options, godot::Array r_platform_variants, godot::Array r_gen_files) {
 	godot::Ref<SpineAtlasResource> res;
 	res.instance();
 	res->set_normal_texture_prefix(p_options["normal_texture_prefix"]);
@@ -30,15 +31,13 @@ godot::Array SpineAtlasResourceImportPlugin::get_import_options(int p_preset) co
 	if (p_preset == 0) {
 		godot::Dictionary op;
 		op["name"] = "normal_texture_prefix";
-		op["type"] = godot::Variant::STRING;
-		op["hint_string"] = "String";
 		op["default_value"] = godot::String("n");
 		options.push_back(op);
 	}
 	return options;
 }
 
-int SpineJsonResourceImportPlugin::import(const godot::String &p_source_file, const godot::String &p_save_path, const godot::Dictionary &p_options, godot::Array r_platform_variants, godot::Array r_gen_files) {
+int SpineJsonResourceImportPlugin::import(const godot::String &p_source_file, const godot::String &p_save_path, godot::Dictionary p_options, godot::Array r_platform_variants, godot::Array r_gen_files) {
 	godot::Ref<SpineSkeletonJsonDataResource> res;
 	res.instance();
 	res->load_from_file(p_source_file);
@@ -50,7 +49,6 @@ int SpineJsonResourceImportPlugin::import(const godot::String &p_source_file, co
 
 //=======================| SpineRuntimeEditorPlugin |============================
 SpineRuntimeEditorPlugin::SpineRuntimeEditorPlugin() {
-	
 }
 
 void SpineRuntimeEditorPlugin::_init() {
@@ -60,7 +58,7 @@ void SpineRuntimeEditorPlugin::_init() {
 	json_importer.instance();
 	add_import_plugin(atlas_importer);
 	add_import_plugin(json_importer);
-
+	
 	godot::ToolButton *animate_button = godot::ToolButton::_new();
 	animate_button->set_text("Animate");
 	add_control_to_container(CONTAINER_CANVAS_EDITOR_MENU, animate_button);

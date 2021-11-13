@@ -1,0 +1,12 @@
+[remap]
+
+importer="raiix.spine_runtime.atlas"
+type="SpineAtlasResource"
+valid=false
+
+[deps]
+
+source_file="res://character/spineboy-pro.atlas"
+[params]
+
+normal_texture_prefix="n"
