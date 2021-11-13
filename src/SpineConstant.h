@@ -8,8 +8,8 @@
 
 #include <Godot.hpp>
 
-class SpineConstant : public godot::Object {
-	GODOT_CLASS(SpineConstant, Object);
+class SpineConstant : public godot::Reference {
+	GODOT_CLASS(SpineConstant, godot::Reference);
 
 public:
 	static void _register_methods();
