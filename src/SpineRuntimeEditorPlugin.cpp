@@ -50,6 +50,10 @@ int SpineJsonResourceImportPlugin::import(const godot::String &p_source_file, co
 
 //=======================| SpineRuntimeEditorPlugin |============================
 SpineRuntimeEditorPlugin::SpineRuntimeEditorPlugin() {
+	
+}
+
+void SpineRuntimeEditorPlugin::_init() {
 	godot::Ref<SpineAtlasResourceImportPlugin> atlas_importer;
 	atlas_importer.instance();
 	godot::Ref<SpineJsonResourceImportPlugin> json_importer;
@@ -65,9 +69,6 @@ SpineRuntimeEditorPlugin::SpineRuntimeEditorPlugin() {
 	get_editor_interface()->get_base_control()->add_child(animate_dialog);
 	animate_dialog->set_animate_button(animate_button);
 	animate_dialog->set_plugin(this);
-}
-
-void SpineRuntimeEditorPlugin::_init() {
 }
 
 SpineRuntimeEditorPlugin::~SpineRuntimeEditorPlugin() {

@@ -28,7 +28,8 @@
 #include "SpineConstant.h"
 #include "SpineCollisionShapeProxy.h"
 #include "SpineSpriteAnimateDialog.h"
-
+#include "SpineRuntimeEditorPlugin.h"
+#include "SceneTreeDialog.h"
 
 extern "C" void GDN_EXPORT godot_gdnative_init(godot_gdnative_init_options *o) {
     godot::Godot::gdnative_init(o);
@@ -41,7 +42,8 @@ extern "C" void GDN_EXPORT godot_gdnative_terminate(godot_gdnative_terminate_opt
 extern "C" void GDN_EXPORT godot_nativescript_init(void *handle) {
     godot::Godot::nativescript_init(handle);
 
-    godot::register_class<SpineSpriteAnimateDialog>();
+    godot::register_tool_class<SpineSpriteAnimateDialog>();
+	godot::register_tool_class<godot::SceneTreeDialog>();
     godot::register_class<SpineRuntime>();
     godot::register_class<SpineAtlasResource>();
     godot::register_class<SpineSprite>();
@@ -74,9 +76,12 @@ extern "C" void GDN_EXPORT godot_nativescript_init(void *handle) {
 	godot::register_class<SpineTimeline>();
 	godot::register_class<SpineConstant>();
 	godot::register_class<SpineCollisionShapeProxy>();
+	godot::register_tool_class<SpineRuntimeEditorPlugin>();
+	godot::register_tool_class<SpineJsonResourceImportPlugin>();
+	godot::register_tool_class<SpineAtlasResourceImportPlugin>();
 	
-	godot::register_class<ResourceFormatLoaderSpineAtlas>();
-	godot::register_class<ResourceFormatSaverSpineAtlas>();
-	godot::register_class<ResourceFormatLoaderSpineSkeletonJsonData>();
-	godot::register_class<ResourceFormatSaverSpineSkeletonJsonData>();
+	godot::register_tool_class<ResourceFormatLoaderSpineAtlas>();
+	godot::register_tool_class<ResourceFormatSaverSpineAtlas>();
+	godot::register_tool_class<ResourceFormatLoaderSpineSkeletonJsonData>();
+	godot::register_tool_class<ResourceFormatSaverSpineSkeletonJsonData>();
 }

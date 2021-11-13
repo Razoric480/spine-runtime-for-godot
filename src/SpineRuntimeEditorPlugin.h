@@ -35,6 +35,7 @@ public:
 	godot::Array get_recognized_extensions() const {
 		godot::Array extensions;
 		extensions.push_back("atlas");
+		return extensions;
 	}
 
 	godot::String get_preset_name(int p_idx) const {
@@ -87,7 +88,7 @@ public:
 	int get_preset_count() const { return 1; }
 	godot::String get_save_extension() const { return "spjson"; }
 	godot::String get_resource_type() const { return "SpineSkeletonJsonDataResource"; }
-	godot::Array get_import_options(int p_preset) const {}
+	godot::Array get_import_options(int p_preset) const { return godot::Array(); }
 	bool get_option_visibility(const godot::String &p_option, const godot::Dictionary &p_options) const { return true; }
 	int import(const godot::String &p_source_file, const godot::String &p_save_path, const godot::Dictionary &p_options, godot::Array r_platform_variants, godot::Array r_gen_files);
 };
