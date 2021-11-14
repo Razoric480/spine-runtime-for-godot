@@ -12,9 +12,16 @@
 #include "SpineConstraintData.h"
 #include "SpineBoneData.h"
 
+namespace godot {
+
 class SpineTransformConstraintData : public SpineConstraintData {
 	GODOT_CLASS(SpineTransformConstraintData, SpineConstraintData);
 
+public:
+	void _init();
+
+protected:
+	
 public:
 	static void _register_methods();
 
@@ -26,8 +33,8 @@ public:
 		return (spine::TransformConstraintData*) SpineConstraintData::get_spine_object();
 	}
 
-	godot::Array get_bones();
-	godot::Ref<SpineBoneData> get_target();
+	Array get_bones();
+	Ref<SpineBoneData> get_target();
 	float get_mix_rotate();
 	float get_mix_x();
 	float get_mix_y();
@@ -45,5 +52,7 @@ public:
 	bool is_relative();
 	bool is_local();
 };
+
+}
 
 #endif //GODOT_SPINETRANSFORMCONSTRAINTDATA_H

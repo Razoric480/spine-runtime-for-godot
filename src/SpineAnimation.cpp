@@ -8,14 +8,16 @@
 #include "SpineSkeleton.h"
 #include "SpineTimeline.h"
 
-void SpineAnimation::_register_methods() {
-	godot::register_method("get_anim_name", &SpineAnimation::get_anim_name);
-	godot::register_method("get_duration", &SpineAnimation::get_duration);
-	godot::register_method("set_duration", &SpineAnimation::set_duration);
+namespace godot {
 
-	godot::register_method("apply", &SpineAnimation::apply);
-	godot::register_method("get_timelines", &SpineAnimation::get_timelines);
-	godot::register_method("has_timeline", &SpineAnimation::has_timeline);
+void SpineAnimation::_register_methods() {
+	register_method("get_anim_name", &SpineAnimation::get_anim_name);
+	register_method("get_duration", &SpineAnimation::get_duration);
+	register_method("set_duration", &SpineAnimation::set_duration);
+
+	register_method("apply", &SpineAnimation::apply);
+	register_method("get_timelines", &SpineAnimation::get_timelines);
+	register_method("has_timeline", &SpineAnimation::has_timeline);
 }
 
 SpineAnimation::SpineAnimation() {}
@@ -25,7 +27,7 @@ void SpineAnimation::_init() {
 	animation = nullptr;
 }
 
-godot::String SpineAnimation::get_anim_name() {
+String SpineAnimation::get_anim_name() {
 	return animation->getName().buffer();
 }
 
@@ -37,24 +39,24 @@ void SpineAnimation::set_duration(float v) {
 	animation->setDuration(v);
 }
 
-void SpineAnimation::apply(godot::Ref<SpineSkeleton> skeleton, float lastTime, float time, bool loop,
-		godot::Array pEvents, float alpha, int blend,
+void SpineAnimation::apply(Ref<SpineSkeleton> skeleton, float lastTime, float time, bool loop,
+		Array pEvents, float alpha, int blend,
 		int direction) {
 	spine::Vector<spine::Event *> events;
 	events.setSize(pEvents.size(), nullptr);
 	for (size_t i = 0; i < events.size(); ++i) {
-		events[i] = ((godot::Ref<SpineEvent>)(pEvents[i]))->get_spine_object();
+		events[i] = ((Ref<SpineEvent>)(pEvents[i]))->get_spine_object();
 	}
 	animation->apply(*(skeleton->get_spine_object()), lastTime, time, loop, &events, alpha, (spine::MixBlend)blend, (spine::MixDirection)direction);
 }
 
-godot::Array SpineAnimation::get_timelines() {
+Array SpineAnimation::get_timelines() {
 	auto &timelines = animation->getTimelines();
-	godot::Array res;
+	Array res;
 	res.resize(timelines.size());
 
 	for (size_t i = 0; i < res.size(); ++i) {
-		godot::Ref<SpineTimeline> a;
+		Ref<SpineTimeline> a;
 		a.instance();
 		a->set_spine_object(timelines[i]);
 		res[i] = a;
@@ -63,7 +65,7 @@ godot::Array SpineAnimation::get_timelines() {
 	return res;
 }
 
-bool SpineAnimation::has_timeline(godot::Array ids) {
+bool SpineAnimation::has_timeline(Array ids) {
 	spine::Vector<spine::PropertyId> list;
 	list.setSize(ids.size(), 0);
 
@@ -72,3 +74,5 @@ bool SpineAnimation::has_timeline(godot::Array ids) {
 	}
 	return animation->hasTimeline(list);
 }
+
+} //namespace godot

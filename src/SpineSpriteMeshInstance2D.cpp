@@ -6,20 +6,24 @@
 
 #include "SpineBone.h"
 
+namespace godot {
+
 void SpineSpriteMeshInstance2D::_register_methods() {
-	godot::register_method("get_slot", &SpineSpriteMeshInstance2D::get_slot);
-	godot::register_method("apply_transform_2d", &SpineSpriteMeshInstance2D::apply_transform_2d);
+	register_method("get_slot", &SpineSpriteMeshInstance2D::get_slot);
+	register_method("apply_transform_2d", &SpineSpriteMeshInstance2D::apply_transform_2d);
 }
 
 SpineSpriteMeshInstance2D::SpineSpriteMeshInstance2D() {}
 SpineSpriteMeshInstance2D::~SpineSpriteMeshInstance2D() {}
 
-godot::Ref<SpineSlot> SpineSpriteMeshInstance2D::get_slot() {
+void SpineSpriteMeshInstance2D::_init() {}
+
+Ref<SpineSlot> SpineSpriteMeshInstance2D::get_slot() {
 	return slot;
 }
 
-void SpineSpriteMeshInstance2D::_init() {}
-
-void SpineSpriteMeshInstance2D::apply_transform_2d(godot::Variant o){
+void SpineSpriteMeshInstance2D::apply_transform_2d(Variant o) {
 	slot->get_bone()->apply_world_transform_2d(o);
 }
+
+} //namespace godot

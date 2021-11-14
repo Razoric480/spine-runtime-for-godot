@@ -2,12 +2,15 @@
 #ifndef GODOT_SPINERENDEREROBJECT_H
 #define GODOT_SPINERENDEREROBJECT_H
 
-#include <Godot.hpp>
 #include <Texture.hpp>
 
+namespace godot {
+
 struct SpineRendererObject {
-	godot::Ref<godot::Texture> tex;
-	godot::Ref<godot::Texture> normal_tex;
+	Ref<Texture> tex;
+	Ref<Texture> normal_tex;
 };
+
+} //namespace godot
 
 #endif

@@ -6,6 +6,7 @@
 #define GODOT_SPINESKELETONDATARESOURCE_H
 
 #include <Godot.hpp>
+#include <Resource.hpp>
 
 #include <spine/spine.h>
 
@@ -20,16 +21,21 @@
 #include "SpineSlotData.h"
 #include "SpineTransformConstraintData.h"
 
+namespace godot {
 
-class SpineSkeletonDataResource : public godot::Resource {
-	GODOT_CLASS(SpineSkeletonDataResource, godot::Resource);
+class SpineSkeletonDataResource : public Resource {
+	GODOT_CLASS(SpineSkeletonDataResource, Resource);
 
+public:
+	void _init();
+
+protected:
 public:
 	static void _register_methods();
 
 private:
-	godot::Ref<SpineAtlasResource> atlas_res;
-	godot::Ref<SpineSkeletonJsonDataResource> skeleton_json_res;
+	Ref<SpineAtlasResource> atlas_res;
+	Ref<SpineSkeletonJsonDataResource> skeleton_json_res;
 	bool valid;
 	bool spine_object;
 
@@ -38,8 +44,6 @@ private:
 	void update_skeleton_data();
 
 public:
-	void _init();
-
 	inline void set_spine_object(spine::SkeletonData *s) {
 		skeleton_data = s;
 		if (s)
@@ -49,62 +53,62 @@ public:
 		return skeleton_data;
 	}
 
-	void load_res(spine::Atlas *a, const godot::String &json_path);
+	void load_res(spine::Atlas *a, const String &json_path);
 
 	SpineSkeletonDataResource();
 	virtual ~SpineSkeletonDataResource();
 
-	godot::Array _get_property_list() const;
+	Array _get_property_list();
 
-	void set_atlas_res(godot::Ref<SpineAtlasResource> a);
-	godot::Ref<SpineAtlasResource> get_atlas_res();
+	void set_atlas_res(Ref<SpineAtlasResource> a);
+	Ref<SpineAtlasResource> get_atlas_res();
 
-	void set_skeleton_json_res(godot::Ref<SpineSkeletonJsonDataResource> s);
-	godot::Ref<SpineSkeletonJsonDataResource> get_skeleton_json_res();
+	void set_skeleton_json_res(Ref<SpineSkeletonJsonDataResource> s);
+	Ref<SpineSkeletonJsonDataResource> get_skeleton_json_res();
 
 	inline spine::SkeletonData *get_skeleton_data() { return skeleton_data; }
 
 	bool is_skeleton_data_loaded() const;
 
-	void get_animation_names(godot::PoolStringArray &l) const;
-	void get_skin_names(godot::PoolStringArray &l) const;
+	Array get_animation_names();
+	Array get_skin_names();
 
 	// spine api
-	godot::Ref<SpineBoneData> find_bone(const godot::String &bone_name);
+	Ref<SpineBoneData> find_bone(const String &bone_name);
 
 	// int find_bone_index(const String &bone_name);
 
-	godot::Ref<SpineSlotData> find_slot(const godot::String &slot_name);
+	Ref<SpineSlotData> find_slot(const String &slot_name);
 
 	// int find_slot_index(const String &slot_name);
 
-	godot::Ref<SpineSkin> find_skin(const godot::String &skin_name);
+	Ref<SpineSkin> find_skin(const String &skin_name);
 
-	godot::Ref<SpineEventData> find_event(const godot::String &event_data_name);
+	Ref<SpineEventData> find_event(const String &event_data_name);
 
-	godot::Ref<SpineAnimation> find_animation(const godot::String &animation_name);
+	Ref<SpineAnimation> find_animation(const String &animation_name);
 
-	godot::Ref<SpineIkConstraintData> find_ik_constraint(const godot::String &constraint_name);
-	godot::Ref<SpineTransformConstraintData> find_transform_constraint(const godot::String &constraint_name);
-	godot::Ref<SpinePathConstraintData> find_path_constraint(const godot::String &constraint_name);
+	Ref<SpineIkConstraintData> find_ik_constraint(const String &constraint_name);
+	Ref<SpineTransformConstraintData> find_transform_constraint(const String &constraint_name);
+	Ref<SpinePathConstraintData> find_path_constraint(const String &constraint_name);
 
 	// int find_path_constraint_index(const String &path_constraint_name);
 
-	godot::Array get_bones();
-	godot::Array get_slots();
-	godot::Array get_skins() const;
+	Array get_bones();
+	Array get_slots();
+	Array get_skins() const;
 
-	godot::Ref<SpineSkin> get_default_skin();
-	void set_default_skin(godot::Ref<SpineSkin> v);
+	Ref<SpineSkin> get_default_skin();
+	void set_default_skin(Ref<SpineSkin> v);
 
-	godot::Array get_events();
-	godot::Array get_animations();
-	godot::Array get_ik_constraints();
-	godot::Array get_transform_constraints();
-	godot::Array get_path_constraints();
+	Array get_events();
+	Array get_animations();
+	Array get_ik_constraints();
+	Array get_transform_constraints();
+	Array get_path_constraints();
 
-	godot::String get_sk_name();
-	void set_sk_name(const godot::String &v);
+	String get_sk_name();
+	void set_sk_name(const String &v);
 
 	float get_x();
 	void set_x(float v);
@@ -115,10 +119,12 @@ public:
 	float get_width();
 	float get_height();
 
-	godot::String get_version();
+	String get_version();
 
 	float get_fps();
 	void set_fps(float v);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINESKELETONDATARESOURCE_H

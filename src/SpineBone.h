@@ -5,37 +5,40 @@
 #ifndef GODOT_SPINEBONE_H
 #define GODOT_SPINEBONE_H
 
-#include <Godot.hpp>
 #include <spine/spine.h>
+#include <Godot.hpp>
 
 #include "SpineBoneData.h"
 #include "SpineIkConstraint.h"
 #include "SpinePathConstraint.h"
 #include "SpineTransformConstraint.h"
 
+namespace godot {
+
 class SpineSkeleton;
 class SpineSprite;
 
-class SpineBone : public godot::Reference {
-	GODOT_CLASS(SpineBone, godot::Reference);
+class SpineBone : public Reference {
+	GODOT_CLASS(SpineBone, Reference);
 
 public:
+	void _init();
 	static void _register_methods();
 
 private:
 	spine::Bone *bone;
 
 	SpineSprite *the_sprite;
+
 public:
 	SpineBone();
 	~SpineBone();
-	
-	void _init();
 
-	inline void set_spine_object(spine::Bone *b){
+	inline void set_spine_object(spine::Bone *b) {
 		bone = b;
 	}
-	inline spine::Bone *get_spine_object(){
+
+	inline spine::Bone *get_spine_object() {
 		return bone;
 	}
 
@@ -45,9 +48,9 @@ public:
 
 	void set_to_setup_pose();
 
-	godot::Vector2 world_to_local(godot::Vector2 world_position);
+	Vector2 world_to_local(Vector2 world_position);
 
-	godot::Vector2 local_to_world(godot::Vector2 local_position);
+	Vector2 local_to_world(Vector2 local_position);
 
 	float world_to_local_rotation(float world_rotation);
 
@@ -58,13 +61,13 @@ public:
 	float get_world_to_local_rotation_x();
 	float get_world_to_local_rotation_y();
 
-	godot::Ref<SpineBoneData> get_data();
+	Ref<SpineBoneData> get_data();
 
-	godot::Ref<SpineSkeleton> get_skeleton();
+	Ref<SpineSkeleton> get_skeleton();
 
-	godot::Ref<SpineBone> get_parent();
+	Ref<SpineBone> get_parent();
 
-	godot::Array get_children();
+	Array get_children();
 
 	float get_x();
 	void set_x(float v);
@@ -136,13 +139,15 @@ public:
 	void set_active(bool v);
 
 	// External feature functions
-	void apply_world_transform_2d(godot::Variant o);
+	void apply_world_transform_2d(Variant o);
 
-	godot::Transform2D get_godot_transform();
-	void set_godot_transform(godot::Transform2D trans);
+	Transform2D get_godot_transform();
+	void set_godot_transform(Transform2D trans);
 
-	godot::Transform2D get_godot_global_transform();
-	void set_godot_global_transform(godot::Transform2D trans);
+	Transform2D get_godot_global_transform();
+	void set_godot_global_transform(Transform2D trans);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINEBONE_H

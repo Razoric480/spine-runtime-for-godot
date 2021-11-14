@@ -9,14 +9,20 @@
 
 #include "SpineSkeletonDataResource.h"
 
-class SpineAnimationStateDataResource : public godot::Resource {
-	GODOT_CLASS(SpineAnimationStateDataResource, godot::Resource);
+namespace godot {
 
+class SpineAnimationStateDataResource : public Resource {
+	GODOT_CLASS(SpineAnimationStateDataResource, Resource);
+
+public:
+	void _init();
+
+protected:
 public:
 	static void _register_methods();
 
 private:
-	godot::Ref<SpineSkeletonDataResource> skeleton;
+	Ref<SpineSkeletonDataResource> skeleton;
 
 	spine::AnimationStateData *animation_state_data;
 
@@ -25,20 +31,18 @@ private:
 	float default_mix;
 
 public:
-	void set_skeleton(godot::Ref<SpineSkeletonDataResource> s);
-	godot::Ref<SpineSkeletonDataResource> get_skeleton();
+	void set_skeleton(Ref<SpineSkeletonDataResource> s);
+	Ref<SpineSkeletonDataResource> get_skeleton();
 
 	inline spine::AnimationStateData *get_animation_state_data() {
 		return animation_state_data;
 	}
-	
-	void _init();
 
 	void set_default_mix(float m);
 	float get_default_mix();
 
-	void set_mix(const godot::String &from, const godot::String &to, float mix_duration);
-	float get_mix(const godot::String &from, const godot::String &to);
+	void set_mix(const String &from, const String &to, float mix_duration);
+	float get_mix(const String &from, const String &to);
 
 	void _on_skeleton_data_loaded();
 	void _on_skeleton_data_changed();
@@ -48,5 +52,7 @@ public:
 	SpineAnimationStateDataResource();
 	~SpineAnimationStateDataResource();
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINEANIMATIONSTATEDATARESOURCE_H

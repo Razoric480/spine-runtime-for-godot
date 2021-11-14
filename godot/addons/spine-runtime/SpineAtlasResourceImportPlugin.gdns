@@ -5,5 +5,5 @@
 [resource]
 
 resource_name = "SpineAtlasResourceImportPlugin"
-class_name = "spine_atlas_resource_import_plugin"
+class_name = "SpineAtlasResourceImportPlugin"
 library = ExtResource( 1 )

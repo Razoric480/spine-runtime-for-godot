@@ -12,12 +12,17 @@
 
 #include <spine/spine.h>
 
+namespace godot {
+
 class SpineEvent;
 class SpineSkeleton;
 class SpineTimeline;
 
-class SpineAnimation : public godot::Reference {
-	GODOT_CLASS(SpineAnimation, godot::Reference);
+class SpineAnimation : public Reference {
+	GODOT_CLASS(SpineAnimation, Reference);
+
+public:
+	void _init();
 
 private:
 	spine::Animation *animation;
@@ -29,25 +34,24 @@ public:
 	SpineAnimation();
 	~SpineAnimation();
 
-	void _init();
-
 	inline void set_spine_object(spine::Animation *a) {
 		animation = a;
 	}
-
 	inline spine::Animation *get_spine_object() {
 		return animation;
 	}
 
 	// Vector<Ref<SpineEvent>> pEvents
-	void apply(godot::Ref<SpineSkeleton> skeleton, float lastTime, float time, bool loop, godot::Array pEvents, float alpha, int blend, int direction);
+	void apply(Ref<SpineSkeleton> skeleton, float lastTime, float time, bool loop, Array pEvents, float alpha, int blend, int direction);
 
-	godot::Array get_timelines(); // Vector<Ref<SpineTimeline>>
-	bool has_timeline(godot::Array ids); // Vector<SpineConstant::PropertyId>
+	Array get_timelines(); // Vector<Ref<SpineTimeline>>
+	bool has_timeline(Array ids); // Vector<SpineConstant::PropertyId>
 
-	godot::String get_anim_name();
+	String get_anim_name();
 	float get_duration();
 	void set_duration(float v);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINEANIMATION_H

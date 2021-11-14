@@ -9,9 +9,15 @@
 
 #include <spine/spine.h>
 
-class SpineConstraintData : public godot::Reference {
-	GODOT_CLASS(SpineConstraintData, godot::Reference);
+namespace godot {
 
+class SpineConstraintData : public Reference {
+	GODOT_CLASS(SpineConstraintData, Reference);
+
+public:
+	void _init();
+
+protected:
 public:
 	static void _register_methods();
 
@@ -21,17 +27,15 @@ private:
 public:
 	SpineConstraintData();
 	~SpineConstraintData();
-	
-	void _init();
 
-	inline void set_spine_object(spine::ConstraintData *c){
+	inline void set_spine_object(spine::ConstraintData *c) {
 		constraint_data = c;
 	}
-	virtual inline spine::ConstraintData *get_spine_object(){
+	virtual inline spine::ConstraintData *get_spine_object() {
 		return constraint_data;
 	}
 
-	godot::String get_constraint_data_name();
+	String get_constraint_data_name();
 
 	uint64_t get_order();
 	void set_order(uint64_t v);
@@ -39,5 +43,7 @@ public:
 	bool is_skin_required();
 	void set_skin_required(bool v);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINECONSTRAINTDATA_H

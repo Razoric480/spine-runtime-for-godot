@@ -1,35 +1,39 @@
 //
 // Created by Raiix on 2021/7/13.
-// Edited by Razoric on 2021/11/xx
 //
 
 #include "ResourceFormatSaverSpineAtlas.h"
 
 #include "SpineAtlasResource.h"
 
+namespace godot {
+
 void ResourceFormatSaverSpineAtlas::_register_methods() {
-	godot::register_method("save", &ResourceFormatSaverSpineAtlas::save);
-	godot::register_method("get_recognized_extensions", &ResourceFormatSaverSpineAtlas::get_recognized_extensions);
-	godot::register_method("recognize", &ResourceFormatSaverSpineAtlas::recognize);
+	register_method("save", &ResourceFormatSaverSpineAtlas::save);
+	register_method("get_recognized_extensions", &ResourceFormatSaverSpineAtlas::get_recognized_extensions);
+	register_method("recognize", &ResourceFormatSaverSpineAtlas::recognize);
 }
 
 void ResourceFormatSaverSpineAtlas::_init() {}
 
-int ResourceFormatSaverSpineAtlas::save(const godot::String &p_path, godot::Ref<godot::Resource> p_resource, const int &p_flags) {
-	godot::Ref<SpineAtlasResource> res = p_resource;
-	int error = res->save_to_file(p_path);
+int64_t ResourceFormatSaverSpineAtlas::save(const String path, const Ref<Resource> resource, const int64_t flags) {
+	Ref<SpineAtlasResource> atlas = resource;
+	int error = atlas->save_to_file(path);
 	return error;
 }
 
-godot::PoolStringArray ResourceFormatSaverSpineAtlas::get_recognized_extensions(godot::Ref<godot::Resource> p_resource) const {
-	godot::PoolStringArray extensions;
-	godot::Ref<SpineAtlasResource> resource = p_resource;
-	if (resource.is_valid()) {
+PoolStringArray ResourceFormatSaverSpineAtlas::get_recognized_extensions(const Ref<Resource> resource) {
+	Ref<SpineAtlasResource> atlas = resource;
+	PoolStringArray extensions;
+	if (atlas.is_valid()) {
 		extensions.push_back("spatlas");
 	}
 	return extensions;
 }
 
-bool ResourceFormatSaverSpineAtlas::recognize(godot::Ref<godot::Resource> p_resource) const {
-	return godot::Object::cast_to<SpineAtlasResource>(*p_resource) != nullptr;
+bool ResourceFormatSaverSpineAtlas::recognize(const Ref<Resource> resource) {
+	Ref<SpineAtlasResource> atlas = resource;
+	return atlas.is_valid();
 }
+
+} //namespace godot

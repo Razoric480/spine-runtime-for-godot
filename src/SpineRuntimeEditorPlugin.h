@@ -1,127 +1,106 @@
 //
 // Created by Raiix on 2021/7/13.
-// Edited by Razoric on 2021/11/xx
 //
 
 #ifndef GODOT_SPINERUNTIMEEDITORPLUGIN_H
 #define GODOT_SPINERUNTIMEEDITORPLUGIN_H
 
 #include <EditorImportPlugin.hpp>
-#include <EditorPlugin.hpp>
 #include <Godot.hpp>
+#include <EditorPlugin.hpp>
 
-class SpineAtlasResourceImportPlugin : public godot::EditorImportPlugin {
-	GODOT_CLASS(SpineAtlasResourceImportPlugin, godot::EditorImportPlugin);
+//#ifdef TOOLS_ENABLED
 
-public:
-	static void _register_methods() {
-		godot::register_method("get_importer_name", &SpineAtlasResourceImportPlugin::get_importer_name);
-		godot::register_method("get_visible_name", &SpineAtlasResourceImportPlugin::get_visible_name);
-		godot::register_method("get_recognized_extensions", &SpineAtlasResourceImportPlugin::get_recognized_extensions);
-		godot::register_method("get_preset_name", &SpineAtlasResourceImportPlugin::get_preset_name);
-		godot::register_method("get_preset_count", &SpineAtlasResourceImportPlugin::get_preset_count);
-		godot::register_method("get_save_extension", &SpineAtlasResourceImportPlugin::get_save_extension);
-		godot::register_method("get_resource_type", &SpineAtlasResourceImportPlugin::get_resource_type);
-		godot::register_method("get_import_options", &SpineAtlasResourceImportPlugin::get_import_options);
-		godot::register_method("get_option_visibility", &SpineAtlasResourceImportPlugin::get_option_visibility);
-		godot::register_method("import", &SpineAtlasResourceImportPlugin::import);
-	}
+namespace godot {
+
+class SpineAtlasResourceImportPlugin : public EditorImportPlugin {
+	GODOT_CLASS(SpineAtlasResourceImportPlugin, EditorImportPlugin);
 
 public:
+    static void _register_methods();
 	void _init() {}
 
-	godot::String get_importer_name() const { return "raiix.spine_runtime.atlas"; }
-	godot::String get_visible_name() const { return "Spine Runtime Atlas"; }
-	godot::Array get_recognized_extensions() const {
-		godot::Array extensions;
-		extensions.push_back("atlas");
-		return extensions;
-	}
-
-	godot::String get_preset_name(int p_idx) const {
-		if (p_idx == 0)
+public:
+	String get_importer_name() { return "raiix.spine_runtime.atlas"; }
+	String get_visible_name() { return "Spine Runtime Atlas"; }
+	Array get_recognized_extensions() { 
+        Array extensions;
+        extensions.push_back("atlas");
+        return extensions;
+    }
+	String get_preset_name(const int64_t preset) {
+		if (preset == 0)
 			return "Default";
 		else
 			return "Unknown";
 	}
-	int get_preset_count() const { return 1; }
-	godot::String get_save_extension() const { return "spatlas"; }
-	godot::String get_resource_type() const { return "SpineAtlasResource"; }
-	godot::Array get_import_options(int p_preset) const;
-	bool get_option_visibility(const godot::String &p_option, godot::Dictionary p_options) const { return true; }
-	int import(const godot::String &p_source_file, const godot::String &p_save_path, godot::Dictionary p_options, godot::Array r_platform_variants, godot::Array r_gen_files);
+	int64_t get_preset_count() { return 1; }
+	String get_save_extension() { return "spatlas"; }
+	String get_resource_type() { return "Resource"; }
+	Array get_import_options(const int64_t preset);
+	bool get_option_visibility(const String option, const Dictionary options) { return true; }
+	int64_t import(const String source_file, const String save_path, const Dictionary options, const Array platform_variants, const Array gen_files);
 };
 
-class SpineJsonResourceImportPlugin : public godot::EditorImportPlugin {
-	GODOT_CLASS(SpineJsonResourceImportPlugin, godot::EditorImportPlugin);
+class SpineJsonResourceImportPlugin : public EditorImportPlugin {
+	GODOT_CLASS(SpineJsonResourceImportPlugin, EditorImportPlugin);
 
 public:
-	static void _register_methods() {
-		godot::register_method("get_importer_name", &SpineJsonResourceImportPlugin::get_importer_name);
-		godot::register_method("get_visible_name", &SpineJsonResourceImportPlugin::get_visible_name);
-		godot::register_method("get_recognized_extensions", &SpineJsonResourceImportPlugin::get_recognized_extensions);
-		godot::register_method("get_preset_name", &SpineJsonResourceImportPlugin::get_preset_name);
-		godot::register_method("get_preset_count", &SpineJsonResourceImportPlugin::get_preset_count);
-		godot::register_method("get_save_extension", &SpineJsonResourceImportPlugin::get_save_extension);
-		godot::register_method("get_resource_type", &SpineJsonResourceImportPlugin::get_resource_type);
-		godot::register_method("get_import_options", &SpineJsonResourceImportPlugin::get_import_options);
-		godot::register_method("get_option_visibility", &SpineJsonResourceImportPlugin::get_option_visibility);
-		godot::register_method("import", &SpineJsonResourceImportPlugin::import);
-	}
-
-public:
+    static void _register_methods();
 	void _init() {}
 
-	godot::String get_importer_name() const { return "raiix.spine_runtime.json"; }
-	godot::String get_visible_name() const { return "Spine Runtime Json"; }
-	godot::Array get_recognized_extensions() const {
-		godot::Array extensions;
-		extensions.push_back("json");
-		return extensions;
-	}
-	godot::String get_preset_name(int p_idx) const {
-		if (p_idx == 0)
+public:
+	String get_importer_name() { return "raiix.spine_runtime.json"; }
+	String get_visible_name() { return "Spine Runtime Json"; }
+	Array get_recognized_extensions() {
+        Array extensions;
+        extensions.push_back("json");
+        return extensions;
+    }
+	String get_preset_name(const int64_t preset) {
+		if (preset == 0)
 			return "Default";
 		else
 			return "Unknown";
 	}
-	int get_preset_count() const { return 1; }
-	godot::String get_save_extension() const { return "spjson"; }
-	godot::String get_resource_type() const { return "SpineSkeletonJsonDataResource"; }
-	godot::Array get_import_options(int p_preset) const { return godot::Array(); }
-	bool get_option_visibility(const godot::String &p_option, godot::Dictionary p_options) const { return true; }
-	int import(const godot::String &p_source_file, const godot::String &p_save_path, godot::Dictionary p_options, godot::Array r_platform_variants, godot::Array r_gen_files);
+	int64_t get_preset_count() { return 1; }
+	String get_save_extension() { return "spjson"; }
+	String get_resource_type() { return "Resource"; }
+	Array get_import_options(const int64_t preset) { return Array(); }
+	bool get_option_visibility(const String option, const Dictionary options) { return true; }
+	int64_t import(const String source_file, const String save_path, const Dictionary options, const Array platform_variants, const Array gen_files);
 };
 
 class SpineSpriteAnimateDialog;
 
-class SpineRuntimeEditorPlugin : public godot::EditorPlugin {
-	GODOT_CLASS(SpineRuntimeEditorPlugin, godot::EditorPlugin);
+class SpineRuntimeEditorPlugin : public EditorPlugin {
+	GODOT_CLASS(SpineRuntimeEditorPlugin, EditorPlugin);
+
+public:
+    static void _register_methods();
+	void _init();
 
 protected:
 	SpineSpriteAnimateDialog *animate_dialog;
-
-public:
-	static void _register_methods() {
-		godot::register_method("get_name", &SpineRuntimeEditorPlugin::get_name);
-		godot::register_method("handles", &SpineRuntimeEditorPlugin::handles);
-		godot::register_method("make_visible", &SpineRuntimeEditorPlugin::make_visible);
-		godot::register_method("has_main_screen", &SpineRuntimeEditorPlugin::has_main_screen);
-	}
+    ToolButton *animate_button;
+    Ref<SpineAtlasResourceImportPlugin> atlas_importer;
+    Ref<SpineJsonResourceImportPlugin> json_importer;
 
 public:
 	SpineRuntimeEditorPlugin();
 	~SpineRuntimeEditorPlugin();
 
-	void _init();
+	String get_name() const { return "SpineRuntimeEditorPlugin"; }
+	bool has_main_screen() { return false; }
 
-	godot::String get_name() const { return "SpineRuntimeEditorPlugin"; }
-	bool has_main_screen() const { return false; }
-
-	bool handles(godot::Object *p_object) const;
-	void make_visible(bool p_visible);
+	bool handles(const Object *object);
+	void make_visible(const bool visible);
 
 	void _on_animate_button_pressed();
 };
+
+//#endif
+
+}
 
 #endif //GODOT_SPINERUNTIMEEDITORPLUGIN_H

@@ -11,12 +11,15 @@
 
 #include "SpineIkConstraintData.h"
 
+namespace godot {
+
 class SpineBone;
 
-class SpineIkConstraint : public godot::Reference {
-	GODOT_CLASS(SpineIkConstraint, godot::Reference);
+class SpineIkConstraint : public Reference {
+	GODOT_CLASS(SpineIkConstraint, Reference);
 
 public:
+	void _init();
 	static void _register_methods();
 
 private:
@@ -25,8 +28,6 @@ private:
 public:
 	SpineIkConstraint();
 	~SpineIkConstraint();
-	
-	void _init();
 
 	inline void set_spine_object(spine::IkConstraint * ic){
 		ik_constraint = ic;
@@ -42,12 +43,12 @@ public:
 
 	int get_order();
 
-	godot::Ref<SpineIkConstraintData> get_data();
+	Ref<SpineIkConstraintData> get_data();
 
-	godot::Array get_bones();
+	Array get_bones();
 
-	godot::Ref<SpineBone> get_target();
-	void set_target(godot::Ref<SpineBone> v);
+	Ref<SpineBone> get_target();
+	void set_target(Ref<SpineBone> v);
 
 	int get_bend_direction();
 	void set_bend_direction(int v);
@@ -68,5 +69,7 @@ public:
 	void set_active(bool v);
 
 };
+
+}
 
 #endif //GODOT_SPINEIKCONSTRAINT_H

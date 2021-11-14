@@ -4,16 +4,22 @@
 
 #ifndef GODOT_SPINESLOTDATA_H
 #define GODOT_SPINESLOTDATA_H
-
 #include <Godot.hpp>
 
 #include <spine/spine.h>
 
 #include "SpineBoneData.h"
 
-class SpineSlotData : public godot::Reference {
-	GODOT_CLASS(SpineSlotData, godot::Reference);
+namespace godot {
 
+class SpineSlotData : public Reference {
+	GODOT_CLASS(SpineSlotData, Reference);
+
+public:
+	void _init();
+
+protected:
+	
 public:
 	static void _register_methods();
 
@@ -24,17 +30,10 @@ public:
 	SpineSlotData();
 	~SpineSlotData();
 
-	void _init();
-
-	int get_BLENDMODE_NORMAL();
-	int get_BLENDMODE_ADDITIVE();
-	int get_BLENDMODE_MULTIPLY();
-	int get_BLENDMODE_SCREEN();
-
-	inline void set_spine_object(spine::SlotData *s) {
+	inline void set_spine_object(spine::SlotData *s){
 		slot_data = s;
 	}
-	inline spine::SlotData *get_spine_object() {
+	inline spine::SlotData *get_spine_object(){
 		return slot_data;
 	}
 
@@ -47,24 +46,26 @@ public:
 
 	int get_index();
 
-	godot::String get_slot_name();
+	String get_slot_name();
 
-	godot::Ref<SpineBoneData> get_bone_data();
+	Ref<SpineBoneData> get_bone_data();
 
-	godot::Color get_color();
-	void set_color(godot::Color c);
+	Color get_color();
+	void set_color(Color c);
 
-	godot::Color get_dark_color();
-	void set_dark_color(godot::Color c);
+	Color get_dark_color();
+	void set_dark_color(Color c);
 
 	bool has_dark_color();
 	void set_has_dark_color(bool v);
 
-	godot::String get_attachment_name();
-	void set_attachment_name(const godot::String &v);
+	String get_attachment_name();
+	void set_attachment_name(const String &v);
 
 	int get_blend_mode();
 	void set_blend_mode(int v);
 };
+
+}
 
 #endif //GODOT_SPINESLOTDATA_H

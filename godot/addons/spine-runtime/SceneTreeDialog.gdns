@@ -4,6 +4,6 @@
 
 [resource]
 
-resource_name = "SpineRuntime"
-class_name = "SpineRuntime"
+resource_name = "SceneTreeDialog"
+class_name = "SceneTreeDialog"
 library = ExtResource( 1 )

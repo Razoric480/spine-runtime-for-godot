@@ -11,9 +11,15 @@
 
 #include "SpineAnimation.h"
 
-class SpineTrackEntry : public godot::Reference {
-	GODOT_CLASS(SpineTrackEntry, godot::Reference);
+namespace godot {
 
+class SpineTrackEntry : public Reference {
+	GODOT_CLASS(SpineTrackEntry, Reference);
+
+public:
+	void _init();
+
+protected:
 public:
 	static void _register_methods();
 
@@ -23,8 +29,6 @@ private:
 public:
 	SpineTrackEntry();
 	~SpineTrackEntry();
-
-	void _init();
 
 	inline void set_spine_object(spine::TrackEntry *t) {
 		track_entry = t;
@@ -42,12 +46,7 @@ public:
 
 	int get_track_index();
 
-	godot::Ref<SpineAnimation> get_animation();
-
-	int get_MIXBLEND_SETUP();
-	int get_MIXBLEND_FIRST();
-	int get_MIXBLEND_REPLACE();
-	int get_MIXBLEND_ADD();
+	Ref<SpineAnimation> get_animation();
 
 	bool get_loop();
 	void set_loop(bool v);
@@ -90,7 +89,7 @@ public:
 	float get_draw_order_threshold();
 	void set_draw_order_threshold(float v);
 
-	godot::Ref<SpineTrackEntry> get_next();
+	Ref<SpineTrackEntry> get_next();
 
 	bool is_complete();
 
@@ -103,10 +102,12 @@ public:
 	int get_mix_blend();
 	void set_mix_blend(int v);
 
-	godot::Ref<SpineTrackEntry> get_mixing_from();
-	godot::Ref<SpineTrackEntry> get_mixing_to();
+	Ref<SpineTrackEntry> get_mixing_from();
+	Ref<SpineTrackEntry> get_mixing_to();
 
 	void reset_rotation_directions();
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINETRACKENTRY_H

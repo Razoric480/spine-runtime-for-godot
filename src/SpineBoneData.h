@@ -9,10 +9,13 @@
 
 #include <spine/spine.h>
 
-class SpineBoneData : public godot::Reference {
-	GODOT_CLASS(SpineBoneData, godot::Reference);
+namespace godot {
+
+class SpineBoneData : public Reference {
+	GODOT_CLASS(SpineBoneData, Reference);
 
 public:
+	void _init();
 	static void _register_methods();
 
 private:
@@ -21,8 +24,6 @@ private:
 public:
 	SpineBoneData();
 	~SpineBoneData();
-
-	void _init();
 
 	inline void set_spine_object(spine::BoneData *b) {
 		bone_data = b;
@@ -39,17 +40,11 @@ public:
 		TRANSFORMMODE_NOSCALEORREFLECTION
 	};
 
-	int get_TRANSFORMMODE_NORMAL();
-	int get_TRANSFORMMODE_ONLYTRANSLATION();
-	int get_TRANSFORMMODE_NOROTATIONORREFLECTION();
-	int get_TRANSFORMMODE_NOSCALE();
-	int get_TRANSFORMMODE_NOSCALEORREFLECTION();
-
 	int get_index();
 
-	godot::String get_bone_name();
+	String get_bone_name();
 
-	godot::Ref<SpineBoneData> get_parent();
+	Ref<SpineBoneData> get_parent();
 
 	float get_length();
 	void set_length(float v);
@@ -81,5 +76,7 @@ public:
 	bool is_skin_required();
 	void set_skin_required(bool v);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINEBONEDATA_H

@@ -13,11 +13,13 @@
 #include "SpinePathConstraintData.h"
 #include "SpineSlot.h"
 
+namespace godot {
 
-class SpinePathConstraint : public godot::Reference {
-	GODOT_CLASS(SpinePathConstraint, godot::Reference);
+class SpinePathConstraint : public Reference {
+	GODOT_CLASS(SpinePathConstraint, Reference);
 
 public:
+	void _init();
 	static void _register_methods();
 
 private:
@@ -33,8 +35,6 @@ public:
 	inline spine::PathConstraint *get_spine_object() {
 		return path_constraint;
 	}
-
-	void _init();
 
 	// The spine-runtime-cpp 4.0 seems to not have a apply function implementation.
 	// void apply();
@@ -58,15 +58,17 @@ public:
 	float get_mix_y();
 	void set_mix_y(float v);
 
-	godot::Array get_bones();
+	Array get_bones();
 
-	godot::Ref<SpineSlot> get_target();
-	void set_target(godot::Ref<SpineSlot> v);
+	Ref<SpineSlot> get_target();
+	void set_target(Ref<SpineSlot> v);
 
-	godot::Ref<SpinePathConstraintData> get_data();
+	Ref<SpinePathConstraintData> get_data();
 
 	bool is_active();
 	void set_active(bool v);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINEPATHCONSTRAINT_H

@@ -12,14 +12,19 @@
 #include "SpineAttachment.h"
 #include "SpineSlotData.h"
 
+namespace godot {
 
 class SpineSkeleton;
 
 class SpineBone;
 
-class SpineSlot : public godot::Reference {
-	GODOT_CLASS(SpineSlot, godot::Reference);
+class SpineSlot : public Reference {
+	GODOT_CLASS(SpineSlot, Reference);
 
+public:
+	void _init();
+
+protected:
 public:
 	static void _register_methods();
 
@@ -30,8 +35,6 @@ public:
 	SpineSlot();
 	~SpineSlot();
 
-	void _init();
-
 	inline void set_spine_object(spine::Slot *s) {
 		slot = s;
 	}
@@ -41,22 +44,22 @@ public:
 
 	void set_to_setup_pos();
 
-	godot::Ref<SpineSlotData> get_data();
+	Ref<SpineSlotData> get_data();
 
-	godot::Ref<SpineBone> get_bone();
+	Ref<SpineBone> get_bone();
 
-	godot::Ref<SpineSkeleton> get_skeleton();
+	Ref<SpineSkeleton> get_skeleton();
 
-	godot::Color get_color();
-	void set_color(godot::Color v);
+	Color get_color();
+	void set_color(Color v);
 
-	godot::Color get_dark_color();
-	void set_dark_color(godot::Color v);
+	Color get_dark_color();
+	void set_dark_color(Color v);
 
 	bool has_dark_color();
 
-	godot::Ref<SpineAttachment> get_attachment();
-	void set_attachment(godot::Ref<SpineAttachment> v);
+	Ref<SpineAttachment> get_attachment();
+	void set_attachment(Ref<SpineAttachment> v);
 
 	int get_attachment_state();
 	void set_attachment_state(int v);
@@ -64,8 +67,10 @@ public:
 	float get_attachment_time();
 	void set_attachment_time(float v);
 
-	godot::Array get_deform();
-	void set_deform(godot::Array v);
+	Array get_deform();
+	void set_deform(Array v);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINESLOT_H

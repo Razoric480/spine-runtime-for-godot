@@ -10,27 +10,29 @@
 
 #include "SpineSlot.h"
 
-class SpineSpriteMeshInstance2D : public godot::MeshInstance2D {
-	GODOT_CLASS(SpineSpriteMeshInstance2D, godot::MeshInstance2D);
+namespace godot {
+
+class SpineSpriteMeshInstance2D : public MeshInstance2D {
+	GODOT_CLASS(SpineSpriteMeshInstance2D, MeshInstance2D);
 
 public:
+	void _init();
 	static void _register_methods();
 
-protected:
-	godot::Ref<SpineSlot> slot;
+	Ref<SpineSlot> slot;
 
 public:
 	SpineSpriteMeshInstance2D();
 	~SpineSpriteMeshInstance2D();
 
-	void _init();
-
-	inline void set_slot(godot::Ref<SpineSlot> s) {
+	inline void set_slot(Ref<SpineSlot> s) {
 		slot = s;
 	}
-	godot::Ref<SpineSlot> get_slot();
+	Ref<SpineSlot> get_slot();
 
-	void apply_transform_2d(godot::Variant o);
+	void apply_transform_2d(Variant o);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINESPRITEMESHINSTANCE2D_H

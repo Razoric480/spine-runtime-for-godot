@@ -4,13 +4,16 @@
 
 #include "SpineEventData.h"
 
-void SpineEventData::_register_methods() {
+namespace godot {
 
+void SpineEventData::_register_methods() {
+}
+
+void SpineEventData::_init() {
+	event_data = nullptr;
 }
 
 SpineEventData::SpineEventData() {}
-SpineEventData::~SpineEventData(){}
+SpineEventData::~SpineEventData() {}
 
-void SpineEventData::_init() {
-    event_data = nullptr;
-}
+} //namespace godot

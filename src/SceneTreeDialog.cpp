@@ -12,6 +12,7 @@ void SceneTreeDialog::_register_methods() {
 	register_method("_cancel", &SceneTreeDialog::_cancel);
 	register_method("_filter_changed", &SceneTreeDialog::_filter_changed);
 	register_method("get_scene_tree", &SceneTreeDialog::get_scene_tree);
+	register_method("_notification", &SceneTreeDialog::_notification);
 
 	register_signal<SceneTreeDialog>("selected", "path", GODOT_VARIANT_TYPE_NODE_PATH);
 }
@@ -48,8 +49,14 @@ void SceneTreeDialog::_select() {
 
 void SceneTreeDialog::_update_tree() {
 	tree->clear();
-	SceneTree *scene = (SceneTree *)Engine::get_singleton()->get_main_loop();
-	_add_nodes(scene->get_edited_scene_root(), nullptr);
+	SceneTree *scene;
+	if (Engine::get_singleton()->is_editor_hint()) {
+		scene = (SceneTree *)Engine::get_singleton()->get_main_loop();
+		_add_nodes(scene->get_edited_scene_root(), nullptr);
+	} else {
+		scene = get_tree();
+		_add_nodes(scene->get_current_scene(), nullptr);
+	}
 }
 
 void SceneTreeDialog::_filter_changed(const String &p_filter) {

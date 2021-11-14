@@ -12,10 +12,15 @@
 #include "SpineBone.h"
 #include "SpineTransformConstraintData.h"
 
+namespace godot {
 
-class SpineTransformConstraint : public godot::Reference {
-	GODOT_CLASS(SpineTransformConstraint, godot::Reference);
+class SpineTransformConstraint : public Reference {
+	GODOT_CLASS(SpineTransformConstraint, Reference);
 
+public:
+	void _init();
+
+protected:
 public:
 	static void _register_methods();
 
@@ -25,8 +30,6 @@ private:
 public:
 	SpineTransformConstraint();
 	~SpineTransformConstraint();
-
-	void _init();
 
 	inline void set_spine_object(spine::TransformConstraint *tc) {
 		transform_constraint = tc;
@@ -39,12 +42,12 @@ public:
 
 	int get_order();
 
-	godot::Ref<SpineTransformConstraintData> get_data();
+	Ref<SpineTransformConstraintData> get_data();
 
-	godot::Array get_bones();
+	Array get_bones();
 
-	godot::Ref<SpineBone> get_target();
-	void set_target(godot::Ref<SpineBone> v);
+	Ref<SpineBone> get_target();
+	void set_target(Ref<SpineBone> v);
 
 	float get_mix_rotate();
 	void set_mix_rotate(float v);
@@ -67,5 +70,7 @@ public:
 	bool is_active();
 	void set_active(bool v);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINETRANSFORMCONSTRAINT_H

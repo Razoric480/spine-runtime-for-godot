@@ -1,7 +1,7 @@
 [remap]
 
 importer="raiix.spine_runtime.atlas"
-type="SpineAtlasResource"
+type="Resource"
 path="res://.import/spineboy-pro.atlas-718e6664050e4ad5806255960f85e2c9.spatlas"
 
 [deps]

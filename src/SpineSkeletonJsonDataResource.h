@@ -8,21 +8,24 @@
 #include <Godot.hpp>
 #include <Resource.hpp>
 
-class SpineSkeletonJsonDataResource : public godot::Resource {
-	GODOT_CLASS(SpineSkeletonJsonDataResource, godot::Resource);
+namespace godot {
 
-public:
-	static void _register_methods();
-
-protected:
-	godot::String json_string;
+class SpineSkeletonJsonDataResource : public Resource {
+	GODOT_CLASS(SpineSkeletonJsonDataResource, Resource);
 
 public:
 	void _init();
-	inline const godot::String &get_json_string() { return json_string; }
+	static void _register_methods();
 
-	int load_from_file(const godot::String &p_path);
-	int save_to_file(const godot::String &p_path);
+	String json_string;
+
+public:
+	inline const String &get_json_string() { return json_string; }
+
+	int load_from_file(const String &p_path);
+	int save_to_file(const String &p_path);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINESKELETONJSONDATARESOURCE_H

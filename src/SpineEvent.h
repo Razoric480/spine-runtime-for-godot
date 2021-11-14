@@ -11,9 +11,15 @@
 
 #include "SpineEventData.h"
 
-class SpineEvent : public godot::Reference {
-	GODOT_CLASS(SpineEvent, godot::Reference);
+namespace godot {
 
+class SpineEvent : public Reference {
+	GODOT_CLASS(SpineEvent, Reference);
+
+public:
+	void _init();
+
+protected:
 public:
 	static void _register_methods();
 
@@ -23,8 +29,6 @@ private:
 public:
 	SpineEvent();
 	~SpineEvent();
-
-	void _init();
 
 	inline void set_spine_object(spine::Event *e) {
 		event = e;
@@ -42,9 +46,9 @@ public:
 		EVENTTYPE_EVENT = spine::EventType_Event
 	};
 
-	godot::Ref<SpineEventData> get_data();
+	Ref<SpineEventData> get_data();
 
-	godot::String get_event_name();
+	String get_event_name();
 
 	float get_time();
 
@@ -54,8 +58,8 @@ public:
 	float get_float_value();
 	void set_float_value(float inValue);
 
-	godot::String get_string_value();
-	void set_string_value(const godot::String &inValue);
+	String get_string_value();
+	void set_string_value(const String &inValue);
 
 	float get_volume();
 	void set_volume(float inValue);
@@ -63,5 +67,7 @@ public:
 	float get_balance();
 	void set_balance(float inValue);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINEEVENT_H

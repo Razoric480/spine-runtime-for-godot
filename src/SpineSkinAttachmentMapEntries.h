@@ -11,10 +11,13 @@
 
 #include "SpineAttachment.h"
 
-class SpineSkinAttachmentMapEntry : public godot::Reference {
-	GODOT_CLASS(SpineSkinAttachmentMapEntry, godot::Reference);
+namespace godot {
+
+class SpineSkinAttachmentMapEntry : public Reference {
+	GODOT_CLASS(SpineSkinAttachmentMapEntry, Reference);
 
 public:
+	void _init();
 	static void _register_methods();
 
 private:
@@ -23,8 +26,6 @@ private:
 public:
 	SpineSkinAttachmentMapEntry();
 	~SpineSkinAttachmentMapEntry();
-
-	void _init();
 
 	inline void set_spine_object(spine::Skin::AttachmentMap::Entry *e) {
 		entry = e;
@@ -36,17 +37,18 @@ public:
 	uint64_t get_slot_index();
 	void set_slot_index(uint64_t v);
 
-	godot::String get_entry_name();
-	void set_entry_name(const godot::String &v);
+	String get_entry_name();
+	void set_entry_name(const String &v);
 
-	godot::Ref<SpineAttachment> get_attachment();
-	void set_attachment(godot::Ref<SpineAttachment> v);
+	Ref<SpineAttachment> get_attachment();
+	void set_attachment(Ref<SpineAttachment> v);
 };
 
-class SpineSkinAttachmentMapEntries : public godot::Reference {
-	GODOT_CLASS(SpineSkinAttachmentMapEntries, godot::Reference);
+class SpineSkinAttachmentMapEntries : public Reference {
+	GODOT_CLASS(SpineSkinAttachmentMapEntries, Reference);
 
 public:
+	void _init();
 	static void _register_methods();
 
 private:
@@ -55,8 +57,6 @@ private:
 public:
 	SpineSkinAttachmentMapEntries();
 	~SpineSkinAttachmentMapEntries();
-	
-	void _init();
 
 	inline void set_spine_object(spine::Skin::AttachmentMap::Entries *e) {
 		entries = e;
@@ -66,7 +66,9 @@ public:
 	}
 
 	bool has_next();
-	godot::Ref<SpineSkinAttachmentMapEntry> next();
+	Ref<SpineSkinAttachmentMapEntry> next();
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINESKINATTACHMENTMAPENTRIES_H

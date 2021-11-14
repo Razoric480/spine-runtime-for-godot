@@ -17,8 +17,10 @@ func get_recognized_extensions() -> PoolStringArray:
 
 
 func get_resource_type(path: String) -> String:
-	return "SpineSkeletonJsonDataResource"
+	if path.get_extension() == "spjson":
+		return "SpineSkeletonJsonDataResource"
+	return ""
 
 
 func handles_type(typename: String) -> bool:
-	return typename == "SpineSkeletonJsonDataResource" or ClassDB.is_parent_class(typename, "SpineSkeletonJsonDataResource")
+	return typename == "Resource"

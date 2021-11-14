@@ -9,24 +9,25 @@
 
 #include <spine/spine.h>
 
-#include "SpineBoneData.h"
 #include "SpineConstraintData.h"
+#include "SpineBoneData.h"
 #include "SpineSlotData.h"
+
+namespace godot {
 
 class SpinePathConstraintData : public SpineConstraintData {
 	GODOT_CLASS(SpinePathConstraintData, SpineConstraintData);
 
 public:
+	void _init();
 	static void _register_methods();
 
 public:
 	SpinePathConstraintData();
 	~SpinePathConstraintData();
 
-	void _init();
-
-	virtual inline spine::PathConstraintData *get_spine_data() {
-		return (spine::PathConstraintData *)SpineConstraintData::get_spine_object();
+	virtual inline spine::PathConstraintData *get_spine_data(){
+		return (spine::PathConstraintData*) SpineConstraintData::get_spine_object();
 	}
 
 	enum PositionMode {
@@ -46,19 +47,10 @@ public:
 		ROTATEMODE_CHAINSCALE
 	};
 
-	int get_POSITIONMODE_FIXED();
-	int get_POSITIONMODE_PERCENT();
-	int get_SPACINGMODE_LENGTH();
-	int get_SPACINGMODE_FIXED();
-	int get_SPACINGMODE_PERCENT();
-	int get_ROTATEMODE_TANGENT();
-	int get_ROTATEMODE_CHAIN();
-	int get_ROTATEMODE_CHAINSCALE();
+	Array get_bones();
 
-	godot::Array get_bones();
-
-	godot::Ref<SpineSlotData> get_target();
-	void set_target(godot::Ref<SpineSlotData> v);
+	Ref<SpineSlotData> get_target();
+	void set_target(Ref<SpineSlotData> v);
 
 	int get_position_mode();
 	void set_position_mode(int v);
@@ -87,5 +79,7 @@ public:
 	float get_mix_y();
 	void set_mix_y(float v);
 };
+
+}
 
 #endif //GODOT_SPINEPATHCONSTRAINTDATA_H

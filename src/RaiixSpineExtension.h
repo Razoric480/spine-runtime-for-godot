@@ -25,8 +25,8 @@ protected:
 	virtual char *_readFile(const spine::String &path, int *length);
 };
 
-void *do_malloc(size_t size);
-void *do_realloc(void *ptr, size_t size);
-void do_free(void *ptr);
+void *memalloc(size_t size);
+void *memrealloc(void *ptr, size_t size);
+void memfree(void *ptr);
 
 #endif //GODOT_RAIIXSPINEEXTENSION_H

@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://bin/spine-runtime.gdnlib" type="GDNativeLibrary" id=1]
+[ext_resource path="res://character/spineboy-pro.json" type="Resource" id=2]
+[ext_resource path="res://character/spineboy-pro.atlas" type="Resource" id=3]
+
+[sub_resource type="NativeScript" id=1]
+class_name = "SpineSprite"
+library = ExtResource( 1 )
+
+[sub_resource type="NativeScript" id=2]
+class_name = "SpineAnimationStateDataResource"
+library = ExtResource( 1 )
+
+[sub_resource type="NativeScript" id=3]
+class_name = "SpineSkeletonDataResource"
+library = ExtResource( 1 )
+
+[sub_resource type="Resource" id=4]
+script = SubResource( 3 )
+atlas_res = ExtResource( 3 )
+skeleton_json_res = ExtResource( 2 )
+
+[sub_resource type="Resource" id=5]
+script = SubResource( 2 )
+skeleton = SubResource( 4 )
+default_mix = 0.5
+
+[node name="Node2D" type="Node2D"]
+
+[node name="SpineSprite" type="Node2D" parent="."]
+position = Vector2( 466, 722 )
+script = SubResource( 1 )
+animation_state_data_res = SubResource( 5 )
+current_animations = [ {
+"animation": "run",
+"clear": false,
+"delay": 0,
+"empty": false,
+"empty_animation_duration": 0.3,
+"loop": true,
+"track_id": 0
+} ]
+empty_animation_duration = 0.2

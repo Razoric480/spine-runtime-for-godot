@@ -4,13 +4,15 @@
 
 #include "SpineSkinAttachmentMapEntries.h"
 
+namespace godot {
+
 void SpineSkinAttachmentMapEntry::_register_methods() {
-	godot::register_method("get_slot_index", &SpineSkinAttachmentMapEntry::get_slot_index);
-	godot::register_method("set_slot_index", &SpineSkinAttachmentMapEntry::set_slot_index);
-	godot::register_method("get_entry_name", &SpineSkinAttachmentMapEntry::get_entry_name);
-	godot::register_method("set_entry_name", &SpineSkinAttachmentMapEntry::set_entry_name);
-	godot::register_method("get_attachment", &SpineSkinAttachmentMapEntry::get_attachment);
-	godot::register_method("set_attachment", &SpineSkinAttachmentMapEntry::set_attachment);
+	register_method("get_slot_index", &SpineSkinAttachmentMapEntry::get_slot_index);
+	register_method("set_slot_index", &SpineSkinAttachmentMapEntry::set_slot_index);
+	register_method("get_entry_name", &SpineSkinAttachmentMapEntry::get_entry_name);
+	register_method("set_entry_name", &SpineSkinAttachmentMapEntry::set_entry_name);
+	register_method("get_attachment", &SpineSkinAttachmentMapEntry::get_attachment);
+	register_method("set_attachment", &SpineSkinAttachmentMapEntry::set_attachment);
 }
 
 SpineSkinAttachmentMapEntry::SpineSkinAttachmentMapEntry() {}
@@ -27,24 +29,23 @@ void SpineSkinAttachmentMapEntry::set_slot_index(uint64_t v) {
 	entry->_slotIndex = v;
 }
 
-godot::String SpineSkinAttachmentMapEntry::get_entry_name() {
+String SpineSkinAttachmentMapEntry::get_entry_name() {
 	return entry->_name.buffer();
 }
-
-void SpineSkinAttachmentMapEntry::set_entry_name(const godot::String &v) {
-	entry->_name = spine::String(v.utf8().get_data());
+void SpineSkinAttachmentMapEntry::set_entry_name(const String &v) {
+	entry->_name = spine::String(v.alloc_c_string());
 }
 
-godot::Ref<SpineAttachment> SpineSkinAttachmentMapEntry::get_attachment() {
+Ref<SpineAttachment> SpineSkinAttachmentMapEntry::get_attachment() {
 	if (entry->_attachment == NULL)
 		return NULL;
-	godot::Ref<SpineAttachment> gd_attachment;
+	Ref<SpineAttachment> gd_attachment;
 	gd_attachment.instance();
+	;
 	gd_attachment->set_spine_object(entry->_attachment);
 	return gd_attachment;
 }
-
-void SpineSkinAttachmentMapEntry::set_attachment(godot::Ref<SpineAttachment> v) {
+void SpineSkinAttachmentMapEntry::set_attachment(Ref<SpineAttachment> v) {
 	if (v.is_valid()) {
 		entry->_attachment = v->get_spine_object();
 	} else {
@@ -53,8 +54,8 @@ void SpineSkinAttachmentMapEntry::set_attachment(godot::Ref<SpineAttachment> v) 
 }
 
 void SpineSkinAttachmentMapEntries::_register_methods() {
-	godot::register_method("has_next", &SpineSkinAttachmentMapEntries::has_next);
-	godot::register_method("next", &SpineSkinAttachmentMapEntries::next);
+	register_method("has_next", &SpineSkinAttachmentMapEntries::has_next);
+	register_method("next", &SpineSkinAttachmentMapEntries::next);
 }
 
 SpineSkinAttachmentMapEntries::SpineSkinAttachmentMapEntries() {}
@@ -72,11 +73,13 @@ void SpineSkinAttachmentMapEntries::_init() {
 bool SpineSkinAttachmentMapEntries::has_next() {
 	return entries->hasNext();
 }
-
-godot::Ref<SpineSkinAttachmentMapEntry> SpineSkinAttachmentMapEntries::next() {
+Ref<SpineSkinAttachmentMapEntry> SpineSkinAttachmentMapEntries::next() {
 	auto &e = entries->next();
-	godot::Ref<SpineSkinAttachmentMapEntry> gd_entry;
+	Ref<SpineSkinAttachmentMapEntry> gd_entry;
 	gd_entry.instance();
+	;
 	gd_entry->set_spine_object(&e);
 	return gd_entry;
 }
+
+} //namespace godot

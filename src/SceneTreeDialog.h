@@ -12,10 +12,15 @@ namespace godot {
 class SceneTreeDialog : public ConfirmationDialog {
 	GODOT_CLASS(SceneTreeDialog, ConfirmationDialog);
 
+public:
+	static void _register_methods();
+	void _init();
+
 	Tree *tree;
 	LineEdit *filter;
 	PoolStringArray valid_types;
 
+public:
 	void update_tree();
 	void _select();
 	void _cancel();
@@ -24,16 +29,10 @@ class SceneTreeDialog : public ConfirmationDialog {
 	bool _add_nodes(Node *p_node, TreeItem *p_parent);
 	void _update_tree();
 
-protected:
 	void _notification(int p_what);
 	
-public:
-	static void _register_methods();
-
-public:
 	Tree *get_scene_tree() { return tree; }
 	void set_valid_types(PoolStringArray p_valid_types);
-	void _init();
 	LineEdit *get_filter_line_edit() { return filter; }
 	SceneTreeDialog();
 	~SceneTreeDialog();

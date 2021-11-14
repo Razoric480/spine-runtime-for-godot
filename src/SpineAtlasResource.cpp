@@ -9,15 +9,18 @@
 #include <JSON.hpp>
 #include <JSONParseResult.hpp>
 #include <ResourceLoader.hpp>
-#include <String.hpp>
+
+namespace godot {
+
+#define ERR_PRINT(msg) Godot::print_error(String(msg), __FUNCTION__, __FILE__, __LINE__)
 
 class RaiixSpineTextureLoader : public spine::TextureLoader {
 private:
-	godot::Array *tex_list, *ntex_list;
-	godot::String normal_tex_prefix;
+	Array *tex_list, *ntex_list;
+	String normal_tex_prefix;
 
 public:
-	RaiixSpineTextureLoader(godot::Array *t, godot::Array *nt, const godot::String &p) :
+	RaiixSpineTextureLoader(Array *t, Array *nt, const String &p) :
 			tex_list(t), ntex_list(nt), normal_tex_prefix(p) {
 		if (tex_list)
 			tex_list->clear();
@@ -25,10 +28,10 @@ public:
 			ntex_list->clear();
 	}
 
-	godot::String fixPathIssue(const godot::String &path) {
+	String fixPathIssue(const String &path) {
 		if (path.length() > 5 && path[4] == '/' && path[5] == '/')
 			return path;
-		const godot::String prefix = "res:/";
+		const String prefix = "res:/";
 		auto i = path.find(prefix);
 		//        print_line(String("Found i at ") + String(Variant(i)));
 		auto sub_str_pos = i + prefix.length() - 1;
@@ -47,35 +50,32 @@ public:
 	}
 
 	virtual void load(spine::AtlasPage &page, const spine::String &path) {
-		godot::Error err = godot::Error::OK;
+		int err = GODOT_OK;
 
 		//		print_line(String("Spine is loading texture: ") + String(path.buffer()));
-		auto fixed_path = fixPathIssue(godot::String(path.buffer()));
+		auto fixed_path = fixPathIssue(String(path.buffer()));
 		//        print_line("Fixed path: " + fixed_path);
 
 		// Load texture (e.g. tex.png)
-		godot::Ref<godot::Texture> tex = godot::ResourceLoader::get_singleton()->load(fixed_path);
+		Ref<Texture> tex = ResourceLoader::get_singleton()->load(fixed_path, "Texture");
 		if (!tex.is_valid()) {
-			spine::String error_message = spine::String("Can't load texture \"");
-			error_message.append(path);
-			error_message.append("\"");
-			godot::Godot::print_error(error_message.buffer(), __FUNCTION__, __FILE__, __LINE__);
-			page.setRendererObject((void *)new SpineRendererObject{ nullptr });
+			ERR_PRINT(String("Can't load texture: " + String(path.buffer())));
+			SpineRendererObject *renderer_object = new SpineRendererObject();
+			page.setRendererObject(renderer_object);
 			return;
 		}
 
 		if (tex_list)
 			tex_list->append(tex);
-		auto p_spine_renderer_object = new SpineRendererObject;
+		SpineRendererObject *p_spine_renderer_object = new SpineRendererObject();
 		p_spine_renderer_object->tex = tex;
 
 		// Load normal texture (e.g. n_tex.png)
-		godot::String temppath = fixed_path;
-		godot::String newpath = temppath.get_base_dir();
-		newpath += "/" + normal_tex_prefix + "_" + temppath.get_file();
+		String temppath = fixed_path;
+		String newpath = String(temppath.get_base_dir() + "/") + String(normal_tex_prefix + "_") + String(temppath.get_file());
 		//        print_line(vformat("try n tex: %s", newpath));
-		if (godot::ResourceLoader::get_singleton()->exists(newpath)) {
-			godot::Ref<godot::Texture> normal_tex = godot::ResourceLoader::get_singleton()->load(newpath);
+		if (ResourceLoader::get_singleton()->exists(newpath)) {
+			Ref<Texture> normal_tex = ResourceLoader::get_singleton()->load(newpath, "Texture");
 			if (ntex_list)
 				ntex_list->append(normal_tex);
 			p_spine_renderer_object->normal_tex = normal_tex;
@@ -93,8 +93,8 @@ public:
 	virtual void unload(void *p) {
 		// print_line("I'm out.");
 		auto p_spine_renderer_object = (SpineRendererObject *)p;
-		godot::Ref<godot::Texture> &tex = p_spine_renderer_object->tex;
-		godot::Ref<godot::Texture> &normal_tex = p_spine_renderer_object->normal_tex;
+		Ref<Texture> &tex = p_spine_renderer_object->tex;
+		Ref<Texture> &normal_tex = p_spine_renderer_object->normal_tex;
 
 		if (tex.is_valid())
 			tex.unref();
@@ -105,63 +105,60 @@ public:
 	}
 };
 
+SpineAtlasResource::SpineAtlasResource() {}
+SpineAtlasResource::~SpineAtlasResource() {
+	if (atlas)
+		delete atlas;
+}
+
 void SpineAtlasResource::_init() {
 	atlas = nullptr;
 	normal_texture_prefix = "n";
 }
 
-SpineAtlasResource::SpineAtlasResource() {}
-SpineAtlasResource::~SpineAtlasResource() {
-	if (atlas) {
-		delete atlas;
-	}
-}
-
 void SpineAtlasResource::_register_methods() {
-	godot::register_method("load_from_atlas_file", &SpineAtlasResource::load_from_atlas_file);
-	godot::register_method("load_from_file", &SpineAtlasResource::load_from_file);
-	godot::register_method("save_to_file", &SpineAtlasResource::save_to_file);
+	register_method("load_from_atlas_file", &SpineAtlasResource::load_from_atlas_file);
+	register_method("load_from_file", &SpineAtlasResource::load_from_file);
+	register_method("save_to_file", &SpineAtlasResource::save_to_file);
 
-	godot::register_method("get_source_path", &SpineAtlasResource::get_source_path);
+	register_method("get_source_path", &SpineAtlasResource::get_source_path);
 
-	godot::register_method("get_textures", &SpineAtlasResource::get_textures);
-	godot::register_method("get_normal_textures", &SpineAtlasResource::get_normal_textures);
+	register_method("get_textures", &SpineAtlasResource::get_textures);
+	register_method("get_normal_textures", &SpineAtlasResource::get_normal_textures);
 
-	godot::register_property<SpineAtlasResource, godot::String>("source_path", nullptr, &SpineAtlasResource::get_source_path, "");
-	godot::register_property<SpineAtlasResource, godot::Array>("textures", nullptr, &SpineAtlasResource::get_textures, godot::Array());
-	godot::register_property<SpineAtlasResource, godot::Array>("normal_textures", nullptr, &SpineAtlasResource::get_normal_textures, godot::Array());
+	register_property<SpineAtlasResource, String>("source_path", nullptr, &SpineAtlasResource::get_source_path, "");
+	register_property<SpineAtlasResource, Array>("textures", nullptr, &SpineAtlasResource::get_textures, Array());
+	register_property<SpineAtlasResource, Array>("normal_textures", nullptr, &SpineAtlasResource::get_normal_textures, Array());
 }
 
-godot::Array SpineAtlasResource::get_textures() {
+Array SpineAtlasResource::get_textures() {
 	return tex_list;
 }
 
-godot::Array SpineAtlasResource::get_normal_textures() {
+Array SpineAtlasResource::get_normal_textures() {
 	return ntex_list;
 }
 
-godot::String SpineAtlasResource::get_source_path() {
+String SpineAtlasResource::get_source_path() {
 	return source_path;
 }
 
-int SpineAtlasResource::load_from_atlas_file(const godot::String &p_path) {
+int SpineAtlasResource::load_from_atlas_file(const String &p_path) {
 	//    print_line(vformat("Importing atlas file: %s", p_path));
 	source_path = p_path;
 
 	int err;
-
-	godot::Ref<godot::File> file;
+	Ref<File> file;
 	file.instance();
-	err = (int)file->open(p_path, godot::File::READ);
-	if (err != (int)godot::Error::OK) {
+	err = (int)file->open(p_path, File::READ);
+	if (err != GODOT_OK) {
 		return err;
 	}
 	atlas_data = file->get_as_text();
 	file->close();
 
-	if (atlas) {
+	if (atlas)
 		delete atlas;
-	}
 
 	tex_list.clear();
 	ntex_list.clear();
@@ -170,75 +167,72 @@ int SpineAtlasResource::load_from_atlas_file(const godot::String &p_path) {
 
 	//    print_line(vformat("atlas loaded!"));
 
-	if (atlas) {
-		return (int)godot::Error::OK;
-	}
+	if (atlas)
+		return GODOT_OK;
 
 	tex_list.clear();
 	ntex_list.clear();
 
-	return (int)godot::Error::ERR_FILE_UNRECOGNIZED;
+	return GODOT_ERR_FILE_UNRECOGNIZED;
 }
 
-int SpineAtlasResource::load_from_file(const godot::String &p_path) {
+int SpineAtlasResource::load_from_file(const String &p_path) {
 	int err;
 
-	godot::Ref<godot::File> file;
+	Ref<File> file;
 	file.instance();
-	err = (int)file->open(p_path, godot::File::READ);
-	if (err != (int)godot::Error::OK) {
+	err = (int)file->open(p_path, File::READ);
+	if (err != GODOT_OK) {
 		return err;
 	}
-	godot::String json_string = file->get_as_text();
+	String json_string = file->get_as_text();
 	file->close();
 
-	godot::String error_string;
-	godot::JSON *json = godot::JSON::get_singleton();
-	godot::Ref<godot::JSONParseResult> result = json->parse(json_string);
-	if (result->get_error() != godot::Error::OK) {
+	String error_string;
+	int error_line;
+	Ref<JSONParseResult> result = JSON::get_singleton()->parse(json_string);
+	if ((int)result->get_error() != GODOT_OK) {
 		return (int)result->get_error();
 	}
 
-	godot::Dictionary content = result->get_result();
+	Dictionary content = result->get_result();
 
 	source_path = content["source_path"];
 	atlas_data = content["atlas_data"];
 	normal_texture_prefix = content["normal_texture_prefix"];
 
-	if (atlas) {
+	if (atlas)
 		delete atlas;
-	}
 	tex_list.clear();
 	ntex_list.clear();
-	atlas = new spine::Atlas(atlas_data.utf8().get_data(), atlas_data.length(), source_path.get_base_dir().utf8().get_data(), new RaiixSpineTextureLoader(&tex_list, &ntex_list, normal_texture_prefix));
+	atlas = new spine::Atlas(atlas_data.alloc_c_string(), atlas_data.length(), source_path.get_base_dir().alloc_c_string(), new RaiixSpineTextureLoader(&tex_list, &ntex_list, normal_texture_prefix));
 
-	if (atlas) {
-		return (int)godot::Error::OK;
-	}
+	if (atlas)
+		return GODOT_OK;
 
 	tex_list.clear();
 	ntex_list.clear();
-	return (int)godot::Error::ERR_FILE_UNRECOGNIZED;
+	return GODOT_ERR_FILE_UNRECOGNIZED;
 }
 
-int SpineAtlasResource::save_to_file(const godot::String &p_path) {
+int SpineAtlasResource::save_to_file(const String &p_path) {
 	int err;
-	godot::Ref<godot::File> file;
+	Ref<File> file;
 	file.instance();
-	err = (int)file->open(p_path, godot::File::WRITE);
-	if (err != (int)godot::Error::OK) {
+	err = (int)file->open(p_path, File::WRITE);
+	if (err != GODOT_OK) {
 		return err;
 	}
 
-	godot::Dictionary content;
+	Dictionary content;
 	content["source_path"] = source_path;
 	content["atlas_data"] = atlas_data;
 	content["normal_texture_prefix"] = normal_texture_prefix;
 
-	//    print_line(vformat("storing source_path: %s", source_path));
-
-	file->store_string(godot::JSON::get_singleton()->print(content));
+	file->store_string(JSON::get_singleton()->print(content));
 	file->close();
 
-	return (int)godot::Error::OK;
+	return GODOT_OK;
 }
+
+} //namespace godot

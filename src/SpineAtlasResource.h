@@ -11,44 +11,47 @@
 #include <spine/Atlas.h>
 #include <spine/SpineString.h>
 #include <spine/TextureLoader.h>
-#include <Texture.hpp>
 
-class SpineAtlasResource : public godot::Resource {
-	GODOT_CLASS(SpineAtlasResource, godot::Resource);
+namespace godot {
 
-public:
-	static void _register_methods();
-
-protected:
-	spine::Atlas *atlas;
-
-	godot::String source_path;
-	godot::String atlas_data;
-	godot::String normal_texture_prefix;
-
-	godot::Array tex_list;
-	godot::Array ntex_list;
+class SpineAtlasResource : public Resource {
+	GODOT_CLASS(SpineAtlasResource, Resource);
 
 public:
 	void _init();
 
-	godot::String &get_atlas_data() { return atlas_data; }
+protected:
+public:
+	static void _register_methods();
 
-	spine::Atlas *get_spine_atlas() { return atlas; }
+	spine::Atlas *atlas;
 
-	void set_normal_texture_prefix(const godot::String &p) { normal_texture_prefix = p; }
+	String source_path;
+	String atlas_data;
+	String normal_texture_prefix;
 
-	int load_from_atlas_file(const godot::String &p_path); // .atlas
+	Array tex_list;
+	Array ntex_list;
 
-	int load_from_file(const godot::String &p_path); // .spatlas
-	int save_to_file(const godot::String &p_path); // .spatlas
+public:
+	inline String &get_atlas_data() { return atlas_data; }
 
-	godot::String get_source_path();
-	godot::Array get_textures();
-	godot::Array get_normal_textures();
+	inline spine::Atlas *get_spine_atlas() { return atlas; }
+
+	inline void set_normal_texture_prefix(const String &p) { normal_texture_prefix = p; }
+
+	int load_from_atlas_file(const String &p_path); // .atlas
+
+	int load_from_file(const String &p_path); // .spatlas
+	int save_to_file(const String &p_path); // .spatlas
+
+	String get_source_path();
+	Array get_textures();
+	Array get_normal_textures();
 
 	SpineAtlasResource();
-	~SpineAtlasResource();
+	virtual ~SpineAtlasResource();
 };
 
+} //namespace godot
 #endif //GODOT_SPINEATLASRESOURCE_H

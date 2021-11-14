@@ -9,9 +9,15 @@
 
 #include <spine/spine.h>
 
-class SpineAttachment : public godot::Reference {
-	GODOT_CLASS(SpineAttachment, godot::Reference);
+namespace godot {
 
+class SpineAttachment : public Reference {
+	GODOT_CLASS(SpineAttachment, Reference);
+
+public:
+	void _init();
+
+protected:
 public:
 	static void _register_methods();
 
@@ -22,18 +28,20 @@ public:
 	SpineAttachment();
 	~SpineAttachment();
 
-	inline void set_spine_object(spine::Attachment *a){
+	inline void set_spine_object(spine::Attachment *a) {
 		attachment = a;
-		if(attachment)
+		if (attachment)
 			attachment->reference();
 	}
-	inline spine::Attachment *get_spine_object(){
+	inline spine::Attachment *get_spine_object() {
 		return attachment;
 	}
 
-	godot::String get_attachment_name();
+	String get_attachment_name();
 
-	godot::Ref<SpineAttachment> copy();
+	Ref<SpineAttachment> copy();
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINEATTACHMENT_H

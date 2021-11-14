@@ -4,13 +4,14 @@
 
 #include "SpineAttachment.h"
 
+namespace godot {
+
 void SpineAttachment::_register_methods() {
-	godot::register_method("get_attachment_name", &SpineAttachment::get_attachment_name);
-	godot::register_method("copy", &SpineAttachment::copy);
+	register_method("get_attachment_name", &SpineAttachment::get_attachment_name);
+	register_method("copy", &SpineAttachment::copy);
 }
 
-SpineAttachment::SpineAttachment() :
-		attachment(NULL) {}
+SpineAttachment::SpineAttachment() {}
 SpineAttachment::~SpineAttachment() {
 	if (attachment) {
 		attachment->dereference();
@@ -18,17 +19,22 @@ SpineAttachment::~SpineAttachment() {
 	}
 }
 
-godot::String SpineAttachment::get_attachment_name() {
+void SpineAttachment::_init() {
+	attachment = nullptr;
+}
+
+String SpineAttachment::get_attachment_name() {
 	return attachment->getName().buffer();
 }
 
-godot::Ref<SpineAttachment> SpineAttachment::copy() {
+Ref<SpineAttachment> SpineAttachment::copy() {
 	auto a = attachment->copy();
 	if (a == NULL)
 		return NULL;
-	godot::Ref<SpineAttachment> gd_attachment;
+	Ref<SpineAttachment> gd_attachment;
 	gd_attachment.instance();
-
 	gd_attachment->set_spine_object(a);
 	return gd_attachment;
 }
+
+} //namespace godot

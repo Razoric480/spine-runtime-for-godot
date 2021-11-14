@@ -9,27 +9,31 @@
 
 #include <spine/spine.h>
 
-class SpineEventData : public godot::Reference {
-	GODOT_CLASS(SpineEventData, godot::Reference);
+namespace godot {
+
+class SpineEventData : public Reference{
+	GODOT_CLASS(SpineEventData, Reference);
 
 public:
+	void _init();
 	static void _register_methods();
-
+	
 private:
 	const spine::EventData *event_data;
 
 public:
 	SpineEventData();
 	~SpineEventData();
-	
-	void _init();
 
-	inline void set_spine_object(const spine::EventData *e) {
+	inline void set_spine_object(const spine::EventData *e){
 		event_data = e;
 	}
-	inline const spine::EventData *get_spine_object() {
+	
+	inline const spine::EventData *get_spine_object(){
 		return event_data;
 	}
 };
+
+}
 
 #endif //GODOT_SPINEEVENTDATA_H

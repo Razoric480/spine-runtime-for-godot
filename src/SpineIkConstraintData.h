@@ -12,27 +12,27 @@
 #include "SpineBoneData.h"
 #include "SpineConstraintData.h"
 
+namespace godot {
 
 class SpineIkConstraintData : public SpineConstraintData {
 	GODOT_CLASS(SpineIkConstraintData, SpineConstraintData);
 
 public:
+	void _init();
 	static void _register_methods();
 
 public:
 	SpineIkConstraintData();
 	~SpineIkConstraintData();
 
-	void _init();
-
 	virtual inline spine::IkConstraintData *get_spine_data() {
 		return (spine::IkConstraintData *)SpineConstraintData::get_spine_object();
 	}
 
-	godot::Array get_bones();
+	Array get_bones();
 
-	godot::Ref<SpineBoneData> get_target();
-	void set_target(godot::Ref<SpineBoneData> v);
+	Ref<SpineBoneData> get_target();
+	void set_target(Ref<SpineBoneData> v);
 
 	int get_bend_direction();
 	void set_bend_direction(int v);
@@ -52,5 +52,7 @@ public:
 	float get_softness();
 	void set_softness(float v);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINEIKCONSTRAINTDATA_H

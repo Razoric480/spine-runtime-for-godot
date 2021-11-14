@@ -8,18 +8,22 @@
 #include <Godot.hpp>
 #include <ResourceFormatLoader.hpp>
 
-class ResourceFormatLoaderSpineAtlas : public godot::ResourceFormatLoader {
-	GODOT_CLASS(ResourceFormatLoaderSpineAtlas, godot::ResourceFormatLoader);
+namespace godot {
 
-public:
-	static void _register_methods();
+class ResourceFormatLoaderSpineAtlas : public ResourceFormatLoader {
+	GODOT_CLASS(ResourceFormatLoaderSpineAtlas, ResourceFormatLoader);
 
 public:
 	void _init();
-	virtual godot::Variant load(const godot::String &p_path, const godot::String &p_original_path);
-	virtual godot::PoolStringArray get_recognized_extensions() const;
-	virtual bool handles_type(const godot::String &p_type) const;
-	virtual godot::String get_resource_type(const godot::String &p_path) const;
+	static void _register_methods();
+
+public:
+	virtual Variant load(const String path, const String original_path);
+	virtual PoolStringArray get_recognized_extensions();
+	virtual bool handles_type(const String _typename);
+	virtual String get_resource_type(const String path);
 };
+
+} //namespace godot
 
 #endif //GODOT_RESOURCEFORMATLOADERSPINEATLAS_H

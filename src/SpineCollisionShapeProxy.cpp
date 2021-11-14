@@ -1,34 +1,40 @@
 //
 // Created by Raiix on 2021/7/15.
-// Edited by Razoric on 2021/11/xx
 //
 
 #include "SpineCollisionShapeProxy.h"
 
 #include "SpineSprite.h"
 
+namespace godot {
+
 void SpineCollisionShapeProxy::_register_methods() {
-	godot::register_method("get_spine_sprite_path", &SpineCollisionShapeProxy::get_spine_sprite_path);
-	godot::register_method("set_spine_sprite_path", &SpineCollisionShapeProxy::set_spine_sprite_path);
+	register_method("get_spine_sprite_path", &SpineCollisionShapeProxy::get_spine_sprite_path);
+	register_method("set_spine_sprite_path", &SpineCollisionShapeProxy::set_spine_sprite_path);
 
-	godot::register_method("get_slot", &SpineCollisionShapeProxy::get_slot);
-	godot::register_method("set_slot", &SpineCollisionShapeProxy::set_slot);
+	register_method("get_slot", &SpineCollisionShapeProxy::get_slot);
+	register_method("set_slot", &SpineCollisionShapeProxy::set_slot);
 
-	godot::register_method("get_sync_transform", &SpineCollisionShapeProxy::get_sync_transform);
-	godot::register_method("set_sync_transform", &SpineCollisionShapeProxy::set_sync_transform);
+	register_method("get_sync_transform", &SpineCollisionShapeProxy::get_sync_transform);
+	register_method("set_sync_transform", &SpineCollisionShapeProxy::set_sync_transform);
 
-	godot::register_property<SpineCollisionShapeProxy, godot::NodePath>("spine_sprite_path", &SpineCollisionShapeProxy::set_spine_sprite_path, &SpineCollisionShapeProxy::get_spine_sprite_path, "");
-	godot::register_property<SpineCollisionShapeProxy, bool>("sync_transform", &SpineCollisionShapeProxy::set_sync_transform, &SpineCollisionShapeProxy::get_sync_transform, true);
+	register_method("_notification", &SpineCollisionShapeProxy::_notification);
+	register_method("_get_property_list", &SpineCollisionShapeProxy::_get_property_list);
+	register_method("_set", &SpineCollisionShapeProxy::_set);
+	register_method("_get", &SpineCollisionShapeProxy::_get);
+
+	register_property<SpineCollisionShapeProxy, NodePath>("spine_sprite_path", &SpineCollisionShapeProxy::set_spine_sprite_path, &SpineCollisionShapeProxy::get_spine_sprite_path, "");
+	register_property<SpineCollisionShapeProxy, bool>("sync_transform", &SpineCollisionShapeProxy::set_sync_transform, &SpineCollisionShapeProxy::get_sync_transform, true);
 }
 
 SpineCollisionShapeProxy::SpineCollisionShapeProxy() {
 }
 
-SpineCollisionShapeProxy::~SpineCollisionShapeProxy() {
-}
-
 void SpineCollisionShapeProxy::_init() {
 	sync_transform = true;
+}
+
+SpineCollisionShapeProxy::~SpineCollisionShapeProxy() {
 }
 
 void SpineCollisionShapeProxy::_notification(int p_what) {
@@ -52,21 +58,21 @@ SpineSprite *SpineCollisionShapeProxy::get_spine_sprite() const {
 	return (SpineSprite *)get_node_or_null(spine_sprite_path);
 }
 
-godot::NodePath SpineCollisionShapeProxy::get_spine_sprite_path() {
+NodePath SpineCollisionShapeProxy::get_spine_sprite_path() {
 	return spine_sprite_path;
 }
 
-void SpineCollisionShapeProxy::set_spine_sprite_path(godot::NodePath v) {
+void SpineCollisionShapeProxy::set_spine_sprite_path(NodePath v) {
 	spine_sprite_path = v;
 
 	_update_polygon_from_spine_sprite(get_spine_sprite());
 }
 
-godot::String SpineCollisionShapeProxy::get_slot() const {
+String SpineCollisionShapeProxy::get_slot() const {
 	return slot;
 }
 
-void SpineCollisionShapeProxy::set_slot(const godot::String &v) {
+void SpineCollisionShapeProxy::set_slot(const String &v) {
 	slot = v;
 	_update_polygon_from_spine_sprite(get_spine_sprite());
 }
@@ -85,7 +91,7 @@ void SpineCollisionShapeProxy::_update_polygon_from_spine_sprite(SpineSprite *sp
 
 	spine::Vector<float> vertices;
 
-	spine::Slot *s = sk->findSlot(spine::String(slot.utf8().get_data()));
+	spine::Slot *s = sk->findSlot(spine::String(slot.alloc_c_string()));
 	if (!s) {
 		return;
 	}
@@ -103,17 +109,17 @@ void SpineCollisionShapeProxy::_update_polygon_from_spine_sprite(SpineSprite *sp
 		return;
 	}
 
-	godot::PoolVector2Array polygon = get_polygon();
+	PoolVector2Array polygon;
 	polygon.resize(vertices.size() / 2);
 	for (size_t j = 0; j < vertices.size(); j += 2) {
-		polygon.set(j / 2, godot::Vector2(vertices[j], -vertices[j + 1]));
+		polygon.set(j / 2, Vector2(vertices[j], -vertices[j + 1]));
 	}
 
 	set_polygon(polygon);
 }
 
 void SpineCollisionShapeProxy::_clear_polygon() {
-	set_polygon(godot::PoolVector2Array());
+	set_polygon(PoolVector2Array());
 }
 
 void SpineCollisionShapeProxy::_sync_transform(SpineSprite *sprite) {
@@ -130,62 +136,65 @@ void SpineCollisionShapeProxy::set_sync_transform(bool v) {
 	sync_transform = v;
 }
 
-godot::Array SpineCollisionShapeProxy::_get_property_list() const {
-	godot::Dictionary p;
-	godot::PoolStringArray res;
+Array SpineCollisionShapeProxy::_get_property_list() {
+	Array list;
+	Dictionary p;
 
 	p["name"] = "slot";
-	p["type"] = godot::Variant::STRING;
-	_get_slot_list(res);
-	if (res.size() == 0) {
+	p["type"] = Variant::STRING;
+	Array res = _get_slot_list();
+	if (res.empty())
 		res.push_back("No Slot");
-	}
-	godot::String hint_string;
+	String hint_string;
 	for (int i = 0; i < res.size(); ++i) {
-		hint_string += res[i];
-		if (i != res.size() - 1) {
+		String value = res[i];
+		hint_string += value;
+		if (i < res.size() - 1) {
 			hint_string += ",";
 		}
 	}
 	p["hint_string"] = hint_string;
 	p["hint"] = GODOT_PROPERTY_HINT_ENUM;
+	list.push_back(p);
 
-	godot::Array output;
-	output.push_back(p);
-	return output;
+	return list;
 }
 
-godot::Variant SpineCollisionShapeProxy::_get(const godot::String &p_property) const {
-	if (p_property == "slot") {
+Variant SpineCollisionShapeProxy::_get(const String property) const {
+	if (property == "slot") {
 		return get_slot();
 	}
-	godot::Object *none = nullptr;
-	return none;
+	Variant var = (Object *)nullptr;
+	return var;
 }
 
-bool SpineCollisionShapeProxy::_set(const godot::String &p_property, const godot::Variant &p_value) {
-	if (p_property == "slot") {
-		set_slot(p_value);
+bool SpineCollisionShapeProxy::_set(const String property, const Variant value) {
+	if (property == "slot") {
+		set_slot(value);
 		return true;
 	}
 	return false;
 }
 
-void SpineCollisionShapeProxy::_get_slot_list(godot::PoolStringArray &res) const {
+Array SpineCollisionShapeProxy::_get_slot_list() {
 	if (get_spine_sprite() == nullptr) {
-		return;
+		return Array();
 	}
 
 	auto sprite = get_spine_sprite();
 	if (!sprite->get_skeleton().is_valid()) {
-		return;
+		return Array();
 	}
 
 	auto slots = sprite->get_skeleton()->get_slots();
+	Array res;
 	res.resize(slots.size());
 	for (size_t i = 0; i < res.size(); ++i) {
-		auto slot = (godot::Ref<SpineSlot>)slots[i];
+		auto slot = (Ref<SpineSlot>)slots[i];
 		if (slot.is_valid())
-			res.set(i, slot->get_data()->get_slot_name());
+			res[i] = slot->get_data()->get_slot_name();
 	}
+	return res;
 }
+
+} //namespace godot

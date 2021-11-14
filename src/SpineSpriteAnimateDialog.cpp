@@ -1,58 +1,59 @@
 //
 // Created by Raiix on 2021/7/16.
-// Edited by Razoric on 2021/11/xx
 //
 
 #include "SpineSpriteAnimateDialog.h"
 
-#include "SceneTreeDialog.h"
-#include "SpineSprite.h"
-#include <AcceptDialog.hpp>
 #include <Animation.hpp>
-#include <AnimationPlayer.hpp>
-#include <ConfirmationDialog.hpp>
+#include <Button.hpp>
 #include <EditorInterface.hpp>
 #include <EditorSelection.hpp>
 #include <Label.hpp>
 #include <ScrollContainer.hpp>
-#include <Tree.hpp>
+#include <ToolButton.hpp>
 #include <TreeItem.hpp>
 #include <VBoxContainer.hpp>
 
+//#ifdef TOOLS_ENABLED
+
+#include "SpineSprite.h"
+
+namespace godot {
+
 void SpineSpriteAnimateDialog::_register_methods() {
-	godot::register_method("_on_animate_button_pressed", &SpineSpriteAnimateDialog::_on_animate_button_pressed);
-	godot::register_method("_on_scene_tree_selected", &SpineSpriteAnimateDialog::_on_scene_tree_selected);
-	godot::register_method("_on_scene_tree_hide", &SpineSpriteAnimateDialog::_on_scene_tree_hide);
-	godot::register_method("_on_animate_dialog_action", &SpineSpriteAnimateDialog::_on_animate_dialog_action);
+	register_method("_on_animate_button_pressed", &SpineSpriteAnimateDialog::_on_animate_button_pressed);
+	register_method("_on_scene_tree_selected", &SpineSpriteAnimateDialog::_on_scene_tree_selected);
+	register_method("_on_scene_tree_hide", &SpineSpriteAnimateDialog::_on_scene_tree_hide);
+	register_method("_on_animate_dialog_action", &SpineSpriteAnimateDialog::_on_animate_dialog_action);
 }
 
 SpineSpriteAnimateDialog::SpineSpriteAnimateDialog() {}
 
 void SpineSpriteAnimateDialog::_init() {
-	animate_dialog = godot::ConfirmationDialog::_new();
+	animate_dialog = ConfirmationDialog::_new();
 	add_child(animate_dialog);
 	animate_dialog->get_ok()->set_text("Generate");
 	animate_dialog_override_button = animate_dialog->add_button("Override", false, "override");
 	animate_dialog_override_button->set_visible(false);
 	animate_dialog->set_title("Animations Generator");
 	animate_dialog->set_resizable(true);
-	animate_dialog->set_custom_minimum_size(godot::Vector2(550, 400));
+	animate_dialog->set_custom_minimum_size(Vector2(550, 400));
 	animate_dialog->set_hide_on_ok(false);
 	animate_dialog->connect("custom_action", this, "_on_animate_dialog_action");
-	godot::Array al;
+	Array al;
 	al.push_back("confirmed");
 	animate_dialog->connect("confirmed", this, "_on_animate_dialog_action", al);
 
-	auto vb = godot::VBoxContainer::_new();
+	auto vb = VBoxContainer::_new();
 	animate_dialog->add_child(vb);
 
-	auto scroll = godot::ScrollContainer::_new();
+	auto scroll = ScrollContainer::_new();
 	scroll->set_h_size_flags(SIZE_EXPAND_FILL);
 	scroll->set_v_size_flags(SIZE_EXPAND_FILL);
 	//    vb->add_margin_child("Animations", scroll);
 	vb->add_child(scroll);
 
-	animate_dialog_tree = godot::Tree::_new();
+	animate_dialog_tree = Tree::_new();
 	animate_dialog_tree->set_h_size_flags(SIZE_EXPAND_FILL);
 	animate_dialog_tree->set_v_size_flags(SIZE_EXPAND_FILL);
 	scroll->add_child(animate_dialog_tree);
@@ -71,13 +72,13 @@ void SpineSpriteAnimateDialog::_init() {
 	add_row("test12");
 	add_row("test13");
 
-	auto l = godot::Label::_new();
+	auto l = Label::_new();
 	l->set_text("W.I.P");
 	vb->add_child(l);
 
-	scene_tree_dialog = godot::SceneTreeDialog::_new();
+	scene_tree_dialog = SceneTreeDialog::_new();
 	scene_tree_dialog->set_title("Choose a AnimationPlayer to override, or choose none to create a new one.");
-	godot::PoolStringArray valid_types;
+	Array valid_types;
 	valid_types.push_back("AnimationPlayer");
 	scene_tree_dialog->set_valid_types(valid_types);
 	//scene_tree_dialog->set_show_enabled_subscene(true);
@@ -86,27 +87,27 @@ void SpineSpriteAnimateDialog::_init() {
 	scene_tree_dialog->connect("selected", this, "_on_scene_tree_selected");
 	scene_tree_dialog->connect("popup_hide", this, "_on_scene_tree_hide");
 
-	error_dialog = godot::AcceptDialog::_new();
+	error_dialog = AcceptDialog::_new();
 	add_child(error_dialog);
 }
 
 SpineSpriteAnimateDialog::~SpineSpriteAnimateDialog() {
 }
 
-void SpineSpriteAnimateDialog::set_animate_button(godot::ToolButton *b) {
+void SpineSpriteAnimateDialog::set_animate_button(ToolButton *b) {
 	animate_button = b;
 	animate_button->connect("pressed", this, "_on_animate_button_pressed");
 }
 
-void SpineSpriteAnimateDialog::add_row(const godot::String &animation, bool loop, int64_t track_id) {
+void SpineSpriteAnimateDialog::add_row(const String &animation, bool loop, int64_t track_id) {
 	auto item = animate_dialog_tree->create_item();
 	item->set_text(0, animation);
 
-	item->set_cell_mode(1, godot::TreeItem::CELL_MODE_CHECK);
+	item->set_cell_mode(1, TreeItem::CELL_MODE_CHECK);
 	item->set_checked(1, loop);
 	item->set_editable(1, true);
 
-	item->set_cell_mode(2, godot::TreeItem::CELL_MODE_RANGE);
+	item->set_cell_mode(2, TreeItem::CELL_MODE_RANGE);
 	item->set_range(2, track_id);
 	item->set_editable(2, true);
 }
@@ -116,7 +117,7 @@ void SpineSpriteAnimateDialog::clear_tree() {
 	animate_dialog_tree->create_item();
 }
 
-void SpineSpriteAnimateDialog::error(const godot::String &text, const godot::String &title) {
+void SpineSpriteAnimateDialog::error(const String &text, const String &title) {
 	error_dialog->set_text(text);
 	error_dialog->set_title(title);
 	error_dialog->popup_centered();
@@ -137,8 +138,7 @@ void SpineSpriteAnimateDialog::load_data_from_sprite(SpineSprite *sprite, bool &
 	}
 	clear_tree();
 
-	godot::PoolStringArray animations;
-	sprite->get_skeleton()->get_data()->get_animation_names(animations);
+	Array animations = sprite->get_skeleton()->get_data()->get_animation_names();
 
 	for (size_t i = 0; i < animations.size(); ++i) {
 		add_row(animations[i]);
@@ -161,7 +161,7 @@ void SpineSpriteAnimateDialog::gen_new_animation_player(SpineSprite *sprite, boo
 		p = sprite;
 	}
 
-	auto anim_player = godot::AnimationPlayer::_new();
+	auto anim_player = AnimationPlayer::_new();
 	anim_player->set_name("AnimationPlayer");
 	p->add_child(anim_player);
 	anim_player->set_owner(sprite->get_owner());
@@ -170,14 +170,14 @@ void SpineSpriteAnimateDialog::gen_new_animation_player(SpineSprite *sprite, boo
 	gen_animations(sprite, anim_player, get_data_from_tree(), MIN_TRACK_LENGTH, err);
 }
 
-godot::Dictionary SpineSpriteAnimateDialog::get_data_from_tree() {
-	godot::Dictionary res;
+Dictionary SpineSpriteAnimateDialog::get_data_from_tree() {
+	Dictionary res;
 	if (animate_dialog_tree->get_root() == nullptr)
 		return res;
 
 	auto item = animate_dialog_tree->get_root()->get_children();
 	while (item) {
-		godot::Dictionary row;
+		Dictionary row;
 		row["loop"] = item->is_checked(1);
 		row["track_id"] = item->get_range(2);
 
@@ -187,7 +187,7 @@ godot::Dictionary SpineSpriteAnimateDialog::get_data_from_tree() {
 	return res;
 }
 
-void SpineSpriteAnimateDialog::gen_animations(SpineSprite *sprite, godot::AnimationPlayer *anim_player, godot::Dictionary config, float min_duration, bool &err) {
+void SpineSpriteAnimateDialog::gen_animations(SpineSprite *sprite, AnimationPlayer *anim_player, const Dictionary &config, float min_duration, bool &err) {
 	if (sprite == nullptr || anim_player == nullptr) {
 		ERROR_MSG("The sprite or animation player is null.");
 	}
@@ -200,11 +200,11 @@ void SpineSpriteAnimateDialog::gen_animations(SpineSprite *sprite, godot::Animat
 
 	auto path_to_sprite = anim_player->get_node(anim_player->get_root())->get_path_to(sprite);
 
-	godot::Array animations = sprite->get_skeleton()->get_data()->get_animations();
+	Array animations = sprite->get_skeleton()->get_data()->get_animations();
 	for (size_t i = 0; i < animations.size(); ++i) {
-		auto spine_anim = (godot::Ref<SpineAnimation>)animations[i];
+		auto spine_anim = (Ref<SpineAnimation>)animations[i];
 
-		godot::Dictionary ca;
+		Dictionary ca;
 		if (config.has(spine_anim->get_anim_name())) {
 			ca = config[spine_anim->get_anim_name()];
 		}
@@ -214,16 +214,16 @@ void SpineSpriteAnimateDialog::gen_animations(SpineSprite *sprite, godot::Animat
 		if (!ca.has("track_id"))
 			ca["track_id"] = 0;
 
-		godot::Array key_frame_value;
+		Array key_frame_value;
 		key_frame_value.push_back(gen_current_animation_data(spine_anim->get_anim_name(), ca["track_id"], ca["loop"], false, false, 0.3, 0));
 
-		godot::Ref<godot::Animation> anim;
+		Ref<Animation> anim;
 		anim.instance();
-		auto track_index = anim->add_track(godot::Animation::TYPE_VALUE);
+		auto track_index = anim->add_track(Animation::TYPE_VALUE);
 		anim->set_length(min_duration > spine_anim->get_duration() ? min_duration : spine_anim->get_duration());
-		anim->track_set_path(track_index, godot::NodePath(godot::String(path_to_sprite) + godot::String(":current_animations")));
+		anim->track_set_path(track_index, NodePath(String(path_to_sprite) + ":current_animations"));
 		anim->track_insert_key(track_index, 0.0, key_frame_value);
-		anim->value_track_set_update_mode(track_index, godot::Animation::UPDATE_DISCRETE);
+		anim->value_track_set_update_mode(track_index, Animation::UPDATE_DISCRETE);
 
 		if (anim_player->has_animation(spine_anim->get_anim_name()))
 			anim_player->remove_animation(spine_anim->get_anim_name());
@@ -233,8 +233,8 @@ void SpineSpriteAnimateDialog::gen_animations(SpineSprite *sprite, godot::Animat
 	err = false;
 }
 
-godot::Dictionary SpineSpriteAnimateDialog::gen_current_animation_data(const godot::String &animation, int64_t track_id, bool loop, bool clear, bool empty, bool empty_duration, float delay) {
-	godot::Dictionary res;
+Dictionary SpineSpriteAnimateDialog::gen_current_animation_data(const String &animation, int64_t track_id, bool loop, bool clear, bool empty, bool empty_duration, float delay) {
+	Dictionary res;
 	res["animation"] = animation;
 	res["track_id"] = track_id;
 	res["loop"] = loop;
@@ -245,7 +245,7 @@ godot::Dictionary SpineSpriteAnimateDialog::gen_current_animation_data(const god
 	return res;
 }
 
-void SpineSpriteAnimateDialog::load_data_from_anim_player(godot::AnimationPlayer *anim_player, bool &err) {
+void SpineSpriteAnimateDialog::load_data_from_anim_player(AnimationPlayer *anim_player, bool &err) {
 	if (anim_player == nullptr) {
 		ERROR_MSG("The animation player is null.");
 	}
@@ -259,17 +259,17 @@ void SpineSpriteAnimateDialog::load_data_from_anim_player(godot::AnimationPlayer
 
 	auto item = animate_dialog_tree->get_root()->get_children();
 	while (item) {
-		godot::String animation = item->get_text(0);
+		String animation = item->get_text(0);
 
 		auto anim = anim_player->get_animation(animation);
 		if (anim.is_valid() && anim->get_track_count() > 0) {
-			if (anim->track_get_type(0) == godot::Animation::TYPE_VALUE) {
+			if (anim->track_get_type(0) == Animation::TYPE_VALUE) {
 				auto track_path = anim->track_get_path(0);
 				if (root->get_node_or_null(track_path) == sprite) {
 					if (anim->track_get_key_count(0) > 0) {
-						godot::Array key_frame_value = anim->track_get_key_value(0, 0);
+						Array key_frame_value = anim->track_get_key_value(0, 0);
 						if (!key_frame_value.empty()) {
-							godot::Dictionary _ca = key_frame_value.front();
+							Dictionary _ca = key_frame_value.front();
 							if (_ca.has("loop"))
 								item->set_checked(1, _ca["loop"]);
 							if (_ca.has("track_id"))
@@ -287,7 +287,7 @@ void SpineSpriteAnimateDialog::load_data_from_anim_player(godot::AnimationPlayer
 }
 
 //----- Signals -----
-void SpineSpriteAnimateDialog::_on_scene_tree_selected(godot::NodePath path) {
+void SpineSpriteAnimateDialog::_on_scene_tree_selected(NodePath path) {
 	//    print_line(vformat("anime: %s", path));
 	auto node = get_node_or_null(path);
 	if (node == nullptr) {
@@ -302,7 +302,7 @@ void SpineSpriteAnimateDialog::_on_scene_tree_selected(godot::NodePath path) {
 }
 
 void SpineSpriteAnimateDialog::_on_animate_button_pressed() {
-	anim_player_path = godot::NodePath("");
+	anim_player_path = NodePath("");
 	auto node = (Node *)the_plugin->get_editor_interface()->get_selection()->get_selected_nodes().back();
 	spine_sprite_path = node->get_path();
 
@@ -324,21 +324,25 @@ void SpineSpriteAnimateDialog::_on_scene_tree_hide() {
 	err = false;
 	auto node = get_node_or_null(anim_player_path);
 	if (node != nullptr) {
-		load_data_from_anim_player((godot::AnimationPlayer *)node, err);
+		load_data_from_anim_player((AnimationPlayer *)node, err);
 		animate_dialog_override_button->set_visible(!err);
 	} else {
 		animate_dialog_override_button->set_visible(false);
 	}
 }
 
-void SpineSpriteAnimateDialog::_on_animate_dialog_action(const godot::String &act) {
+void SpineSpriteAnimateDialog::_on_animate_dialog_action(const String &act) {
 	bool err = false;
 	if (act == "confirmed") {
 		gen_new_animation_player((SpineSprite *)get_node_or_null(spine_sprite_path), err);
 	} else if (act == "override") {
-		gen_animations((SpineSprite *)get_node_or_null(spine_sprite_path), (godot::AnimationPlayer *)get_node_or_null(anim_player_path), get_data_from_tree(), MIN_TRACK_LENGTH, err);
+		gen_animations((SpineSprite *)get_node_or_null(spine_sprite_path), (AnimationPlayer *)get_node_or_null(anim_player_path), get_data_from_tree(), MIN_TRACK_LENGTH, err);
 	}
 	if (!err) {
 		animate_dialog->hide();
 	}
 }
+
+} //namespace godot
+
+//#endif

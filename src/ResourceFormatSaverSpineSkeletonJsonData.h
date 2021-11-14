@@ -1,6 +1,5 @@
 //
 // Created by Raiix on 2021/7/13.
-// Edited by Razoric on 2021/11/xx
 //
 
 #ifndef GODOT_RESOURCEFORMATSAVERSPINESKELETONJSONDATA_H
@@ -9,17 +8,21 @@
 #include <Godot.hpp>
 #include <ResourceFormatSaver.hpp>
 
-class ResourceFormatSaverSpineSkeletonJsonData : public godot::ResourceFormatSaver {
-	GODOT_CLASS(ResourceFormatSaverSpineSkeletonJsonData, godot::ResourceFormatSaver);
+namespace godot {
+
+class ResourceFormatSaverSpineSkeletonJsonData : public ResourceFormatSaver {
+	GODOT_CLASS(ResourceFormatSaverSpineSkeletonJsonData, ResourceFormatSaver);
 
 public:
 	static void _register_methods();
+	void _init();
 
 public:
-	void _init();
-	int save(const godot::String &p_path, godot::Ref<godot::Resource> p_resource, uint32_t p_flags = 0);
-	godot::PoolStringArray get_recognized_extensions(godot::Ref<godot::Resource> p_resource) const;
-	bool recognize(godot::Ref<godot::Resource> p_resource) const;
+	int64_t save(const String path, const Ref<Resource> resource, const int64_t flags);
+	PoolStringArray get_recognized_extensions(const Ref<Resource> resource);
+	bool recognize(const Ref<Resource> resource);
 };
+
+} //namespace godot
 
 #endif //GODOT_RESOURCEFORMATSAVERSPINESKELETONJSONDATA_H

@@ -12,10 +12,13 @@
 #include "SpineAttachment.h"
 #include "SpineSkinAttachmentMapEntries.h"
 
-class SpineSkin : public godot::Reference {
-	GODOT_CLASS(SpineSkin, godot::Reference);
+namespace godot {
+
+class SpineSkin : public Reference {
+	GODOT_CLASS(SpineSkin, Reference);
 
 public:
+	void _init();
 	static void _register_methods();
 
 private:
@@ -25,38 +28,39 @@ public:
 	SpineSkin();
 	~SpineSkin();
 
-	void _init();
-
 	inline void set_spine_object(spine::Skin *s) {
 		skin = s;
 	}
+	
 	spine::Skin *get_spine_object() {
 		return skin;
 	}
 
-	godot::Ref<SpineSkin> init(const godot::String &name);
+	Ref<SpineSkin> init(const String &name);
 
-	void set_attachment(uint64_t slot_index, const godot::String &name, godot::Ref<SpineAttachment> attachment);
+	void set_attachment(uint64_t slot_index, const String &name, Ref<SpineAttachment> attachment);
 
-	godot::Ref<SpineAttachment> get_attachment(uint64_t slot_index, const godot::String &name);
+	Ref<SpineAttachment> get_attachment(uint64_t slot_index, const String &name);
 
-	void remove_attachment(uint64_t slot_index, const godot::String &name);
+	void remove_attachment(uint64_t slot_index, const String &name);
 
-	godot::Array find_names_for_slot(uint64_t slot_index);
+	Array find_names_for_slot(uint64_t slot_index);
 
-	godot::Array find_attachments_for_slot(uint64_t slot_index);
+	Array find_attachments_for_slot(uint64_t slot_index);
 
-	godot::String get_skin_name();
+	String get_skin_name();
 
-	void add_skin(godot::Ref<SpineSkin> other);
+	void add_skin(Ref<SpineSkin> other);
 
-	void copy_skin(godot::Ref<SpineSkin> other);
+	void copy_skin(Ref<SpineSkin> other);
 
-	godot::Ref<SpineSkinAttachmentMapEntries> get_attachments();
+	Ref<SpineSkinAttachmentMapEntries> get_attachments();
 
-	godot::Array get_bones();
+	Array get_bones();
 
-	godot::Array get_constraint();
+	Array get_constraint();
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINESKIN_H

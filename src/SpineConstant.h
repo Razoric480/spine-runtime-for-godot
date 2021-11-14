@@ -1,6 +1,5 @@
 //
 // Created by Raiix on 2021/7/14.
-// Edited by Razoric on 2021/11/xx
 //
 
 #ifndef GODOT_SPINECONSTANT_H
@@ -8,10 +7,13 @@
 
 #include <Godot.hpp>
 
-class SpineConstant : public godot::Reference {
-	GODOT_CLASS(SpineConstant, godot::Reference);
+namespace godot {
+
+class SpineConstant : public Reference {
+	GODOT_CLASS(SpineConstant, Reference);
 
 public:
+	void _init();
 	static void _register_methods();
 
 public:
@@ -48,36 +50,8 @@ public:
 		Property_PathConstraintSpacing = 1 << 17,
 		Property_PathConstraintMix = 1 << 18
 	};
-    
-    void _init();
-
-	int get_MixBlend_Setup() const;
-	int get_MixBlend_First() const;
-	int get_MixBlend_Replace() const;
-	int get_MixBlend_Add() const;
-	int get_MixDirection_In() const;
-	int get_MixDirection_Out() const;
-	int get_Property_Rotate() const;
-	int get_Property_X() const;
-	int get_Property_Y() const;
-	int get_Property_ScaleX() const;
-	int get_Property_ScaleY() const;
-	int get_Property_ShearX() const;
-	int get_Property_ShearY() const;
-	int get_Property_Rgb() const;
-	int get_Property_Alpha() const;
-	int get_Property_Rgb2() const;
-	int get_Property_Attachment() const;
-	int get_Property_Deform() const;
-	int get_Property_Event() const;
-	int get_Property_DrawOrder() const;
-	int get_Property_IkConstraint() const;
-	int get_Property_TransformConstraint() const;
-	int get_Property_PathConstraintPosition() const;
-	int get_Property_PathConstraintSpacing() const;
-	int get_Property_PathConstraintMix() const;
-    
-    void noset(int v);
 };
+
+} //namespace godot
 
 #endif //GODOT_SPINECONSTANT_H
