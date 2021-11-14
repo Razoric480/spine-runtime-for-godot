@@ -180,9 +180,11 @@ void SpineSprite::update_bind_slot_nodes() {
 		}
 	}
 }
+
 void SpineSprite::update_bind_slot_node_transform(Ref<SpineBone> bone, Node2D *node2d) {
 	bone->apply_world_transform_2d(node2d);
 }
+
 void SpineSprite::update_bind_slot_node_draw_order(const String &slot_name, Node2D *node2d) {
 	auto mesh_ins = find_node(slot_name);
 	if (mesh_ins) {
@@ -825,10 +827,10 @@ Array SpineSprite::_get_property_list() {
 			anim_list.push_back("No Animation");
 		}
 		String hint_string;
-		for (int i = 0; i < anim_list.size(); ++i) {
-			String value = anim_list[i];
+		for (int l = 0; l < anim_list.size(); ++l) {
+			String value = anim_list[l];
 			hint_string += value;
-			if (i < anim_list.size() - 1) {
+			if (l < anim_list.size() - 1) {
 				hint_string += ",";
 			}
 		}
@@ -936,10 +938,10 @@ bool SpineSprite::_set(const String property, const Variant value) {
 	if (p.length() > 2 && p[0] == 'c' && p[1] == 'a' && p[2] == '/') {
 		Array sp = p.split("/");
 		if (sp.size() > 2) {
-			String value = sp[1];
-			int64_t id = value.to_int();
+			String str_value = sp[1];
+			int64_t id = str_value.to_int();
 			if (id >= 0 && id < current_animations.size()) {
-				auto &key = sp[2];
+				String key = sp[2];
 				if (current_animations[id].get_type() != Variant::DICTIONARY) {
 					current_animations[id] = Dictionary();
 				}

@@ -58,7 +58,7 @@ public:
 
 		// Load texture (e.g. tex.png)
 		Ref<Texture> tex = ResourceLoader::get_singleton()->load(fixed_path, "Texture");
-		if (!tex.is_valid()) {
+		if (tex.is_null()) {
 			ERR_PRINT(String("Can't load texture: " + String(path.buffer())));
 			SpineRendererObject *renderer_object = new SpineRendererObject();
 			page.setRendererObject(renderer_object);

@@ -166,6 +166,7 @@ Ref<SpineAnimation> SpineSkeletonDataResource::find_animation(const String &anim
 	if (animation_name.empty()) {
 		return NULL;
 	}
+	const char *alloced = animation_name.alloc_c_string();
 	auto a = skeleton_data->findAnimation(S_T(animation_name));
 	if (!a)
 		return NULL;
