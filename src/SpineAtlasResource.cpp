@@ -143,7 +143,7 @@ String SpineAtlasResource::get_source_path() {
 	return source_path;
 }
 
-int SpineAtlasResource::load_from_atlas_file(const String &p_path) {
+int SpineAtlasResource::load_from_atlas_file(String p_path) {
 	//    print_line(vformat("Importing atlas file: %s", p_path));
 	source_path = p_path;
 
@@ -176,7 +176,7 @@ int SpineAtlasResource::load_from_atlas_file(const String &p_path) {
 	return GODOT_ERR_FILE_UNRECOGNIZED;
 }
 
-int SpineAtlasResource::load_from_file(const String &p_path) {
+int SpineAtlasResource::load_from_file(String p_path) {
 	int err;
 
 	Ref<File> file;
@@ -215,7 +215,7 @@ int SpineAtlasResource::load_from_file(const String &p_path) {
 	return GODOT_ERR_FILE_UNRECOGNIZED;
 }
 
-int SpineAtlasResource::save_to_file(const String &p_path) {
+int SpineAtlasResource::save_to_file(String p_path) {
 	int err;
 	Ref<File> file;
 	file.instance();

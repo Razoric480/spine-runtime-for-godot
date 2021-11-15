@@ -38,12 +38,12 @@ public:
 
 	inline spine::Atlas *get_spine_atlas() { return atlas; }
 
-	inline void set_normal_texture_prefix(const String &p) { normal_texture_prefix = p; }
+	inline void set_normal_texture_prefix(String p) { normal_texture_prefix = p; }
 
-	int load_from_atlas_file(const String &p_path); // .atlas
+	int load_from_atlas_file(String p_path); // .atlas
 
-	int load_from_file(const String &p_path); // .spatlas
-	int save_to_file(const String &p_path); // .spatlas
+	int load_from_file(String p_path); // .spatlas
+	int save_to_file(String p_path); // .spatlas
 
 	String get_source_path();
 	Array get_textures();

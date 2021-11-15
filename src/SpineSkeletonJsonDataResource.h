@@ -22,8 +22,8 @@ public:
 public:
 	inline const String &get_json_string() { return json_string; }
 
-	int load_from_file(const String &p_path);
-	int save_to_file(const String &p_path);
+	int load_from_file(String p_path);
+	int save_to_file(String p_path);
 };
 
 } //namespace godot

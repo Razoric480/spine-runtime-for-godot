@@ -18,3 +18,5 @@ VC/
 *.exp
 
 .import/
+
+*.os

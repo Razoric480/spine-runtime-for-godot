@@ -16,7 +16,7 @@ void SpineSkeletonJsonDataResource::_init() {
     json_string = "";
 }
 
-int SpineSkeletonJsonDataResource::load_from_file(const String &p_path) {
+int SpineSkeletonJsonDataResource::load_from_file(String p_path) {
 	int err;
 
 	Ref<File> file;
@@ -31,7 +31,7 @@ int SpineSkeletonJsonDataResource::load_from_file(const String &p_path) {
 	return err;
 }
 
-int SpineSkeletonJsonDataResource::save_to_file(const String &p_path) {
+int SpineSkeletonJsonDataResource::save_to_file(String p_path) {
 	int err;
 	Ref<File> file;
 	file.instance();
