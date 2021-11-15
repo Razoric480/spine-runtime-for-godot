@@ -7,7 +7,7 @@ reloadable=false
 
 [entry]
 
-X11.64=""
+X11.64="res://bin/x11/libspine-runtime.so"
 Windows.64="res://bin/win64/spine-runtime.dll"
 OSX.64=""
 
