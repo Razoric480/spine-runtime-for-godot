@@ -1,0 +1,14 @@
+[remap]
+
+importer="raiix.spine_runtime.atlas"
+type="Resource"
+path="res://.import/mix-and-match-pro.atlas-bc29de9e74a781736f93aef7cf446f91.spatlas"
+
+[deps]
+
+source_file="res://character/mix-and-match-pro.atlas"
+dest_files=[ "res://.import/mix-and-match-pro.atlas-bc29de9e74a781736f93aef7cf446f91.spatlas" ]
+
+[params]
+
+normal_texture_prefix="n"

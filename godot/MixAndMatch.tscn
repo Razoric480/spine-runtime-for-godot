@@ -1,0 +1,54 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://bin/spine-runtime.gdnlib" type="GDNativeLibrary" id=1]
+[ext_resource path="res://character/mix-and-match-pro.json" type="Resource" id=2]
+[ext_resource path="res://character/mix-and-match-pro.atlas" type="Resource" id=3]
+[ext_resource path="res://character/GirlSpringDress.tres" type="Resource" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+
+[sub_resource type="NativeScript" id=1]
+class_name = "SpineSprite"
+library = ExtResource( 1 )
+
+[sub_resource type="NativeScript" id=2]
+class_name = "SpineAnimationStateDataResource"
+library = ExtResource( 1 )
+
+[sub_resource type="NativeScript" id=3]
+class_name = "SpineSkeletonDataResource"
+library = ExtResource( 1 )
+
+[sub_resource type="Resource" id=4]
+script = SubResource( 3 )
+atlas_res = ExtResource( 3 )
+skeleton_json_res = ExtResource( 2 )
+
+[sub_resource type="Resource" id=5]
+script = SubResource( 2 )
+skeleton = SubResource( 4 )
+default_mix = 0.5
+
+[node name="Node2D" type="Node2D"]
+
+[node name="SpineSprite" type="Node2D" parent="."]
+position = Vector2( 463.189, 631.379 )
+script = SubResource( 1 )
+animation_state_data_res = SubResource( 5 )
+bind_slot_nodes = [ [ "hand-front", NodePath("Sprite") ] ]
+packed_skin_resource = ExtResource( 4 )
+current_animations = [ {
+"animation": "dress-up",
+"clear": false,
+"delay": 0,
+"empty": false,
+"empty_animation_duration": 0.3,
+"loop": true,
+"track_id": 0
+} ]
+empty_animation_duration = 0.2
+
+[node name="Sprite" type="Sprite" parent="SpineSprite"]
+position = Vector2( -169.747, -255.249 )
+rotation = 1.11199
+scale = Vector2( 1, 1 )
+texture = ExtResource( 5 )
