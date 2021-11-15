@@ -9,7 +9,7 @@ reloadable=false
 
 X11.64="res://bin/x11/libspine-runtime.so"
 Windows.64="res://bin/win64/spine-runtime.dll"
-OSX.64=""
+OSX.64="res://bin/osx/libspine-runtime.dylib"
 
 [dependencies]
 
