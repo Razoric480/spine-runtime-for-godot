@@ -16,8 +16,21 @@ Compiling godot for debug (-Od flag) will severely impact performance
 Compile with -O2 flag for godot engine and run linker can double fps
 
 # Compilation instructions
+
+## Requirements
+
+- `scons` (Install via `python3 -m pip install scons`, or just `python -m pip install scons` on Windows)
+- On Windows: Visual Studio Build Tools (easiest is to install Visual Studio 2019 Community) to gain access to VCVarsall and compiler.
+
+## Steps
+
 1. Run `git submodule update --init --recursive`
-2. Run `sh build_all_release.sh` or `build_all_release.bat` on Windows. Windows requires Visual Studio tools since it depends on vcvarsall.
+2. Run `sh build_all_release.sh` Linux/Mac, or `build_all_release.bat` on Windows.
+3. Open `./godot/` project and check `RunSprite.tscn` and `MixAndMatch.tscn` to ensure it works.
+
+## Caveats
+
+There are still some crashes and bugs to iron out due to the conversion from module to GDScript. User discretion is advised.
 
 # License
 According to Spine's official statement, the use of spine-runtime-cpp is required under [Spine Runtime License Agreement](http://zh.esotericsoftware.com/spine-runtimes-license).
