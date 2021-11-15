@@ -55,7 +55,7 @@ void SpineCollisionShapeProxy::_notification(int p_what) {
 }
 
 SpineSprite *SpineCollisionShapeProxy::get_spine_sprite() const {
-	return (SpineSprite *)get_node_or_null(spine_sprite_path);
+	return cast_to<SpineSprite>(get_node_or_null(spine_sprite_path));
 }
 
 NodePath SpineCollisionShapeProxy::get_spine_sprite_path() {

@@ -144,7 +144,7 @@ void SpineSprite::update_bind_slot_nodes() {
 					NodePath node_path = d["node_path"];
 					Node *node = get_node_or_null(node_path);
 					if (node && node->is_class("Node2D")) {
-						Node2D *node2d = (Node2D *)node;
+						Node2D *node2d = cast_to<Node2D>(node);
 
 						String slot_name = d["slot_name"];
 						auto slot = skeleton->find_slot(slot_name);
@@ -328,7 +328,7 @@ void SpineSprite::remove_redundant_mesh_instances() {
 		auto node = get_child(i);
 		//		print_line(String("get a node: ") + node->get_name());
 		if (node && node->is_class("SpineSpriteMeshInstance2D")) {
-			if (mesh_instances.find((SpineSpriteMeshInstance2D *)node) == -1) {
+			if (mesh_instances.find(cast_to<SpineSpriteMeshInstance2D>(node)) == -1) {
 				//				print_line("marked clear");
 				ms.push_back(node);
 			}

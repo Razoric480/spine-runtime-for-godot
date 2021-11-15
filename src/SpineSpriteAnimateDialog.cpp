@@ -316,7 +316,10 @@ void SpineSpriteAnimateDialog::_on_scene_tree_hide() {
 	animate_dialog->popup_centered();
 
 	bool err = false;
-	load_data_from_sprite((SpineSprite *)get_node_or_null(spine_sprite_path), err);
+	
+	Node *target_node = get_node_or_null(spine_sprite_path);
+	SpineSprite *spine_sprite = cast_to<SpineSprite>(target_node);
+	load_data_from_sprite(spine_sprite, err);
 
 	if (err)
 		animate_dialog->hide();
@@ -324,7 +327,8 @@ void SpineSpriteAnimateDialog::_on_scene_tree_hide() {
 	err = false;
 	auto node = get_node_or_null(anim_player_path);
 	if (node != nullptr) {
-		load_data_from_anim_player((AnimationPlayer *)node, err);
+		AnimationPlayer *player = cast_to<AnimationPlayer>(node);
+		load_data_from_anim_player(player, err);
 		animate_dialog_override_button->set_visible(!err);
 	} else {
 		animate_dialog_override_button->set_visible(false);
@@ -334,9 +338,12 @@ void SpineSpriteAnimateDialog::_on_scene_tree_hide() {
 void SpineSpriteAnimateDialog::_on_animate_dialog_action(const String &act) {
 	bool err = false;
 	if (act == "confirmed") {
-		gen_new_animation_player((SpineSprite *)get_node_or_null(spine_sprite_path), err);
+		SpineSprite *sprite = cast_to<SpineSprite>(get_node_or_null(spine_sprite_path));
+		gen_new_animation_player(sprite, err);
 	} else if (act == "override") {
-		gen_animations((SpineSprite *)get_node_or_null(spine_sprite_path), (AnimationPlayer *)get_node_or_null(anim_player_path), get_data_from_tree(), MIN_TRACK_LENGTH, err);
+		SpineSprite *sprite = cast_to<SpineSprite>(get_node_or_null(spine_sprite_path));
+		AnimationPlayer *player = cast_to<AnimationPlayer>(get_node_or_null(anim_player_path));
+		gen_animations(sprite, player, get_data_from_tree(), MIN_TRACK_LENGTH, err);
 	}
 	if (!err) {
 		animate_dialog->hide();

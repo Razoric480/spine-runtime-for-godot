@@ -25,6 +25,7 @@ public:
 	void _select();
 	void _cancel();
 	void _filter_changed(const String &p_filter);
+	Node *_get_scene_node();
 
 	bool _add_nodes(Node *p_node, TreeItem *p_parent);
 	void _update_tree();

@@ -4,6 +4,8 @@
 #include <SceneTree.hpp>
 #include <TreeItem.hpp>
 #include <VBoxContainer.hpp>
+#include <Script.hpp>
+#include <ClassDB.hpp>
 
 namespace godot {
 
@@ -42,36 +44,64 @@ void SceneTreeDialog::_cancel() {
 void SceneTreeDialog::_select() {
 	if (tree->get_selected()) {
 		NodePath np = tree->get_selected()->get_metadata(0);
-		emit_signal("selected", get_node(np));
+		emit_signal("selected", np);
 		hide();
 	}
 }
 
 void SceneTreeDialog::_update_tree() {
 	tree->clear();
-	SceneTree *scene;
-	if (Engine::get_singleton()->is_editor_hint()) {
-		scene = (SceneTree *)Engine::get_singleton()->get_main_loop();
-		_add_nodes(scene->get_edited_scene_root(), nullptr);
-	} else {
-		scene = get_tree();
-		_add_nodes(scene->get_current_scene(), nullptr);
-	}
+	_add_nodes(_get_scene_node(), nullptr);
 }
 
 void SceneTreeDialog::_filter_changed(const String &p_filter) {
 	_update_tree();
 }
 
+Node *SceneTreeDialog::_get_scene_node() {
+	SceneTree *scene;
+	if (Engine::get_singleton()->is_editor_hint()) {
+		scene = (SceneTree *)Engine::get_singleton()->get_main_loop();
+		return scene->get_edited_scene_root();
+	}
+		scene = get_tree();
+		return scene->get_current_scene();
+
+}
+
 bool SceneTreeDialog::_add_nodes(Node *p_node, TreeItem *p_parent) {
 	if (!p_node) {
 		return false;
 	}
+	
+	bool part_of_subscene = p_node->get_owner() != _get_scene_node() && p_node != _get_scene_node();
 
 	TreeItem *item = tree->create_item((Object *)p_parent);
 	item->set_text(0, p_node->get_name());
 	item->set_selectable(0, true);
 	item->set_metadata(0, p_node->get_path());
+	if(p_node->get_owner() != _get_scene_node() && p_node != _get_scene_node()) {
+		item->set_custom_color(0, get_color("disabled_font_color", "Editor"));
+	}
+	
+	Ref<Texture> icon = get_icon(p_node->get_class(), "EditorIcons");
+	if(icon.is_valid()) {
+		item->set_icon(0, icon);
+	}
+	
+	if(valid_types.size() > 0) {
+		bool valid = false;
+		for(int i=0; i<valid_types.size(); ++i) {
+			if(p_node->is_class(valid_types[i])) {
+				valid = true;
+				break;
+			}
+		}
+		if(!valid) {
+			item->set_custom_color(0, get_color("disabled_font_color", "Editor"));
+			item->set_selectable(0, false);
+		}
+	}
 
 	bool keep = filter->get_text().is_subsequence_ofi(String(p_node->get_name()));
 	for (int i = 0; i < p_node->get_child_count(); ++i) {
