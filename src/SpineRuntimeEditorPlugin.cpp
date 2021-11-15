@@ -6,10 +6,6 @@
 #include "SpineRuntimeEditorPlugin.h"
 
 #include "PackedSpineSkinResource.h"
-#include "ResourceFormatLoaderSpineAtlas.h"
-#include "ResourceFormatLoaderSpineSkeletonJsonData.h"
-#include "ResourceFormatSaverSpineAtlas.h"
-#include "ResourceFormatSaverSpineSkeletonJsonData.h"
 #include "SpineAnimationState.h"
 #include "SpineAnimationStateDataResource.h"
 #include "SpineAtlasResource.h"
