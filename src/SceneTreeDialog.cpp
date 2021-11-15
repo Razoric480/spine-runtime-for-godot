@@ -1,3 +1,7 @@
+//
+// Created by Godot Devs, ported to GDNative by Razoric on 2021/11
+//
+
 #include "SceneTreeDialog.h"
 
 #include <Engine.hpp>

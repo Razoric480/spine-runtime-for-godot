@@ -1,5 +1,6 @@
 //
 // Created by Raymond_Lx on 2020/6/5.
+// Ported to GDNative by Razoric on 2021/11.
 //
 
 #include "SpinePathConstraintData.h"

@@ -1,5 +1,6 @@
 //
 // Created by Raiix on 2021/7/16.
+// Ported to GDNative by Razoric on 2021/11.
 //
 
 #include "SpineSpriteAnimateDialog.h"
@@ -303,7 +304,7 @@ void SpineSpriteAnimateDialog::_on_scene_tree_selected(NodePath path) {
 
 void SpineSpriteAnimateDialog::_on_animate_button_pressed() {
 	anim_player_path = NodePath("");
-	auto node = (Node *)the_plugin->get_editor_interface()->get_selection()->get_selected_nodes().back();
+	auto node = cast_to<Node>(the_plugin->get_editor_interface()->get_selection()->get_selected_nodes().back());
 	spine_sprite_path = node->get_path();
 
 	//    print_line(vformat("sp: %s", spine_sprite_path));

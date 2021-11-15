@@ -1,5 +1,6 @@
 //
 // Created by Raymond_Lx on 2020/6/2.
+// Ported to GDNative by Razoric on 2021/11.
 //
 
 #include "SpineSprite.h"
@@ -163,7 +164,7 @@ void SpineSprite::update_bind_slot_nodes() {
 					NodePath node_path = as[1];
 					Node *node = get_node_or_null(node_path);
 					if (node && node->is_class("Node2D")) {
-						Node2D *node2d = (Node2D *)node;
+						Node2D *node2d = cast_to<Node2D>(node);
 
 						String slot_name = as[0];
 						auto slot = skeleton->find_slot(slot_name);

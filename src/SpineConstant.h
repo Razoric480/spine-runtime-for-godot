@@ -1,5 +1,6 @@
 //
 // Created by Raiix on 2021/7/14.
+// Ported to GDNative by Razoric on 2021/11.
 //
 
 #ifndef GODOT_SPINECONSTANT_H

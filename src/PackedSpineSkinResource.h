@@ -1,5 +1,6 @@
 //
 // Created by Raiix on 2020/7/12.
+// Ported to GDNative by Razoric on 2021/11.
 //
 
 #ifndef GODOT_PACKEDSPINESKINRESOURCE_H

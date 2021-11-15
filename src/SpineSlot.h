@@ -1,5 +1,6 @@
 //
 // Created by Raymond_Lx on 2020/6/6.
+// Ported to GDNative by Razoric on 2021/11.
 //
 
 #ifndef GODOT_SPINESLOT_H
